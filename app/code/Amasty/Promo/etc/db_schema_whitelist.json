@@ -1,0 +1,55 @@
+{
+    "amasty_ampromo_rule": {
+        "column": {
+            "entity_id": true,
+            "salesrule_id": true,
+            "sku": true,
+            "type": true,
+            "top_banner_show_gift_images": true,
+            "after_product_banner_show_gift_images": true,
+            "items_discount": true,
+            "minimal_items_price": true,
+            "apply_tax": true,
+            "apply_shipping": true,
+            "top_banner_image": true,
+            "top_banner_alt": true,
+            "top_banner_on_hover_text": true,
+            "top_banner_link": true,
+            "top_banner_description": true,
+            "after_product_banner_image": true,
+            "after_product_banner_alt": true,
+            "after_product_banner_on_hover_text": true,
+            "after_product_banner_link": true,
+            "after_product_banner_description": true,
+            "label_image": true,
+            "label_image_alt": true
+        },
+        "index": {
+            "AMASTY_AMPROMO_RULE_SALESRULE_ID": true
+        }
+    },
+    "amasty_ampromo_items_storage": {
+        "column": {
+            "id": true,
+            "quote_id": true,
+            "sku": true,
+            "allowed_qty": true,
+            "reserved_qty": true,
+            "rule_id": true,
+            "rule_type": true,
+            "minimal_price": true,
+            "discount_item": true,
+            "discount_amount": true,
+            "auto_add": true,
+            "is_item_deleted": true
+        },
+        "index": {
+            "AMASTY_AMPROMO_ITEMS_STORAGE_QUOTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_80BBD35BC4CCD2396B9B64E564FB374D": true,
+            "AMASTY_AMPROMO_ITEMS_STORAGE_QUOTE_ID_QUOTE_ENTITY_ID": true
+        }
+    }
+}

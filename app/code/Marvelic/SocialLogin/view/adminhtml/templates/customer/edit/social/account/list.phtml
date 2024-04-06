@@ -1,0 +1,33 @@
+<?php // @codingStandardsIgnoreFile 
+?>
+<?php /** @var  \Marvelic\SocialLogin\Block\Adminhtml\Customer\Edit\Tab\Social\AccountsList  $block*/ ?>
+<?php $accounts = $block->getAccounts(); ?>
+<?php if (count($accounts)) : ?>
+    <table class="admin__table-secondary">
+        <tbody>
+            <?php /** @var Marvelic\SocialLogin\Api\Data\AccountInterface $account */ ?>
+            <?php foreach ($accounts as $account) : ?>
+                <tr>
+                    <th>
+                        <span class="social-provider-<?php /* @noEscape */ echo $account->getType(); ?>">
+                            <?php /* @noEscape */ echo $account->getType(); ?>
+                        </span>
+                    </th>
+                    <td class="social-link-avatar">
+                        <img src="<?php echo /* @noEscape */ $block->getAccountImageUrl(); ?>" alt="<?php echo /* @noEscape */ $account->getType(); ?>" />
+                    </td>
+                    <?php $customer = $block->getCustomerSocial($account->getCustomerId()) ?>
+                    <td>
+                        <span><?php /* @noEscape */ echo $customer->getFirstName(); ?></span>
+                        <span><?php /* @noEscape */ echo $customer->getLastName(); ?></span>
+                    </td>
+                    <td>
+                        <a href="mailto:<?php /* @noEscape */ echo $customer->getEmail(); ?>"><?php /* @noEscape */ echo $customer->getEmail(); ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else : ?>
+    <div class="message info empty"><span><?php /* @noEscape */ echo __('Customer has not linked any social accounts yet.'); ?></span></div>
+<?php endif; ?>

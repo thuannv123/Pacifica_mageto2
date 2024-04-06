@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="div.sidebar.main">
+            <block class="Isobar\Megamenu\Block\Html\Topmenu"
+                   name="catalog.sidebarnav"
+                   template="Isobar_Megamenu::html/sidebar.phtml"
+                   before="-"
+                   ttl="3600" />
+        </referenceContainer>
+        <referenceBlock name="store.menu">
+            <block class="Isobar\Megamenu\Block\Html\Topmenu"
+                   name="catalog.sub.sidebar"
+                   template="Isobar_Megamenu::html/horizontal-vertical-menu.phtml"
+                   before="-"
+                   ttl="3600" />
+        </referenceBlock>
+        <!-- <referenceBlock name="catalog.topnav" template="Isobar_Megamenu::html/topmenu.phtml" /> -->
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        <referenceBlock name="store.menu">
+            <block class="Isobar\Megamenu\Block\Html\Topmenu" name="catalog.topnav.fix" template="Isobar_Megamenu::html/topmenu.phtml" before="-"/>
+        </referenceBlock>
+    </body>
+</page>

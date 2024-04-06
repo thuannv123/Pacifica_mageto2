@@ -1,0 +1,15 @@
+<?php
+/** @var \Isobar\OrderReminder\ViewModel\HandleReloadCart $viewModel */
+$viewModel = $this->getViewModel();
+?>
+
+<?php if ($viewModel->isMustReloadCartSection()): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Isobar_OrderReminder/js/reload-cart": {}
+            }
+        }
+    </script>
+<?php endif; ?>
+

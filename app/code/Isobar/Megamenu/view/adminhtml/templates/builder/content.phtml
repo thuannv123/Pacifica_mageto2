@@ -1,0 +1,24 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Isobar\Megamenu\Block\Adminhtml\Builder\Content $block */
+?>
+
+<ul class="isobar-menu-items-tree" data-menu-js="items-tree">
+<?php foreach ($block->getItems() as $item) : ?>
+    <?php $contentItem = $block->getContentItem($item) ?>
+    <?php if ($contentItem !== null) : ?>
+        <li class="menu-item" id="<?= $escaper->escapeHtml($item->getId()) ?>">
+            <?= $escaper->escapeHtml($contentItem->getName()) ?>
+        </li>
+    <?php endif; ?>
+<?php endforeach; ?>
+</ul>
+<script type="text/x-magento-init">
+    {
+        "[data-menu-js='items-tree']": {
+            "Isobar_Megamenu/js/builder/sortable": {
+                "moveUrl": "<?= $escaper->escapeUrl($block->getMoveUrl()) ?>"
+            }
+        }
+    }
+</script>

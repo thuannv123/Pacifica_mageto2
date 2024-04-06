@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<type name="Magento\Customer\Model\AccountManagement">
+		<plugin name="Isobar_ImportExport_Plugin_Create_Account" sortOrder="9999" type="Isobar\ImportExport\Plugin\Model\Export\Customer\AccountManagement"/>
+	</type>
+
+	<type name="Firebear\ImportExport\Model\Export\Customer">
+		<plugin name="Isobar_ImportExport_Plugin_Backend_Firebear_ImportExport_Model_Export_Customer" sortOrder="10" type="Isobar\ImportExport\Plugin\Model\Export\Customer"/>
+	</type>
+
+	<virtualType name="dataExported" type="Magento\Framework\DataObject" />
+
+	<type name="Isobar\ImportExport\Plugin\Model\Export\Customer">
+		<arguments>
+			<argument name="list" xsi:type="object">dataExported</argument>
+		</arguments>
+	</type>
+
+	<type name="Firebear\ImportExport\Model\Export\Order">
+		<plugin name="Isobar_ImportExport_Plugin_Backend_Firebear_ImportExport_Model_Export_Order" sortOrder="10" type="Isobar\ImportExport\Plugin\Model\Export\Order"/>
+	</type>
+
+	<type name="Magento\ImportExport\Model\Import\Entity\AbstractEntity">
+		<plugin name="Isobar_ImportExport_Plugin_update_status_order" sortOrder="1" type="Isobar\ImportExport\Plugin\Model\Import\Entity\AbstractEntity"/>
+	</type>
+
+    <virtualType name="firebearImportProductHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/firebear/import_product.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="firebearImportProductLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">firebearImportProductHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Isobar\ImportExport\Plugin\TerminatePlugin">
+        <arguments>
+            <argument name="logger" xsi:type="object">firebearImportProductLogger</argument>
+        </arguments>
+    </type>
+    <type name="Isobar\ImportExport\Model\Import\Product">
+        <arguments>
+            <argument name="logger" xsi:type="object">firebearImportProductLogger</argument>
+        </arguments>
+    </type>
+    <preference for="Firebear\ImportExport\Model\Import\Product" type="Isobar\ImportExport\Model\Import\Product" />
+    <preference for="Firebear\ImportExport\Helper\Data" type="Isobar\ImportExport\Helper\Data" />
+    <preference for="Firebear\ImportExport\Model\Import" type="Isobar\ImportExport\Model\Import" />
+    <preference for="Firebear\ImportExport\Logger\Logger" type="Isobar\ImportExport\Logger\Logger" />
+    <preference for="Firebear\ImportExport\Ui\Component\Listing\Column\Log" type="Isobar\ImportExport\Ui\Component\Listing\Column\Log" />
+    <preference for="Firebear\ImportExport\Controller\Adminhtml\Job\DownloadLog" type="Isobar\ImportExport\Controller\Adminhtml\Job\DownloadLog" />
+    <preference for="Firebear\ImportExport\Model\Email\Sender" type="Isobar\ImportExport\Model\Email\Sender" />
+    <preference for="Firebear\ImportExport\Model\Import\Product\ConfigurationVariations" type="Isobar\ImportExport\Model\Import\ConfigurationVariations"/>
+
+    <type name="Firebear\ImportExport\Model\Job\Processor">
+        <plugin name="isobar_importexport_processor_modify"
+                type="Isobar\ImportExport\Plugin\Model\Job\ProcessorPlugin"/>
+    </type>
+
+    <type name="Isobar\ImportExport\Plugin\Model\Job\ProcessorPlugin">
+        <arguments>
+            <argument name="logger" xsi:type="object">firebearImportProductLogger</argument>
+        </arguments>
+    </type>
+
+    <preference for="Firebear\ImportExport\Controller\Adminhtml\Job\Save" 
+    type="Isobar\ImportExport\Controller\Adminhtml\Job\Save" />
+
+    <preference for="Firebear\ImportExport\Model\Import\Product\UrlKeyManager"
+    type="Isobar\ImportExport\Model\Import\Product\UrlKeyManager" />
+
+    <preference for="Firebear\ImportExport\Model\Import\Product\ImageProcessor"
+    type="Isobar\ImportExport\Model\Import\Product\ImageProcessor" />
+</config>

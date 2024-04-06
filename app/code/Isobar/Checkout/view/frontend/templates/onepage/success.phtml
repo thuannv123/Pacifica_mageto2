@@ -1,0 +1,43 @@
+<?php /** @var $block \Isobar\LogDataPayment\Block\Onepage\Success */ ?>
+<?php
+$order = $block->getOrder();
+?>
+<?php if ($order): ?>
+    <form class="form hidden" action="#" method="post" id="checkout-send-log-form">
+        <input name="customer_name" value="<?= $order->getCustomerFirstName().' '.$order->getCustomerLastName() ?>" id="customer_name" type="text" >
+        <input name="customer_email" value="<?= $order->getCustomerEmail() ?>" id="customer_email" type="text" >
+        <input name="created_at" value="<?= $order->getCreatedAt() ?>" id="created_at" type="text" >
+        <input name="store_code" value="<?= $order->getStore()->getCode() ?>" id="store_code" type="text" >
+        <input name="grand_total" value="<?= $order->getGrandTotal() ?>" id="total" type="text" >
+        <input name="order_id" value="<?= $order->getIncrementId() ?>" id="order_id" type="text" >
+        <input name="payment" value="<?= $order->getPayment()->getMethodInstance()->getTitle(); ?>" id="payment" type="text" >
+    </form>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        setTimeout(sendLog, 1500);
+        function sendLog() {
+            $.ajax({
+                url: BASE_URL+'logdatapayment/logcheckoutsuccess/index',
+                type: "POST",
+                dateType: "json",
+                data: $("#checkout-send-log-form").serialize(),
+                success: function (result) {
+
+                }
+            });
+        }
+    });
+</script>
+
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Isobar_Checkout/js/reload-message-on-success-page": {}
+        }
+    }
+</script>

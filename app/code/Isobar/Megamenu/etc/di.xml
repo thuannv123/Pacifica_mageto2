@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Theme\Block\Html\Topmenu" type="Isobar\Megamenu\Block\Html\Topmenu" />
+
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="catalogTopmenu" disabled="true" />
+        <plugin name="Isobar_Megamenu::catalogTopmenu"
+                type="Isobar\Megamenu\Plugin\Block\Topmenu"
+                sortOrder="100"
+                disabled="false"
+        />
+    </type>
+
+    <type name="Isobar\Megamenu\Controller\Adminhtml\Category\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Isobar\Megamenu\Controller\Adminhtml\Category\Image\UploadBackgroundImage">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+
+    <preference for="Isobar\Megamenu\Api\Data\Menu\LinkInterface"
+                type="Isobar\Megamenu\Model\Menu\Link"
+    />
+    <preference for="Isobar\Megamenu\Api\LinkRepositoryInterface"
+                type="Isobar\Megamenu\Model\Repository\LinkRepository"
+    />
+    <preference for="Isobar\Megamenu\Api\Data\Menu\ItemInterface"
+                type="Isobar\Megamenu\Model\Menu\Item"
+    />
+    <preference for="Isobar\Megamenu\Api\ItemRepositoryInterface"
+                type="Isobar\Megamenu\Model\Repository\ItemRepository"
+    />
+    <preference for="Isobar\Megamenu\Api\Data\Menu\Item\PositionInterface"
+                type="Isobar\Megamenu\Model\Menu\Item\Position"
+    />
+    <preference for="Isobar\Megamenu\Api\PositionRepositoryInterface"
+                type="Isobar\Megamenu\Model\Repository\PositionRepository"
+    />
+
+     <preference for="Isobar\Megamenu\Api\AjaxInterface"
+                type="Isobar\Megamenu\Model\CustomApi"
+    />
+
+    <type name="Isobar\Megamenu\Model\Provider\FieldsByStore">
+        <arguments>
+            <argument name="fieldsByStoreCustom" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="name" xsi:type="string">name</item>
+                    <item name="status" xsi:type="string">status</item>
+                    <item name="label" xsi:type="string">label</item>
+                    <item name="label_text_color" xsi:type="string">label_text_color</item>
+                    <item name="label_background_color" xsi:type="string">label_background_color</item>
+                </item>
+                <item name="isobar_mega_menu_fieldset" xsi:type="array">
+                </item>
+            </argument>
+            <argument name="fieldsByStoreCategory" xsi:type="array">
+                <item name="isobar_mega_menu_fieldset" xsi:type="array">
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Isobar\Megamenu\Model\ResourceModel\Menu\Link\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">isobar_menu_link</argument>
+            <argument name="eventPrefix" xsi:type="string">isobar_menu_link_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">isobar_menu_link_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Isobar\Megamenu\Model\ResourceModel\Menu\Link</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="isobar_megamenu_link_listing_data_source" xsi:type="string">Isobar\Megamenu\Model\ResourceModel\Menu\Link\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

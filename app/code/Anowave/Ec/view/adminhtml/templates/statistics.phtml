@@ -1,0 +1,18 @@
+<div class="dashboard-item">
+	<div class="dashboard-item-title"><?php echo __('Google Tag Manager Statistics')?></div>
+	<div class="dashboard-item-content">
+		<div>
+        	<a href="javascript:void(0)" data-impression-model-about="true">See statistics</a>
+        </div>
+		<script type="text/x-magento-init">
+        {
+            "*": {
+                "Anowave_Ec/js/statistics": 
+                {
+                    "url": <?php echo json_encode($block->getUrl('track/analytics/statistics')); ?>
+                }
+            }
+        }
+        </script>
+	</div>
+</div>

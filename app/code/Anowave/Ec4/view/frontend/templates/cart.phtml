@@ -1,0 +1,53 @@
+<script data-ommit="true">
+
+    if (AEC.GA4)
+    {
+        ((cart_payload) => 
+        {	  
+            <?php
+            /**
+             * Datalayer push
+             */
+            ?>
+
+            if (AEC.localStorage)
+            {
+                let reference = AEC.Storage.reference().get();
+
+                if (reference)
+                {
+                    cart_payload.ecommerce.items.forEach(item => 
+                    {
+                    	for (var a = 0, b = reference.length; a < b; a++)
+        				{
+        					if (item.item_id.toString().toLowerCase() === reference[a].id.toString().toLowerCase())
+        					{
+        						Object.assign(item, item, AEC.GA4.transformCategories(reference[a].category));
+        					}
+        				}
+                    });
+                }
+            }
+
+            (data => 
+            {
+           	 	AEC.CookieConsent.queue(function()
+ 	            {
+ 	            	dataLayer.push(data);
+ 	                
+ 	            }).process();
+ 	            
+            })(cart_payload);
+
+            <?php
+            /**
+             * Save cart payload in AEC() property for further reference
+             */
+            ?>
+            
+            AEC.Checkout.data = cart_payload;
+
+        })(<?php echo $block->getViewCart() ?>);
+    }
+    
+</script>

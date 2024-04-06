@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<!--    <type name="Magento\Sales\Block\Adminhtml\Order\Creditmemo\Create\Items">-->
+<!--        <plugin name="atomeAdminOrderCreditmemoCreateItemsSetLayout" type="Atome\MagentoPayment\Block\Adminhtml\Order\Creditmemo\Create\Plugin" />-->
+<!--    </type>-->
+</config>

@@ -1,0 +1,19 @@
+{
+	"name" : "anowave/ecoam",
+	"description" : "Magento 2 Onestepcheckout Add-on for GTM (UA) Tracking Amasty",
+	"require" : {
+		"php" : "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0|~7.3.0|~7.4.0",
+		"anowave/package" : ">0.0.0",
+		"anowave/ec" : ">0.0.0"
+	},
+	"type" : "magento2-module",
+	"version" : "100.1.2",
+	"autoload" : {
+		"files" : [
+			"registration.php"
+		],
+		"psr-4" : {
+			"Anowave\\Ecoam\\" : ""
+		}
+	}
+}

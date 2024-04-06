@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="firebear_importexport">
+            <resource>Firebear_ImportExport::config_importexport</resource>
+            <group id="import_product_log" translate="label" type="text" sortOrder="50" showInDefault="1">
+                <label>Import Product Log</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

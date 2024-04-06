@@ -1,0 +1,54 @@
+<div>
+	<a href="javascript:void(0)" data-gdpr-segment="true">User Guide</a>
+</div>
+<div data-gdpr-segment-guide="true" style="display:none">
+	<p>In Segment mode, the cookie consent directive will display a several checkboxes to visitor to choose from. </p>
+	<ol>
+		<li>
+			<div><strong>Essential cookies consent (readonly)</strong></div>
+			<p>Upon accepting consent, a "<?php echo \Anowave\Ec\Helper\Constants::COOKIE_CONSENT_GRANTED_EVENT ?>" event gets pushed in dataLayer[] object</p>
+		</li>
+		<li>
+			<div><strong>Marketing cookies consent</strong></div>
+			<p>Upon accepting consent, a "<?php echo \Anowave\Ec\Helper\Constants::COOKIE_CONSENT_MARKETING_GRANTED_EVENT ?>" event gets pushed in dataLayer[] object</p>
+		</li>
+		<li>
+			<div><strong>Preferences cookies consent</strong></div>
+			<p>Upon accepting consent, a "<?php echo \Anowave\Ec\Helper\Constants::COOKIE_CONSENT_PREFERENCES_GRANTED_EVENT ?>" event gets pushed in dataLayer[] object</p>
+		</li>
+		<li>
+			<div><strong>Analytics cookies consent</strong></div>
+			<p>Upon accepting consent, a "<?php echo \Anowave\Ec\Helper\Constants::COOKIE_CONSENT_ANALYTICS_GRANTED_EVENT ?>" event gets pushed in dataLayer[] object</p>
+		</li>
+	</ol>
+	<strong style="color:#c70000">IMPORTANT:</strong> You MUST adjust your related tags to fire on those specific events, otherwise you will not comply with GDPR.
+</div>
+<script>
+	require(['jquery','Magento_Ui/js/modal/modal'],function($,modal)
+	{
+		$('a[data-gdpr-segment]').on('click', function()
+		{
+			var content = $('[data-gdpr-segment-guide]').html();
+
+			$('<div />').html(content).modal(
+			{
+	            title: 'Segment Mode User Guide',
+	            autoOpen: true,
+	            closed: function () {},
+	            buttons: 
+		        [
+			        {
+		                text: 'I understand',
+		                attr: 
+			            {
+		                    'data-action': 'confirm'
+		                },
+		                'class': 'action-primary'
+		            }
+		         ]
+	         });
+
+			return false;
+		});
+	});
+</script>

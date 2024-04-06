@@ -1,0 +1,18 @@
+<!-- ko if: $subCol().getRows($subRow()).length -->
+<table class="amogrid-table-container -weee">
+    <tr class="amogrid-tr">
+        <th class="amogrid-th" data-bind="i18n: 'Country:'"></th>
+        <th class="amogrid-th" data-bind="i18n: 'State:'"></th>
+        <th class="amogrid-th" data-bind="i18n: 'Tax:'"></th>
+        <th class="amogrid-th" data-bind="i18n: 'Website:'"></th>
+    </tr>
+    <!-- ko repeat: {foreach: $subCol().getRows($subRow()), item: '$weeRow'} -->
+    <tr class="amogrid-tr">
+        <td class="amogrid-td -strong" data-bind="text: $subCol().getColumnValue($weeRow(), 'country')"></td>
+        <td class="amogrid-td -strong" data-bind="text: $subCol().getColumnValue($weeRow(), 'state')"></td>
+        <td class="amogrid-td -strong" data-bind="text: $subCol().getColumnValue($weeRow(), 'value')"></td>
+        <td class="amogrid-td" data-bind="text: $subCol().getColumnValue($weeRow(), 'website_id')"></td>
+    </tr>
+    <!-- /ko -->
+</table>
+<!-- /ko -->

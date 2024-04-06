@@ -1,0 +1,150 @@
+<?php if ($block->getHelper()->usePostRenderImpressionPayloadModel() && $block->getLayout()->getBlock('category.products.list')):?>
+
+    <script data-ommit="true">
+
+        var payload = <?php echo $block->getProductList()->getImpressionPayload($block->getLayout()->getBlock('category.products.list')) ?>; 
+    	
+    	payload.ecommerce['impressions'] = (function()
+    	{
+    		var impressions = [], trace = {};
+    
+    		document.querySelectorAll('[data-event=productClick]').forEach((element) => 
+    		{
+    			var entity = 
+    			{
+    				id: 				   element.dataset.id,
+    				name: 				   element.dataset.name,
+    				category:			   element.dataset.category,
+    				brand:				   element.dataset.brand,
+    				list:				   element.dataset.list,
+    				price:		parseFloat(element.dataset.price),
+    				position: 	parseFloat(element.dataset.position),
+    				remarketingFacebookId: element.dataset.remarketingFacebookId,
+    				remarketingAdwordsId:  element.dataset.remarketingAdwordsId,
+    				<?php echo $block->getHelper()->getStockDimensionIndex(true) ?>: element.dataset['<?php echo $block->getHelper()->getStockDimensionIndex(true) ?>']
+            	};
+    
+            	var attributes = element.dataset.attributes;
+    
+            	if (attributes)
+    	        {
+        	        Object.entries(JSON.parse(attributes)).forEach(([key, value]) => 
+        	        {
+            	        entity[key] = value;
+        	        });
+        	    }
+
+        	    if (!trace.hasOwnProperty(entity.id))
+        	    {
+            	    trace[entity.id] = true;
+            	    
+    				impressions.push(entity);
+        	    }
+        	});
+    
+    		return impressions;
+    	})();
+    
+    	(function(payload, payload_max_size)
+        {
+    		var payloadSize = AEC.getPayloadSize(payload);
+    		
+    		if (payload_max_size > payloadSize)
+    		{
+    			AEC.CookieConsent.queue(() => 
+    			{
+        			AEC.Cookie.impressions(payload).push(dataLayer);
+        			
+    			}).process();
+    
+    			<?php
+    			/**
+    			 * Private browser fallback
+    			 */
+    			?>
+    			
+    			dataLayerTransport.push(payload);
+    		}
+    		else 
+    		{
+    			var chunks = AEC.getPayloadChunks(payload.ecommerce.impressions, Math.ceil(payload.ecommerce.impressions.length/Math.ceil(payloadSize/payload_max_size)));
+    
+    			var lazyPush = function(chunks)
+    			{
+    				if (chunks.length)
+    				{
+    					var chunk = chunks.shift(), chunkPush = Object.assign({}, payload);
+    
+    					chunkPush['event'] 					= 'impression';
+    					chunkPush.ecommerce['impressions']  = chunk;
+    					chunkPush['eventCallback'] 			= (function(chunks)
+    					{
+    						return function()
+    						{
+    							lazyPush(chunks);
+    						}
+    					})(chunks);
+    
+    					(function(data)
+    					{
+    						AEC.Cookie.impressions(data).push(dataLayer);
+    						
+    					})(chunkPush);
+    				}
+    			};
+    
+    			/**
+    			 * Call lazy push
+    			 */
+    			lazyPush(chunks);
+    		}
+    		
+    	})(payload, <?php echo \Anowave\Ec\Helper\Constants::GOOGLE_PAYOAD_SIZE ?>);
+    
+    
+    	<?php 
+    	/**
+    	 * AdWords Dynamic Remarketing
+    	 */
+    	?>
+    	window.google_tag_params = window.google_tag_params || {};
+    
+    	window.google_tag_params.ecomm_pagetype = 'category';
+    	window.google_tag_params.ecomm_category = <?php echo $block->getProductList()->getCurrentCategoryName() ?>;
+    	window.google_tag_params.returnCustomer = <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+    	
+    	<?php
+    	/**
+    	 * Facebook Pixel Tracking
+    	 */
+    	?>
+    	<?php if ($block->getHelper()->facebook()): ?>
+    
+        	(function(params)
+            {
+        		if (AEC.Const.COOKIE_DIRECTIVE)
+        		{
+        			AEC.CookieConsent.queue(() => 
+        			{
+        				AEC.EventDispatcher.on('ec.facebook.loaded', () => 
+        				{
+        					fbq('trackCustom','ViewCategory', params, { eventID: AEC.UUID.generate( { event: 'trackCustom' }) });
+        				});
+	
+    				}).process();	
+        		}
+        		else 
+        		{
+        			AEC.EventDispatcher.on('ec.facebook.loaded', () => 
+    				{
+        				fbq('trackCustom', 'ViewCategory', params, { eventID: AEC.UUID.generate({ event: 'trackCustom' }) });
+        			});
+        		}
+        		
+            })({ content_ids: payload.ecommerce.impressions.map(function(impression){ return impression.id; }), content_type: 'product', content_name: <?php echo $block->getProductList()->getCurrentCategoryName() ?>, content_category: <?php echo $block->getProductList()->getCurrentCategoryName() ?> });
+    	
+    	<?php endif ?>
+    
+    </script>
+    
+<?php endif ?>

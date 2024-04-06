@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="beamcheckout" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Beam Checkout Payment</label>
+                <include path="Marvelic_BeamCheckout::system/beamcheckout_setting.xml"/>
+                <include path="Marvelic_BeamCheckout::system/beamcheckout_creditcard.xml"/>
+                <include path="Marvelic_BeamCheckout::system/beamcheckout_ewallet.xml"/>
+                <include path="Marvelic_BeamCheckout::system/beamcheckout_qrcode.xml"/>
+            </group>
+        </section>
+    </system>
+</config>

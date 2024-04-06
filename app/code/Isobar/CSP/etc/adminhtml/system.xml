@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+       <section id="csp" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>CSP Whitelist</label>
+            <tab>isobar</tab>
+            <resource>Magento_Config::config_system</resource>
+
+            <group id="mode" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>CSP Mode</label>
+                <group id="storefront" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Storefront</label>
+                    <field id="report_only" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
+                           showInStore="0">
+                        <label>Report Only</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[Allow display report to browser's console]]></comment>
+                    </field>   
+                </group>
+                <group id="admin" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Admin</label>
+                    <field id="report_only" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
+                           showInStore="0">
+                        <label>Report Only</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[Allow display report to browser's console]]></comment>
+                    </field>   
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

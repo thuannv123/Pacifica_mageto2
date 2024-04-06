@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Firebear\ImportExport\Controller\Adminhtml\Job\Terminate">
+        <plugin name="TerminatePlugin"
+                type="Isobar\ImportExport\Plugin\TerminatePlugin"/>
+    </type>
+    <type name="Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Configurable\Type\Options">
+        <plugin name="add_configurable_rules"
+                type="Isobar\ImportExport\Plugin\ConfigurableTypeOptions"/>
+    </type>
+</config>

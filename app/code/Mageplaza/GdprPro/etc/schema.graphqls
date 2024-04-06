@@ -1,0 +1,95 @@
+type GdprConfigs {
+    general: generalConfig @doc(description: "General configs")
+    anonymiseAccount: anonymiseAccountConfig @doc(description: "Anonymise Account configs")
+    cookieRestriction: cookieRestrictionConfig @doc(description: "Cookie Restriction configs")
+    email: emailConfig @doc(description: "Email configs")
+}
+
+type emailConfig {
+    enable: String
+    sender: String
+    confirmation: confirmation
+    before_delete_account: beforeDeleteAccount
+    admin_notification_email: adminNotificationEmail
+}
+
+type adminNotificationEmail {
+    enable: String
+    receiver: Receiver
+    template : String
+}
+type  Receiver {
+    email: String
+    name: String
+}
+
+type beforeDeleteAccount {
+    enable: String
+    time_before_auto_delete: String
+    template: String
+    template_after: String
+}
+
+type confirmation {
+    enable : String
+    template :  String
+}
+
+type cookieRestrictionConfig {
+    enable: String
+    block_access: String
+    policy_page: String
+    button_text: String
+    apply_for: String
+    location: String
+    specific_country: String
+    custom_css: String
+}
+
+type anonymiseAccountConfig {
+    allow_delete_abandonedcart: String
+    order_processing_enable: String
+    firstname: String
+    lastname: String
+    email: String
+    order_address_enable: String
+    order_address_fields: String
+}
+
+type generalConfig {
+    enabled: String
+    allow_delete_customer: String
+    delete_customer_message: String
+    allow_delete_default_address : String
+    allow_verify_password : String
+    allow_download: String
+    download_customer_message: String
+    allow_tac_register_customer: String
+    tac_title_checkbox: String
+    tac_content: String
+    auto_delete_customer_account: String
+    time_auto_delete: String
+
+}
+type Mutation {
+    mpGdprCookie : Cookie @resolver(class: "\\Mageplaza\\GdprPro\\GraphQl\\Model\\Resolver\\Cookie") @doc(description:"Get Cookie")
+    mpGdprCheckPassword(email: String!, password: String!): Boolean @resolver(class: "\\Mageplaza\\GdprPro\\GraphQl\\Model\\Resolver\\CheckPassword")  @doc(description:"Get Cookie")
+}
+
+type Cookie {
+    output: CookieOutput
+    check_cookie_enable: String
+    cookie_name: String
+    cookie_value: String
+    cookie_lifetime: Int
+    no_cookies_url : String
+}
+
+type CookieOutput {
+    html_class: String
+    cookie_message: String
+    cookie_button_text: String
+    cookie_policy_url: String
+    custom_css : String
+    is_block_access: String
+}

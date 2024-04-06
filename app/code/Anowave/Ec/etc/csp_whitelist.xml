@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="google" type="host">*.google.com</value>
+                <value id="google-bg" type="host">*.google.bg</value>
+                <value id="googletagmanager" type="host">*.googletagmanager.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-net" type="host">*.facebook.net</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="google-analytics" type="host">*.google-analytics.com</value>
+                <value id="chart" type="host">*.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="google-apis" type="host">*.googleapis.com</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="chart" type="host">*.gstatic.com</value>
+                <value id="googletagmanager" type="host">*.googletagmanager.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="data-image" type="host">'self' data:</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="google-local" type="host">*.google.bg</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-net" type="host">*.facebook.net</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="googletagmanager" type="host">*.googletagmanager.com</value>
+                <value id="g-static" type="host">*.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="google-analytics" type="host">*.google-analytics.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-net" type="host">*.facebook.net</value>
+                <value id="google" type="host">*.google.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="g-static" type="host">*.gstatic.com</value>
+                <value id="data-font" type="host">'self' data:</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="google" type="host">*.google.com</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="facebook" type="host">*.facebook.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

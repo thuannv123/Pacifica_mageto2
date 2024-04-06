@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gdpr">
+            <group id="general" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="allow_download" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Downloading Customer Information</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="download_customer_message" translate="label comment" type="textarea" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Message of Downloading</label>
+                    <comment>The message will be shown on Download Account area. HTML code is allowed.</comment>
+                    <depends>
+                        <field id="allow_download">1</field>
+                    </depends>
+                </field>
+                <field id="allow_verify_password" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Password Verification </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="allow_delete_customer">1</field>
+                    </depends>
+                </field>
+                <field id="allow_tac_register_customer" translate="label comment" type="select" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Customer Register Terms and Conditions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tac_title_checkbox" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>GDPR Checkbox Title</label>
+                    <comment>Enter the title for the GDPR Term and Conditions checkbox</comment>
+                    <depends>
+                        <field id="allow_tac_register_customer">1</field>
+                    </depends>
+                </field>
+                <field id="tac_content" translate="label comment" type="textarea" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Terms and Conditions</label>
+                    <comment>Term and condition for customer register. HTML code is allowed.</comment>
+                    <depends>
+                        <field id="allow_tac_register_customer">1</field>
+                    </depends>
+                </field>
+                <field id="auto_delete_customer_account" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Auto-delete Customer Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="time_auto_delete" translate="label" type="text" sortOrder="85"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delete After Last Login For</label>
+                    <comment>Day (s). If left blank or zero, the feature Auto Delete Account will not be activated</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="auto_delete_customer_account">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="anonymise_account" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Anonymise Account Configuration</label>
+                <field id="allow_delete_abandonedcart" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow deleting data on Abandoned Carts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="order_processing_enable" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow anonymizing account in billing document</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>The customer account info will be anonymised in order, invoice, shipment, creditmemo.</comment>
+                </field>
+                <field id="firstname" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Anonymise Account Firstname Value</label>
+                    <comment>The actual customer firstname will be anonymized and replaced by this value. If empty, a random 10-character string will be used as default.</comment>
+                    <depends>
+                        <field id="order_processing_enable">1</field>
+                    </depends>
+                </field>
+                <field id="lastname" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Anonymise Account Lastname Value</label>
+                    <comment>The actual customer lastname will be anonymized and replaced by this value. If empty, a random 10-character string will be used as default.</comment>
+                    <depends>
+                        <field id="order_processing_enable">1</field>
+                    </depends>
+                </field>
+                <field id="email" translate="label comment" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Anonymise Account Email Value</label>
+                    <comment>The actual customer email will be anonymized and replaced by this value. If empty, a random 10-character string will be used as default.</comment>
+                    <depends>
+                        <field id="order_processing_enable">1</field>
+                    </depends>
+                </field>
+                <field id="order_address_enable" translate="label comment" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Anonymise Address Option In Order Processing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Anonymize address attributes in billing documents: Customer address attributes will be hidden in order, invoice, shipment and credit memo.</comment>
+                    <depends>
+                        <field id="order_processing_enable">1</field>
+                    </depends>
+                </field>
+                <field id="order_address_fields" translate="label comment" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Anonymise Address Option</label>
+                    <source_model>Mageplaza\GdprPro\Model\Config\Source\Anonymiseaddress</source_model>
+                    <comment>Allow anonymizing address attribute(s)</comment>
+                    <depends>
+                        <field id="order_processing_enable">1</field>
+                        <field id="order_address_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cookie" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cookie Restriction</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Cookie Restriction Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, it will override the default Magento cookie restriction setting.</comment>
+                </field>
+                <field id="block_access" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Visitors must accept cookie policy</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes, visitors have to accept cookie policy to use some special features on website such as login, add to cart/wishlist, recent product view, etc,. Visitors will be invisible in analytic tools like Google analytics if they do not accept Cookie.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="message" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cookie Text Message</label>
+                    <comment><![CDATA[The message will be shown on cookie restriction area. HTML code is allowed.<br \><code>"%policyUrl"</code> will be replaced to the cookie policy page]]></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="policy_page" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>CMS Cookie Policy Page</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
+                    <comment>Select a CMS page to display Cookie Policy navigated from the above "%policyUrl"</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="button_text" translate="label comment" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Button Label</label>
+                    <comment>Eg. Allow Cookies; Ok; Accept; It’s fine;</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="location" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Location To Show Cookie Law</label>
+                    <source_model>Mageplaza\GdprPro\Model\Config\Source\CookieLocation</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="apply_for" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Apply For</label>
+                    <source_model>Mageplaza\GdprPro\Model\Config\Source\CountryType</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="specific_country" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Specific Country</label>
+                    <frontend_model>Mageplaza\GdprPro\Block\Adminhtml\System\Config\Specific</frontend_model>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="apply_for">2</field>
+                    </depends>
+                    <comment>Restrict countries to apply cookie restriction for</comment>
+                </field>
+                <field id="custom_css" translate="label comment" type="textarea" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Custom CSS</label>
+                    <comment><![CDATA[You can add css for cookie policy area here. <br />Eg: <code>.gdpr-cookie{text-align: center}</code>]]></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="email" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sender" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sender Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <group id="confirmation" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Confirmation</label>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="template" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Confirmation Email Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                </group>
+                <group id="before_delete_account" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Email Before Deleting Account</label>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="time_before_auto_delete" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Notice Before Deleting Account For</label>
+                        <comment>Day (s). If left blank or zero, the email will not be sent</comment>
+                        <backend_model>Mageplaza\GdprPro\Model\Config\Backend\TimeBeforeAutoDelete</backend_model>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                    <field id="template" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Notification Email Before Deleting Account (Default)</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                    <field id="template_after" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Notification Email After Deleting Account (Default)</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                </group>
+                <group id="admin_notification_email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Notification Email</label>
+                    <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="receiver" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Receiver</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                    <field id="template" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Notification Email When Customer Delete Your Account</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <depends>
+                            <field id="enable">1</field>
+                        </depends>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

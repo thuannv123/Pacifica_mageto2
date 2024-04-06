@@ -1,0 +1,9 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/config.xsd">
+    <default>
+        <gbprimepay>
+            <gbprimepay_required>
+                <cron_setting>0 */1 * * *</cron_setting>
+            </gbprimepay_required>
+        </gbprimepay>
+    </default>
+</config>

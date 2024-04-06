@@ -1,0 +1,51 @@
+<div style="margin:10px 0px 10px 0px">
+	<div style="padding-top:5px">
+    		Enter license key for domain <strong><?php echo $block->getHost() ?></strong><br /><br />
+    	</div>
+	<a href="javascript:void(0)" data-license="true">Get license key</a>
+</div>
+<div data-license-guide="true" style="display:none">
+	<div style="margin:10px 0px 10px 0px">
+    	
+    	To obtain a license key for <strong><?php echo $block->getHost() ?></strong>: <br /><br /> 
+    	1. Login at <a href="http://www.anowave.com/marketplace/" target="_blank">Anowave</a> and go to "My profile"<br />
+    	2. Click "Change profile settings"<br />
+    	3. Add <strong><?php echo $block->getHost() ?></strong> as new domain<br />
+    	4. Click again "My profile"<br />
+    	5. Click "View order"<br />
+    	6. License key(s) are shown on screen<br /><br />
+    	Keep your license keys secret. For any questions related to configuration and/or activation please contact us.<br /><br />
+    	Watch <a href="https://www.youtube.com/watch?v=hrPvZOZYIK4" target="_blank">How to add license key</a> <sup>&copy;</sup> on YouTube.
+    </div>
+</div>
+<script>
+	require(['jquery','Magento_Ui/js/modal/modal'],function($,modal)
+	{
+		$('a[data-license]').on('click', function()
+		{
+			var content = $('[data-license-guide]').html();
+
+			$('<div />').html(content).modal(
+			{
+	            title: 'License Guide',
+	            autoOpen: true,
+	            closed: function () {},
+	            buttons: 
+		        [
+			        {
+		                text: 'I understand',
+		                attr: 
+			            {
+		                    'data-action': 'confirm'
+		                },
+		                'class': 'action-primary'
+		            }
+		         ]
+	         });
+
+			return false;
+		});
+	});
+</script>
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="isobar_birkenstock_customize" translate="label" type="text" sortOrder="-5000" showInDefault="1" showInWebsite="1"
+                 showInStore="0">
+            <label>Swatch Settings</label>
+            <tab>isobar</tab>
+            <resource>Isobar_Base::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>General</label>
+                <field id="disable_product_swatch" type="select" translate="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Disable swatch image for swatch option on frontend.</label>
+                    <comment>To disable swatch image for swatch option on frontend. Only show swatch color instead.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

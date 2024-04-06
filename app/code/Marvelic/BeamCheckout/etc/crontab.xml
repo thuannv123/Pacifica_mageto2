@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="marvelic_beamcheckout_pending" instance="Marvelic\BeamCheckout\Cron\CheckOrderPending" method="execute">
+            <config_path>payment/beamcheckout/account_setting/beamcheckout_cron_setting/cron_setting</config_path>
+        </job>
+    </group>
+</config>

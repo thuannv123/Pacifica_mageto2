@@ -1,0 +1,98 @@
+<script data-ommit="true">
+
+    document.addEventListener("DOMContentLoaded", () => 
+    {
+    	(() => 
+    	{
+    		let map = {}, trace = {};
+    
+    		document.querySelectorAll('[data-widget]').forEach((element) => 
+            {
+                let widget = element.dataset.widget;
+                
+            	let entity = 
+    			{
+    				id: 				   element.dataset.id,
+    				name: 				   element.dataset.name,
+    				category:			   element.dataset.category,
+    				brand:				   element.dataset.brand,
+    				list:				   element.dataset.list,
+    				price:		parseFloat(element.dataset.price),
+    				position: 	parseFloat(element.dataset.position)
+            	};
+
+            	let attributes = element.dataset.attributes;
+                
+            	if (attributes)
+    	        {
+        	        Object.entries(JSON.parse(attributes)).forEach(([key, value]) => 
+        	        {
+            	        entity[key] = value;
+        	        });
+        	    }
+
+        	    if (!map.hasOwnProperty(widget))
+        	    {
+            	    map[widget] = [];
+            	    
+            	    map[widget].trace = {};
+            	    map[widget].entry = [];
+        	    }
+
+        	    if (!map[widget].trace.hasOwnProperty(element.dataset.id))
+        	    {
+        	    	map[widget].trace[element.dataset.id] = true;
+            	    
+            	    map[widget].entry.push(entity);
+        	    } 
+            });
+
+    		Object.entries(map).forEach(([key, value]) => 
+	        {
+		        if (value.entry.length)
+		        {
+    		        let data = 
+    			    {
+    					event: 'widgetViewNonInteractive',
+    					ecommerce:
+    					{
+    						actionField:
+    						{
+    							list: 		  value.entry.find(Boolean).list,
+    							currencyCode: <?php echo json_encode($block->getHelper()->getCurrency()) ?>
+    						},
+    						impressions: value.entry
+    					}
+    				};
+
+    		        if ('undefined' !== typeof dataLayer)
+    				{
+    					(function(callback)
+    					{
+    						if (AEC.Const.COOKIE_DIRECTIVE)
+    						{
+    							AEC.CookieConsent.queue(callback).process();
+    						}
+    						else 
+    						{
+    							callback.apply(window,[]);
+    						}
+    					})
+    					(
+    						(function(dataLayer, data)
+    						{
+    							return function()
+    							{
+    								AEC.EventDispatcher.trigger('ec.widget.view.data', data);
+    								
+    								dataLayer.push(data);
+    							}
+    						})(dataLayer, data)
+    					);
+    				}
+		        }
+	        });
+    	})();
+    });
+	
+</script>

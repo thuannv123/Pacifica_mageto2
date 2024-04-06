@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.methods">
+            <block class="Atome\MagentoPayment\Block\Cart\CheckoutCartBlock" name="atome.cart.buynow" after="checkout.cart.shortcut.buttons" template="Atome_MagentoPayment::atome/checkout_cart.phtml" />
+        </referenceContainer>
+    </body>
+</page>

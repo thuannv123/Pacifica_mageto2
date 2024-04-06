@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Isobar Team
+ * @copyright Copyright (c) 2020 Isobar (https://www.isobar.com)
+ * @package Isobar_Base
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <isobar_base>
+            <menu>
+                <enable>1</enable>
+            </menu>
+        </isobar_base>
+    </default>
+</config>

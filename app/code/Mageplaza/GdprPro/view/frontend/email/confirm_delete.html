@@ -1,0 +1,51 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!--@subject {{trans "Confirm to delete your account on our stores."}} @-->
+<!--@vars {
+"var customer_firstname":"Customer First Name",
+"var confirm_delete_url":"Confirm Delete Url"
+} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">Dear <strong>{{trans "%name" name=$customer_firstname}}</strong>,</p>
+<p>{{trans "Thank you for your activities on our store"}}</p>
+<p>{{trans "You can confirm your account deletion by clicking on this link below. Please consider carefully."}}</p>
+<p><span>Confirm Link: </span><a href='{{trans "%confirm" confirm=$confirm_delete_url}}' target="_blank">{{trans "%confirm" confirm=$confirm_delete_url}}</a></p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table width="100%" class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr width="100%">
+                    <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;">
+                        <p>{{trans "Thank you again, %store_name" store_name=$store.getFrontendName()}}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

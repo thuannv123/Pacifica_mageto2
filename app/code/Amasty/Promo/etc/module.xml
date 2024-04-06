@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Free Gift Base for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Amasty_Promo" setup_version="2.10.7">
+        <sequence>
+            <module name="Magento_Catalog" />
+            <module name="Magento_Checkout" />
+            <module name="Magento_ConfigurableProduct" />
+            <module name="Amasty_Conditions"/>
+            <module name="Amasty_BannersLite"/>
+        </sequence>
+    </module>
+</config>

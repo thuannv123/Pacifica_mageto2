@@ -1,0 +1,56 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Gdpr
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+if ($block->allowDownload()): ?>
+    <div class="mp-gdpr-pro-download-personal-data col-mp mp-12 mp-xs-12">
+        <form class="form" action="<?=/** @noEscape */ $block->getDownloadFileUrl() ?>" method="post">
+            <fieldset class="fieldset info mp-gdpr-pro-download">
+                <legend class="legend">
+                    <span><?= /** @noEscape */ __('Download personal data') ?></span>
+                </legend><br>
+                <div class="gdpr-download-message col-mp mp-12 mp-xs-12">
+                    <?= /** @noEscape */ __($block->getDownloadMessage())?>
+                </div>
+                <div class="mp-gdpr-pro-file-type col-mp mp-6 mp-xs-12">
+                    <select id="file_type" name="file_type">
+                        <option value="csv">CSV</option>
+                        <option value="xml">Excel XML</option>
+                    </select>
+                </div>
+                <div class="actions-toolbar col-mp mp-6 mp-xs-12">
+                    <div class="primary">
+                        <button type="submit" class="action save primary action-download" data-address="" title="<?= /** @noEscape */ __('Download') ?>">
+                            <span><?= /** @noEscape */ __('Download') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            var allowDelete = <?= /** @noEscape */ $block->allowDeleteCustomer()?>;
+            if (allowDelete){
+                $('.mp-gdpr-delete-customer-account ').removeClass('mp-12').addClass('mp-6');
+                $('.mp-gdpr-pro-download-personal-data').removeClass('mp-12').addClass('mp-6');
+            }
+        });
+    </script>
+<?php endif;?>

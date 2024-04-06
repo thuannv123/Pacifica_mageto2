@@ -1,0 +1,12 @@
+<!-- ko if: $row().status == 1 -->
+<span class="grid-severity-notice"><span translate="'Enabled'"></span></span>
+<!-- /ko -->
+<!-- ko if: $row().status == 2 -->
+<span class="grid-severity-notice"><span translate="'Enabled for Desktop Only'"></span></span>
+<!-- /ko -->
+<!-- ko if: $row().status == 3 -->
+<span class="grid-severity-notice"><span translate="'Enabled for Mobile Only'"></span></span>
+<!-- /ko -->
+<!-- ko if: $row().status == 0 -->
+<span class="grid-severity-critical"><span translate="'Disabled'"></span></span>
+<!-- /ko -->

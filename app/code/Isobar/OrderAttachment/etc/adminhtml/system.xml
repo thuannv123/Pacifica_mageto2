@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="orderupload" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <tab>meetanshi</tab>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+
+                <field id="allow_payment_methods" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Payment methods allowed</label>
+                    <source_model>Magento\Payment\Ui\Component\Listing\Column\Method\Options</source_model>
+                </field>
+
+            </group>
+            <group id="customer" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+
+                <field id="allow_success_page" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Customers to Add Attachment from the Order Success Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package One Step Checkout Thank you Page 2 for Magento 2 (System)
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_checkout">
+            <group id="custom_newsletter" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>News Letter Custom</label>
+                <field id="title" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title on checkout page</label>
+                </field>
+                <field id="content" translate="label comment" type="editor" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content NewsLetter on checkout page</label>
+                    <frontend_model>Marvelic\CustomNewsletter\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+                <field id="title_checkbox" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title checkbox on checkout page</label>
+                </field>
+                <field id="content_contact" translate="label comment" type="editor" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content Contact on checkout page</label>
+                    <frontend_model>Marvelic\CustomNewsletter\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

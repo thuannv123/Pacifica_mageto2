@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <preference 
+        for="Amasty\Xnotif\Plugins\ConfigurableProduct\Data" 
+        type="Isobar\AmastyXnotif\Plugins\ConfigurableProduct\Data"
+    />
+    <preference 
+        for="Amasty\Xnotif\Plugins\ConfigurableProduct\Block\Product\View\Type\Configurable" 
+        type="Isobar\AmastyXnotif\Plugins\ConfigurableProduct\Block\Product\View\Type\Configurable"
+    />
+</config>

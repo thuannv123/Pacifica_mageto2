@@ -1,0 +1,84 @@
+<!--
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+-->
+<div class="payment-method" id="atome-payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <img data-bind="attr: { src: data.logo }" onerror="this.style.display='none';this.after('Atome');" class="checkout-atome-logo" >
+            <!-- ko i18n: '- 3 payments with 0% interest' --><!-- /ko -->
+            <img data-bind="attr: { src: data.new_user_off_image }" onerror="this.style.display='none';" class="atome-new-user-off-image" />
+        </label>
+    </div>
+
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="payment-method-note atome-checkout-note atome-checkout-eligible">
+            <h3>
+                <strong><span class="atome_checkout_text" data-bind="i18n: 'Three interest-free payments totalling'"></span></strong>
+                <strong><span class="atome_total_amount" data-bind="text: calculateGrandTotal()"></span></strong>
+            </h3>
+<!--            <ul class="cost">-->
+<!--                <li><span class="atome_instalments_amount"></span></li>-->
+<!--                <li><span class="atome_instalments_amount"></span></li>-->
+<!--                <li><span class="atome_instalments_amount_last"></span></li>-->
+<!--            </ul>-->
+<!--            <ul class="instalment">-->
+<!--                &lt;!&ndash; ko if:isIndonesia() &ndash;&gt;-->
+<!--                <li>&lt;!&ndash; ko i18n: '1 month later' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                <li>&lt;!&ndash; ko i18n: '2 months later' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                <li>&lt;!&ndash; ko i18n: '3 months later' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                &lt;!&ndash; /ko &ndash;&gt;-->
+<!--                &lt;!&ndash; ko ifnot:isIndonesia() &ndash;&gt;-->
+<!--                <li>&lt;!&ndash; ko i18n: 'First instalment' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                <li>&lt;!&ndash; ko i18n: '30 days later' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                <li>&lt;!&ndash; ko i18n: '60 days later' &ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</li>-->
+<!--                &lt;!&ndash; /ko &ndash;&gt;-->
+<!--            </ul>-->
+        </div>
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="payment-method-content atome-checkout-redirect atome-checkout-eligible">
+            <div class="instalment-footer">
+                <p><!-- ko i18n: 'You will be redirected to Atome when you proceed to checkout. ' --><!-- /ko --></p>
+                <a data-bind="attr: { href: data.atome_terms_conditions_url }" target="_blank" class="atome-terms-conditions" style="display:inline;"><!-- ko i18n: 'Terms & Conditions' --><!-- /ko --></a>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action primary checkout"
+                            type="submit"
+                            data-bind="click: startAtomePayment, enable: (getCode() == isChecked()), css: {disabled: !isPlaceOrderActionAllowed()}"
+                            disabled>
+                        <span data-bind="i18n: 'Place Order'"></span>
+                    </button>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="payment-method-note atome-checkout-note atome-minimum-spend-error atome-checkout-ineligible">
+            <h3>
+                <strong><span class="atome_checkout_text" id="atome_minimum_spend_error" data-bind="i18n: 'The minimum amount should be S$30.00'"></span></strong>
+            </h3>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>

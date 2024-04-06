@@ -1,0 +1,16 @@
+"Invalid protected code.","Invalid protected code."
+"Link was expired.","Link was expired."
+"Couldn't find order.","Couldn't find order."
+"Current account not match with order's account.","Current account not match with order's account."
+"Dear %name,","Dear %name,"
+"You have an order we're pending. If you want to continue shopping, please click on the link below.","You have an order we're pending. If you want to continue shopping, please click on the link below."
+"Order Reminder","Order Reminder"
+General,General
+Enabled,Enabled
+"Enables or disables extension.","Enables or disables extension."
+"Expiration time","Expiration time"
+"Please input time (hour) to send a reminder pending payment email. If the order status is
+                        still pending/pending_payment after X hours from created time, send a reminder email.","Please input time (hour) to send a reminder pending payment email. If the order status is
+                        still pending/pending_payment after X hours from created time, send a reminder email."
+"Expiration time for the reminder link","Expiration time for the reminder link"
+"New Order Reminder Template","New Order Reminder Template"

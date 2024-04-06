@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Isobar_DisableCronJob">
+        <sequence>
+            <module name="Klarna_Core" />
+            <module name="PayPal_Braintree" />
+            <module name="Amazon_Payment" />
+            <module name="Dotdigitalgroup_Email" />
+            <module name="Dotdigitalgroup_Sms" />
+            <module name="Yotpo_Yotpo" />
+        </sequence>
+    </module>
+</config>

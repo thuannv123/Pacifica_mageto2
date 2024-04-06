@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+<policies>
+    <policy id="script-src">
+        <values>
+            <value id="googleadservices" type="host">*.googleadservices.com</value>
+            <value id="google-analytics" type="host">*.google-analytics.com</value>
+            <value id="googleapis" type="host">*.googleapis.com</value>
+            <value id="google-recaptcha" type="host">*.google.com</value>
+            <value id="gstatic" type="host">*.gstatic.com</value>
+            <value id="paypal" type="host">*.paypal.com</value>
+            <value id="vimeocdn" type="host">*.vimeocdn.com</value>
+            <value id="unpkg" type="host">unpkg.com</value>
+            <value id="newrelic.com" type="host">*.newrelic.com</value>
+            <!-- share button -->
+            <value id="bam.nr-data.net" type="host">bam.nr-data.net</value>
+        </values>
+    </policy>
+    <policy id="img-src">
+        <values>
+            <value id="googleadservices" type="host">*.googleadservices.com</value>
+            <value id="google-analytics" type="host">*.google-analytics.com</value>
+            <value id="paypal" type="host">*.paypal.com</value>
+            <value id="sandbox-paypal" type="host">*.sandbox.paypal.com</value>
+            <value id="paypalobjects" type="host">*.paypalobjects.com</value>
+            <value id="line-apps" type="host">*.line-apps.com</value>
+            <value id="apaylater.com" type="host">*.apaylater.com</value>
+        </values>
+    </policy>
+    <policy id="connect-src">
+        <values>
+            <value id="bam.nr-data.net" type="host">bam.nr-data.net</value>
+        </values>
+    </policy>
+    <policy id="form-action">
+        <values>
+            <value id="bam.nr-data.net" type="host">bam.nr-data.net</value>
+        </values>
+    </policy>
+    <policy id="form-action">
+        <values>
+            <value id="2c2p.com" type="host">*.2c2p.com</value>
+        </values>
+    </policy>
+    <policy id="frame-src">
+        <values>
+            <value id="atometh.com" type="host">*.atometh.com</value>
+            <value id="apaylater.com" type="host">*.apaylater.com</value>
+        </values>
+    </policy>
+</policies>
+</csp_whitelist>

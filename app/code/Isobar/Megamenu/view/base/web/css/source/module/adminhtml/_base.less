@@ -1,0 +1,31 @@
+//
+//  Admin Base Styles
+//  ______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    .pagebuilder-content-type-wrapper .menu-item {
+        list-style: none;
+    }
+
+    // Override Magento admin styles
+    .menu-label-group.admin__control-grouped {
+        & {
+            .menu-flex(space-between, center);
+        }
+
+        > .admin__field {
+            .menu-flex(none, center);
+
+            flex-grow: 1;
+            margin-top: 0;
+        }
+
+        .colorpicker-input {
+            width: calc(~"100% - 37px") !important;
+        }
+    }
+    // END Override Magento admin styles
+}

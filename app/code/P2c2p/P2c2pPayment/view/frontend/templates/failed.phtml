@@ -1,0 +1,23 @@
+<?php
+
+$objCustomerDetail = $this->getCustomerDetail();
+$strCurrencyCode = $this->getBaseCurrencyCode();
+
+$home_url = $block->getUrl();
+$strCustomerName = '';
+
+if($objCustomerDetail->isLoggedIn()) {
+	$strCustomerName = $objCustomerDetail->getCustomer()->getName();	
+} else {
+	$strCustomerName = 'Guest';
+}
+
+?>
+<div class="col-main">
+	<div class="page-title"><h1> <?php echo __('Your order has been cancelled') .'  '. __($strCustomerName) . __('.') ?> </h1></div>
+	<p> <?php echo __('Your payment was declined.') ?> </p>
+
+	<div class="primary">
+		<button type="button" class="action primary continue" title="Continue Shopping" onclick="window.location='<?php echo $home_url;?>'"><span><span>Continue Shopping</span></span></button>
+	</div>
+</div>

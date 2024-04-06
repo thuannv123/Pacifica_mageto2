@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Credit card -->
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceDirectOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceDirectOrder" />
+
+    <!-- QR code -->
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceQrcodeOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceQrcodeOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceBarcodeOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceBarcodeOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceInstallmentOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceInstallmentOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceQrcreditOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceQrcreditOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\AfterPlaceQrwechatOrder" type="Marvelic\GBPrimePay\Controller\Payment\AfterPlaceQrwechatOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\DirectPlaceOrder" type="Marvelic\GBPrimePay\Controller\Payment\DirectPlaceOrder" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingDirect" type="Marvelic\GBPrimePay\Controller\Payment\PendingDirect" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingQrcode" type="Marvelic\GBPrimePay\Controller\Payment\PendingQrcode" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingInstallment" type="Marvelic\GBPrimePay\Controller\Payment\PendingInstallment" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingQrcredit" type="Marvelic\GBPrimePay\Controller\Payment\PendingQrcredit" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingQrwechat" type="Marvelic\GBPrimePay\Controller\Payment\PendingQrwechat" />
+
+    <preference for="GBPrimePay\Payments\Controller\Checkout\PendingBarcode" type="Marvelic\GBPrimePay\Controller\Payment\PendingBarcode" />
+
+    <preference for="GBPrimePay\Payments\Model\GBPrimePayDirect" type="Marvelic\GBPrimePay\Model\GBPrimePayDirect" />
+
+    <preference for="GBPrimePay\Payments\Helper\ConfigHelper" type="Marvelic\GBPrimePay\Helper\ConfigHelper" />
+
+</config>

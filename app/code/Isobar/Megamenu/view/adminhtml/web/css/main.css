@@ -1,0 +1,4 @@
+.admin__menu .level-0#menu-menuisobar-base-menu .submenu .item-menu-links,
+.admin__menu .level-0#menu-menuisobar-base-menu .submenu .item-menu-builder {
+    display: none;
+}

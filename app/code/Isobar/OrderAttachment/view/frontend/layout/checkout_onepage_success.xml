@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Meetanshi_OrderUpload::css/orderupload.css"/>
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <block class="Isobar\OrderAttachment\Block\Sales\Order\View\Fileuploads" name="order.upload"
+                   template="Isobar_OrderAttachment::order/upload.phtml" before="amasty.checkout.success"
+                   ifconfig="orderupload/customer/allow_success_page" cacheable="false"/>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Block\Widget\Button\Toolbar">
+        <plugin name="Marvelic_BeamCheckout::pluginBefore" type="Marvelic\BeamCheckout\Plugin\Adminhtml\PluginBefore" />
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\Info">
+        <plugin name="payment_link_block_add" type="Marvelic\BeamCheckout\Plugin\Adminhtml\SalesOrderViewInfo"/>
+    </type>
+</config>

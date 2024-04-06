@@ -1,0 +1,47 @@
+{
+    "isobar_menu_link": {
+        "column": {
+            "entity_id": true,
+            "link": true,
+            "link_type": true
+        },
+        "index": {
+            "ISOBAR_MENU_LINK_ENTITY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "isobar_menu_item_content": {
+        "column": {
+            "id": true,
+            "entity_id": true,
+            "type": true,
+            "store_id": true,
+            "name": true,
+            "status": true,
+            "label": true,
+            "label_text_color": true,
+            "label_background_color": true,
+            "width": true,
+            "content": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ISOBAR_MENU_ITEM_CONTENT_ENTITY_ID_STORE_ID_TYPE": true
+        }
+    },
+    "isobar_menu_item_order": {
+        "column": {
+            "id": true,
+            "type": true,
+            "sort_order": true,
+            "entity_id": true,
+            "store_view": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ISOBAR_MENU_ITEM_ORDER_TYPE_ENTITY_ID_STORE_VIEW": true
+        }
+    }
+}

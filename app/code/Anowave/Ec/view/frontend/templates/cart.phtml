@@ -1,0 +1,31 @@
+<script data-ommit="true">
+
+	(function(data)
+	{
+		/**
+		 * AdWords Dynamic Remarketing
+		 */
+		if (data.hasOwnProperty('google_tag_params'))
+		{
+			if (window.google_tag_params)
+			{
+				window.google_tag_params.ecomm_pagetype 	= 'cart';
+				window.google_tag_params.ecomm_prodid 		= data.google_tag_params.ecomm_prodid;
+				window.google_tag_params.ecomm_pvalue		= data.google_tag_params.ecomm_pvalue;
+				window.google_tag_params.ecomm_pname		= data.google_tag_params.ecomm_pname;
+				window.google_tag_params.ecomm_totalvalue 	= data.google_tag_params.ecomm_totalvalue;
+				window.google_tag_params.returnCustomer 	= <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+			}
+
+			<?php if ($block->getHelper()->supportDynx()): ?>
+
+				window.google_tag_params.dynx_pagetype 		= 'conversionintent';
+				window.google_tag_params.dynx_itemid 		= window.google_tag_params.ecomm_prodid;
+				window.google_tag_params.dynx_totalvalue 	= window.google_tag_params.ecomm_totalvalue;
+			
+			<?php endif ?>
+		}
+		
+	})(<?php echo $block->getCartPush() ?>);
+
+</script>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageplaza_gdpr_download_logs" resource="default" engine="innodb" comment="Personal Data Download Logs">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Download Log ID"/>
+        <column xsi:type="varchar" name="customer_name" nullable="true" length="255" comment="Customer Name"/>
+        <column xsi:type="int" name="customer_id" nullable="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="customer_email" nullable="true" length="255" comment="Customer Email"/>
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store Id"/>
+        <column xsi:type="int" name="customer_group_id" nullable="true" comment="Customer Group Id"/>
+        <column xsi:type="varchar" name="file_type" nullable="true" length="255" comment="File Type"/>
+        <column xsi:type="varchar" name="path" nullable="true" length="255" comment="Path"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="mageplaza_gdpr_delete_customer_logs" resource="default" engine="innodb" comment="Personal Data Download Logs">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Delete ID"/>
+        <column xsi:type="varchar" name="customer_name" nullable="true" length="255" comment="Customer Name"/>
+        <column xsi:type="int" name="customer_id" nullable="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="customer_email" nullable="true" length="255" comment="Customer Email"/>
+        <column xsi:type="int" name="status" nullable="true" comment="Status"/>
+        <column xsi:type="int" name="store_id" nullable="true" comment="Store Id"/>
+        <column xsi:type="int" name="order_count" nullable="true" comment="Order Count"/>
+        <column xsi:type="decimal" name="grand_total" scale="4" precision="12" comment="Grand Total"/>
+        <column xsi:type="decimal" name="refunded" scale="4" precision="12" comment="Refunded"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

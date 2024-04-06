@@ -1,0 +1,41 @@
+<div>
+	<a href="javascript:void(0)" data-impression-model-about="true">User Guide</a>
+</div>
+<div data-impression-model-guide="true" style="display:none">
+	<p>Impression model sets the way impression data payload is initialized. By default impressions[] are pulled by getting the products that are about to be rendered on the page. This is done in order to initialize dataLayer[] object with impression data before sending a Pageview (All pages  trigger).</p>
+	<p>&nbsp;</p>
+	<p>In some cases however this may have impact on performance or not correlate precisely with the products shown on screen. To mitigate those issues, you can set the module to build the impressions[] payload after page is loaded and based on actual products shown on screen (via InteractionObserver).</p>
+	<p>&nbsp;</p>
+	<p>When second model is selected, impression data will not be available in dataLayer[] object at the point of sending Pageview, instead it will be send via an event called <strong><?php echo \Anowave\Ec\ViewModel\ProductList::EVENT ?></strong></p>
+	<p>&nbsp;</p>
+	<strong style="color:#c70000">IMPORTANT:</strong> You MUST define a new trigger for <strong><?php echo \Anowave\Ec\ViewModel\ProductList::EVENT ?></strong> event and also create a tag that is fired by this trigger. The tag has to have Enhanced Ecommerce enabled using Datalayer. To ensure that you have these configured, you can run the GTM API again. It will create any missing variables/triggers and/or tags. Existing configuration will remain intact.
+</div>
+<script>
+	require(['jquery','Magento_Ui/js/modal/modal'],function($,modal)
+	{
+		$('a[data-impression-model-about]').on('click', function()
+		{
+			var content = $('[data-impression-model-guide]').html();
+
+			$('<div />').html(content).modal(
+			{
+	            title: 'Impression Model',
+	            autoOpen: true,
+	            closed: function () {},
+	            buttons: 
+		        [
+			        {
+		                text: 'I understand',
+		                attr: 
+			            {
+		                    'data-action': 'confirm'
+		                },
+		                'class': 'action-primary'
+		            }
+		         ]
+	         });
+
+			return false;
+		});
+	});
+</script>

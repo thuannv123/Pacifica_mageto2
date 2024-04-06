@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceContainer name="page.main.actions">
+                <block class="Isobar\Megamenu\Block\Adminhtml\Builder\Store\Switcher" name="menu.builder.store.switcher" template="Magento_Backend::store/switcher.phtml">
+                    <arguments>
+                        <argument name="switch_websites" xsi:type="boolean">false</argument>
+                        <argument name="switch_store_groups" xsi:type="boolean">false</argument>
+                        <argument name="switch_store_views" xsi:type="boolean">true</argument>
+                    </arguments>
+                </block>
+            </referenceContainer>
+            <block class="Isobar\Megamenu\Block\Adminhtml\Builder\Content" />
+        </referenceContainer>
+    </body>
+</page>

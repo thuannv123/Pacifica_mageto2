@@ -1,0 +1,24 @@
+{
+    "name": "gbprimepay/payments",
+    "description": "GBPrimePay Payments for Magento 2",
+    "homepage": "https://github.com/GBPrimepay/magento2-gbprimepay-payment-gateway",
+    "type": "magento2-module",
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "version": "2.1.2",
+    "license": [
+        "OSL-3.0",
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GBPrimePay\\Payments\\": ""
+        }
+    }
+}

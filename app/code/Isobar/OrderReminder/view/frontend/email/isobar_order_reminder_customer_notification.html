@@ -1,0 +1,20 @@
+<!--@subject You have an order not completed yet @-->
+<!--@vars {
+"var customer_name":"Customer Name",
+"var reminder_link":"Link to shopping cart where was ordered"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td valign="top">
+            <p>{{trans "Dear %name," name=$customer_name}}</p>
+            <p>{{trans "You have an order we're pending. If you want to continue shopping, please click on the link below."}}</p>
+            {{depend reminder_link}}
+            <p><a href="{{var reminder_link|escape}}">{{trans "Continue shopping."}}</a></p>
+            {{/depend}}
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

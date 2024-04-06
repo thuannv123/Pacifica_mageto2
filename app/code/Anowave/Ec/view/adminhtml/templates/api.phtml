@@ -1,0 +1,65 @@
+<strong>HOW TO CONFIGURE</strong>
+<div>
+	<a href="javascript:void(0)" data-api-guide-link="true">Developer guide</a>
+</div>
+<div data-api-guide="true" style="display:none">
+	<div>
+		<p>The following steps will help you create and configure Google app that the API will use to configure your GTM container. This is a recommended approach for security-savy customers. If anything is unclear, please contact our Helpdesk, support engineers will be happy to clarify stuff for you.</p>
+	</div>
+	<div style="padding:10px">
+		<ol>
+			<li><p>Go to <a href="https://console.developers.google.com/" target="_blank">Google Developer Console</a></p></li>
+			<li><p>Click <strong>Projects dropdown</strong> (top left corner, next to Google APIs logo), then click <strong>NEW PROJECT</strong> from the popup</p></li>
+			<li><p>Name your project e.g. My GTM and click Create</p></li>
+			<li><p>On the next screen, click ENABLE APIS AND SERVICES (Make sure that the Projects dropdown is set to your own project e.g. My GTM)</p></li>
+			<li><p>In the API library, type "Tag manager" and once found, click Tag Manager API and click Enable</p></li>
+			<li><p>Click Credentials on next screen</p></li>
+			<li><p>On Credentials menu click <strong>CREATE CREDENTRIALS</strong> and select <strong>oAuth client ID</strong></p></li>
+			<li><p>Click Configure consent screen</p></li>
+			<li><p>Enter application name, can be custom text</p></li>
+			<li><p>Upload your own logo (optional)</p></li>
+			<li><p>Under <strong>Authorized domains</strong> enter: anowave.com</p></li>
+			<li><p>Under <strong>Application Homepage link</strong> enter: https://www.anowave.com</p></li>
+			<li><p>Under <strong>Application Privacy Policy link</strong> enter: https://www.anowave.com/privacy-policy/</p></li>
+			<li><p>Under <strong>Application Terms of Service link</strong> enter: https://www.anowave.com/product-support-policy/</p></li>
+			<li><p>Click Save</p></li>
+			<li><p>On next screen, set <strong>Application type</strong> to: Web application</p></li>
+			<li><p>Give your app a name</p></li>
+			<li><p>Under <strong>Authorised redirect URIs</strong>  enter: https://oauth.anowave.com/ (enter exactly with the end slash)</p></li>
+			<li><p>You will be presented with client id and client secret, save or copy them.</p></li>
+			<li><p>Enter your client id in the input below</p></li>
+			<li><p>Enter your client secret in the input below</p></li>
+			<li><p>Save config, clear cache and logout from Magento</p></li>
+			<li><p>Login again and Sign in to Google from the module</p></li>
+		</ol>
+	</div>
+</div>
+<script>
+	require(['jquery','Magento_Ui/js/modal/modal'],function($,modal)
+	{
+		$('a[data-api-guide-link]').on('click', function()
+		{
+			var content = $('[data-api-guide]').html();
+
+			$('<div />').html(content).modal(
+			{
+	            title: 'Advanced API Configuration <sup><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlBRUU5N0ExNkRCMjExRTlBQkZEQzhEQzgyNzU2OUZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlBRUU5N0EyNkRCMjExRTlBQkZEQzhEQzgyNzU2OUZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OUFFRTk3OUY2REIyMTFFOUFCRkRDOERDODI3NTY5RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OUFFRTk3QTA2REIyMTFFOUFCRkRDOERDODI3NTY5RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6cU+2XAAABJklEQVR42mL8//8/Azp44mSiAqQmC5ReBHFzeTx/30FXw4KmgR9I1QFxDhCzQYWvftnOOgVINwEN+AhTy4SkKQ1I3QPiIiRNDFA2SOwe0IA0mCDjY0djeyA9AYgN0J0DdSo6uADEBSAbN2LRBPKTJxSj+w+kdiMTmiDID8VArC2z78wOoJ92gNhQsY84AwcIpgM19CELADX/AlJ9QP+JAukKjMAhFdBfI7ofM4Hx+QJITwH69S9IAOg3ZmiCyERWCIrHD0CaH82Aa6CQhMZjLxBroYc+yKn+QHwZTQKkcDsUa2Ex1J8J6KSDQIYhEGcB8Ts83noHVaMHjKKDjMi5AymR5wMxM9SpIL+CEnk9ciJnAGlEx0B/awHx9s/bWEBYC5sagAADACATe3HCQhhkAAAAAElFTkSuQmCC" /></sup>',
+	            autoOpen: true,
+	            closed: function () {},
+	            buttons: 
+		        [
+			        {
+		                text: 'Got it',
+		                attr: 
+			            {
+		                    'data-action': 'confirm'
+		                },
+		                'class': 'action-primary'
+		            }
+		         ]
+	         });
+
+			return false;
+		});
+	});
+</script>

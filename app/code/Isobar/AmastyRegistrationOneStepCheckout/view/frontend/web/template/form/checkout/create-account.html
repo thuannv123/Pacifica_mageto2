@@ -1,0 +1,207 @@
+<form class="form form-register" id="form-validate"
+      data-role="registration-checkout-form"
+      method="post" data-bind="fadeVisible: createAccConfig == 2">
+    <div class="field choice is_create_account"
+         data-bind="fadeVisible: isPasswordVisible() == true && isCreateAccountAction() == true">
+        <input type="checkbox"
+               id="is_create_account"
+               name="is_create_account"
+               class="checkbox"
+               data-bind="value: isCreateAccount, checked: isCreateAccount">
+        <label for="is_create_account" class="label">
+            <span data-bind="i18n: 'Create Account'"></span>
+        </label>
+    </div>
+
+    <fieldset class="fieldset"
+              data-bind="fadeVisible: isPasswordVisible() == true && isCreateAccountAction() == true && isCreateAccount() == true">
+        <div class="field checkout-create-password" data-bind="css: {required: true}">
+            <label class="label" for="registration-customer-password">
+                <span data-bind="i18n: 'Password'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       data-bind="
+                                attr: {
+                                    'data-validate':JSON.stringify({required:true,'validate-customer-password': true}),
+                                    'data-password-min-character-sets': getRequiredCharacterClassesNumber(),
+                                    'data-password-min-length': getMinimumPasswordLength(),
+                                    type: isShowPassword() ? 'text' : 'password'
+                                }"
+                       type="password"
+                       name="password"
+                       id="registration-customer-password"
+                       autocomplete="off"/>
+            </div>
+        </div>
+        <div class="field checkout-create-password -confirm" data-bind="css: {required: true}">
+            <label class="label" for="password-confirmation">
+                <span data-bind="i18n: 'Confirm Password'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="password"
+                       data-bind="
+                                attr: {
+                                    type: isShowPassword() ? 'text' : 'password'
+                                }"
+                       name="password-confirmation"
+                       id="password-confirmation"
+                       data-validate="{required:true, equalTo:'#registration-customer-password'}"
+                       autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field choice checkout-is-show-password">
+            <input type="checkbox"
+                   id="is_show_password"
+                   value="0"
+                   class="checkbox"
+                   data-bind="checked: isShowPassword"
+            >
+            <label for="is_show_password" class="label">
+                <span data-bind="i18n: 'Show Password'"></span>
+            </label>
+        </div>
+
+        <div class="field checkout-create-firstname"
+             data-bind="css: {required: true}">
+            <label class="label" for="field-firstname">
+                <span data-bind="i18n: 'First Name'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       name="firstname"
+                       id="field-firstname"
+                       data-bind="value: firstName"
+                       data-validate="{required:true}"
+                       autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field checkout-create-lastname"
+             data-bind="css: {required: true}">
+            <label class="label" for="field-lastname">
+                <span data-bind="i18n: 'Last Name'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       name="lastname"
+                       id="field-lastname"
+                       data-bind="value: lastName"
+                       data-validate="{required:true}"
+                       autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field choice newsletter checkout-create-newsletter">
+            <input type="hidden" name="is_subscribed" value="0"/>
+            <input type="checkbox" name="is_subscribed" title="Sign Up for Newsletter" value="1" id="is_subscribed"
+                   class="checkbox" checked>
+            <label for="is_subscribed" class="label">
+                <span>Sign Up for Newsletter</span>
+            </label>
+        </div>
+
+        <div class="field date field-dob checkout-create-dob"
+             data-bind="css: {required: true}, afterRender: onAfterRenderDob($element)">
+            <label class="label" for="dob">
+                <span data-bind="i18n: 'Date of Birth'"></span>
+            </label>
+            <div class="control customer-dob">
+                <input type="text"
+                       name="dob"
+                       id="dob"
+                       class=""
+                       data-validate="{
+                            'required': true,
+                            'validate-date': {'dateFormat': 'M\/dd\/y'},
+                            'validate-dob': {'dateFormat': 'M\/dd\/y'}
+                       }"/>
+            </div>
+        </div>
+
+        <div class="field checkout-create-gender"
+             data-bind="css: {required: true}">
+            <label class="label" for="field-gender">
+                <span data-bind="i18n: 'Gender'"></span>
+            </label>
+            <div class="control">
+                <select class="input-select"
+                        name="gender"
+                        id="field-gender"
+                        data-validate="{required:true}"
+                >
+                    <option value=""></option>
+                    <option value="1" data-bind="i18n: 'Male'"></option>
+                    <option value="2" data-bind="i18n: 'Female'"></option>
+                    <option value="3" data-bind="i18n: 'Not Specified'"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field checkout-create-taxvat">
+            <label class="label" for="field-tax-number">
+                <span data-bind="i18n: 'Tax/VAT Number'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       name="taxvat"
+                       id="field-tax-number"
+                       autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field checkout-create-thaiid">
+            <label class="label" for="field-thaiid">
+                <span data-bind="i18n: 'Thai ID/ Passport Number (Enter to join our Pacifica Membership Program)'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       name="Nat_ID"
+                       id="field-thaiid"
+                       autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field checkout-create-membership"
+             data-bind=" css: {required: true}">
+            <label class="label" for="field-membership">
+                <span data-bind="i18n: 'Mobile Number (example - 0xxxxxxxxx)'"></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       name="mobile_number"
+                       id="field-membership"
+                       data-validate="{required:true}"
+                       autocomplete="off"/>
+            </div>
+        </div>
+        <div class="field choice checkout-create-assistance">
+            <input type="hidden" name="assistance_allowed" value="0"/>
+            <input type="checkbox" name="assistance_allowed" title="Allow remote shopping assistance" value="1"
+                   id="assistance_allowed" class="checkbox" checked>
+            <label for="assistance_allowed" class="label">
+                <span>Allow remote shopping assistance</span>
+            </label>
+
+            <div class="field-tooltip toggle">
+                <span id="tooltip-label" class="label"><span>Tooltip</span></span>
+                <span id="tooltip" class="field-tooltip-action action-help _active" tabindex="0" data-toggle="dropdown"
+                      data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
+                      aria-labelledby="tooltip-label" aria-haspopup="true" aria-expanded="true" role="button">
+                </span>
+                <div class="field-tooltip-content" data-target="dropdown" aria-hidden="false">
+                    This allows merchants to "see what you see" and take actions on your behalf in order to provide
+                    better
+                    assistance.
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="klarna_core_update_api_log" instance="Klarna\Core\Cron\UpdateApiLog" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="klarna_core_clean_logs" instance="Klarna\Core\Cron\CleanLogs" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="braintree_credit_price" instance="PayPal\Braintree\Cron\CreditPrice" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="get_amazon_capture_updates" instance="Amazon\Payment\Cron\GetAmazonCaptureUpdates" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="get_amazon_authorization_updates" instance="Amazon\Payment\Cron\GetAmazonAuthorizationUpdates" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="amazon_payments_process_queued_refunds" instance="Amazon\Payment\Cron\ProcessAmazonRefunds" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+    </group>
+    <group id="ddg_automation_main">
+        <job name="ddg_automation_status" instance="Dotdigitalgroup\Email\Model\Cron" method="syncAutomation">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="ddg_automation_campaign" instance="Dotdigitalgroup\Email\Model\Cron" method="sendCampaigns">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="ddg_automation_integration_insights" instance="Dotdigitalgroup\Email\Model\Cron" method="sendIntegrationInsights">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="ddg_automation_cleaner" instance="Dotdigitalgroup\Email\Model\Cron\Cleaner" method="cleanUp">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="ddg_automation_email_templates" instance="Dotdigitalgroup\Email\Model\Cron" method="syncEmailTemplates">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="ddg_automation_monitor" instance="Dotdigitalgroup\Email\Model\Cron" method="monitor">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+    </group>
+    <group id="ddg_automation_ac">
+        <job name="ddg_automation_abandonedcarts" instance="Dotdigitalgroup\Email\Model\Cron" method="abandonedCarts">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+    </group>
+    <group id="ddg_automation_sms">
+        <job name="ddg_automation_sms_order_messages" instance="Dotdigitalgroup\Sms\Model\Cron" method="sendSmsOrderMessages">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+    </group>
+    <group id="yotpo_yotpo">
+        <job name="yotpo_yotpo_orders_sync" instance="Yotpo\Yotpo\Model\Jobs\OrdersSync" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+        <job name="yotpo_yotpo_update_metadata" instance="Yotpo\Yotpo\Model\Jobs\UpdateMetadata" method="execute">
+            <schedule>0 0 30 2 *</schedule>
+        </job>
+    </group>
+</config>

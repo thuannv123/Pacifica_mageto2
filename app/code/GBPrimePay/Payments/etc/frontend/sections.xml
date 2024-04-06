@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Copyright © 2020 GBPrimePay Payments.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <action name="gbprimepay/checkout/pendingdirect">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="gbprimepay/checkout/pendinginstallment">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="gbprimepay/checkout/pendingqrcode">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="gbprimepay/checkout/pendingqrcredit">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="gbprimepay/checkout/pendingqrwechat">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+    <action name="gbprimepay/checkout/pendingbarcode">
+        <section name="cart"/>
+        <section name="customer"/>
+    </action>
+</config>

@@ -1,0 +1,38 @@
+<div class="ec-gtm-cookie-directive" data-google="anowave gtm" data-check="<?php echo $block->getCheckAll() ?>">
+	<div>
+		<div>
+			<div>
+				<p><strong><?php echo __('COOKIES') ?></strong></p>
+				<p><?php echo sprintf($block->getHelper()->getCookieDirectiveContent(),$block->getHelper()->getStore()->getName()) ?></p>
+			</div>
+			<?php if ($block->getHelper()->getCookieDirectiveIsSegmentMode()):?>
+			<div class="ec-gtm-cookie-directive-segments">
+				<div>
+					<input type="checkbox" checked="checked" disabled />
+					<label><?php echo __('Allow essential cookies') ?></label>
+					<a class="ec-gtm-cookie-directive-note-toggle"><?php echo __('Learn more')?></a>
+					<div class="ec-gtm-cookie-directive-note">
+						<small><?php echo __('These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.') ?></small>
+					</div>
+				</div>
+				<?php foreach ($block->getSegments() as $key => $segment):?>
+					<div>
+						<input type="checkbox" name="cookie[]" value="<?php echo $key ?>" id="consent_<?php echo $key ?>" <?php if ($segment['check']):?>checked="checked"<?php endif ?> />
+						<label for="consent_<?php echo $key ?>"><?php echo $segment['label'] ?></label>
+						<a class="ec-gtm-cookie-directive-note-toggle"><?php echo __('Learn more')?></a>
+						<div class="ec-gtm-cookie-directive-note">
+							<small><?php echo $segment['value'] ?></small>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+			<?php endif ?>
+			<div>
+				<a class="action accept" data-confirm="<?php echo $block->getHelper()->getConfig('ec/cookie/content_text_confirm') ?>"><?php echo $block->getHelper()->getConfig('ec/cookie/content_text_accept') ?></a>
+				<a class="action accept-all" data-confirm="<?php echo $block->getHelper()->getConfig('ec/cookie/content_text_confirm') ?>"><?php echo $block->getHelper()->getConfig('ec/cookie/content_text_accept_all') ?></a>
+				<a class="action decline" target="_blank"><?php echo $block->getHelper()->getConfig('ec/cookie/content_text_decline') ?></a>
+				<a class="action refuse" href="<?php echo $block->getHelper()->getConfig('ec/cookie/content_link_learn') ?>" target="_blank"><?php echo $block->getHelper()->getConfig('ec/cookie/content_text_learn') ?></a>
+			</div>
+		</div>
+	</div>
+</div>

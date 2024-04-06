@@ -1,0 +1,75 @@
+<?php if ($block->getApi()->getClient()->isAccessTokenExpired()):?>
+	<a class="config-google" href="<?php echo $block->getApi()->getClient()->createAuthUrl()?>">Sign in with Google</a>
+<?php else: ?>
+	<div>
+		<div style="margin:0px 0px 10px 0px"><strong style="text-transform: uppercase">SELECT ITEMS TO CREATE IN YOUR GOOGLE TAG MANAGER ACCOUNT</strong></div>
+		<div style="margin:0px 0px 10px 0px">The following items will be created next time you click "Save config" button.</div>
+	</div>
+	<div>
+		<?php foreach ($block->getOptions() as $option => $label):?>
+			<div>
+				<label for="<?php echo $option ?>"><input type="checkbox" class="config-checkbox" name="args[]" value="<?php echo $option ?>" id="<?php echo $option ?>" /> <?php echo $label ?></label>
+			</div>
+		<?php endforeach?>
+		<div>
+			<a href="javascript:void(0)" onclick="toggleApi(this)" style="display:block; margin-top:10px; padding-left:25px;"><?php echo __('Toggle all') ?></a>
+			<div style="margin:10px 0px 10px 0px; color:#ababab; font-size:12px; padding-left:25px; line-height:18px;">
+				<?php echo ('It is recommended to check all at initial configuration.') ?>
+			</div>
+		</div>
+		<div style="margin:30px 0px 10px 0px">
+			<?php $title = $block->renderPropertyTitle() ?>
+			<label for="ec_api_ua"><input type="checkbox" class="config-checkbox" name="ec_api_ua" value="ec_api_ua" id="ec_api_ua" /> <?php echo __('Create') ?> <?php echo $title ?></label>
+		</div>
+		<div>
+			<a href="javascript:void(0)" onclick="toggleApiUniversal(this)" style="display:block; margin-top:10px; padding-left:25px;"><?php echo __('Toggle') ?></a>
+		</div>
+		<div style="margin:10px 0px 10px 0px; color:#ababab; font-size:12px; padding-left:25px; line-height:18px;">
+			<?php echo ("By default the API will NOT create {$title} tag to avoid duplication (in case tag already exists). This tag however is important and is used to track transactions, detail views, impressions etc. If you don\'t have such tag make sure to create it OR if tag already exists make sure that Enhanced Ecommerce using Datalayer is enabled in tag options.") ?>
+		</div>
+		<script>
+				require(['jquery'],function($)
+				{
+					window.toggleApi = function(target)
+					{
+						$(target).parents('div').eq(1).find(':checkbox[name="args[]"]').prop('checked', function(i, value)
+						{
+							return !value;
+						});
+
+						return false;
+					};
+
+					window.toggleApiUniversal = function(target)
+					{
+						$(':checkbox[name=ec_api_ua]').prop('checked', function(i, value)
+						{
+							if (!value)
+							{
+								$(':checkbox[id=ec_api_tags]').prop('checked', true);
+							}
+							
+							return !value;
+						});
+
+						return false;
+					};
+
+					$(document).ready(function()
+					{
+						$(':checkbox[id=ec_api_ua]').on('click', function()
+						{
+							if ($(this).prop('checked'))
+							{
+								$(':checkbox[id=ec_api_tags]').prop('checked', true);
+							}
+						});
+					});
+					
+				});
+			</script>
+	</div>
+	<div style="margin:20px 0px 10px 0px">
+		<?php echo __('Make sure Container ID and Account ID are present and your account is authorised with corresponding permissions. If you don\'t know how to use the API, we\'ve prepared a short video on YouTube available in 1080p')?><br /><br /> <a href="https://www.youtube.com/watch?v=U8dK95FRP1w" target="_blank">Magento 2 Google Tag Manager API</a>
+	</div>
+<?php endif ?>

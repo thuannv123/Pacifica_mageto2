@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Payment/etc/payment.xsd">
+    <groups>
+        <group id="beamcheckout">
+            <label>Beam Checkout</label>
+        </group>
+    </groups>
+    <methods>
+        <method name="beamcheckout_creditcard">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="beamcheckout_ewallet">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="beamcheckout_qrcode">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+    </methods>
+</payment>

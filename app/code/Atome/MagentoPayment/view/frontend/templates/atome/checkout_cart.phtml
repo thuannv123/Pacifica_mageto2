@@ -1,0 +1,19 @@
+<?php
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+/** @var \Atome\MagentoPayment\Block\Cart\CheckoutCartBlock $block */
+?>
+<?php if ($block->canShow()) : ?>
+    <div class='payment-method-note atome-checkout-note'>
+        <?php echo __('Check out with') ?>
+        <img class="atome-icon atome-logo"
+             src="<?php echo \Atome\MagentoPayment\Services\Config\Atome::LOGO; ?>"> <?php echo __('and enjoy 3 easy payments with 0% interest.') ?>
+        <?php if ($block->getNewUserOffImage()) : ?>
+            <img class="atome-new-user-off-image" src="<?php echo $block->getNewUserOffImage() ?>"/>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

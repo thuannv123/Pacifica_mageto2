@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="gdpr_email_confirmation_template" label="Confirm Delete Email" file="confirm_delete.html" type="html" module="Mageplaza_GdprPro" area="frontend"/>
+    <template id="gdpr_email_before_delete_account_template" label="Before Delete Account Email" file="before_delete.html" type="html" module="Mageplaza_GdprPro" area="frontend"/>
+    <template id="gdpr_email_before_delete_account_template_after" label="After Delete Account Email" file="after_delete.html" type="html" module="Mageplaza_GdprPro" area="frontend"/>
+    <template id="gdpr_email_admin_notification_email_template" label="When Customer Delete Your Account Template" file="admin_nof_delete_account.html" type="html" module="Mageplaza_GdprPro" area="frontend"/>
+</config>

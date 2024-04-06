@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="behavior" class="Firebear\ImportExport\Ui\Component\Form\ExportFieldset">
+        <field name="behavior_field_export_in_one_line">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/single-checkbox</item>
+                    <item name="template" xsi:type="string">Firebear_ImportExport/form/element/switcher</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Data in one line</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">44</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_export_in_one_line</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="order" xsi:type="string">order</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.ns}.${$.ns}.settings.entity:value</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="notice" xsi:type="string">Export sales entities in one line. At the moment, only the Addresses are supported.</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">New export format
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock class="P2c2p\P2c2pPayment\Block\Form" name="P2c2p" template="success.phtml" >
+            <arguments>
+                <argument name="view_model" xsi:type="object">Isobar\P2c2p\ViewModel\Logger
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

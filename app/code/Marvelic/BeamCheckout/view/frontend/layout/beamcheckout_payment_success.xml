@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Thank You Page</title>
+    </head>
+    <referenceBlock name="page.main.title">
+        <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success.print.button" template="Magento_Checkout::button.phtml"/>
+        <action method="setPageTitle">
+            <argument translate="true" name="title" xsi:type="string">Thank you for your purchase!</argument>
+        </action>
+    </referenceBlock>
+    <referenceContainer name="content">
+        <block class="Marvelic\BeamCheckout\Block\Payment\Success" name="beamcheckout.success" template="Marvelic_BeamCheckout::success.phtml" cacheable="false">
+        </block>
+    </referenceContainer>
+</page>

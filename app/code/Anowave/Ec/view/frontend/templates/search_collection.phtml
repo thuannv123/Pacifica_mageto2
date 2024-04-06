@@ -1,0 +1,159 @@
+<?php if ($block->getHelper()->usePostRenderImpressionPayloadModel()):?>
+	<?php $search = $block->getLayout()->getBlock('search_result_list') ?>
+	<?php if ($search): ?>
+        <script data-ommit="true">
+    
+            var payload = <?php echo $block->getProductList()->getSearchImpressionPayload($search) ?>;
+        	
+        	payload.ecommerce['impressions'] = (function()
+        	{
+        		var impressions = [], trace = {};
+        	    
+        		document.querySelectorAll('[data-event=productClick]').forEach((element) => 
+        		{
+        			var entity = 
+        			{
+        				id: 				   element.dataset.id,
+        				name: 				   element.dataset.name,
+        				category:			   element.dataset.category,
+        				brand:				   element.dataset.brand,
+        				list:				   element.dataset.list,
+        				price:		parseFloat(element.dataset.price),
+        				position: 	parseFloat(element.dataset.position),
+        				<?php echo $block->getHelper()->getStockDimensionIndex(true) ?>: element.dataset['<?php echo $block->getHelper()->getStockDimensionIndex(true) ?>']
+                	};
+        
+                	var attributes = element.dataset.attributes;
+        
+                	if (attributes)
+        	        {
+            	        Object.entries(JSON.parse(attributes)).forEach(([key, value]) => 
+            	        {
+                	        entity[key] = value;
+            	        });
+            	    }
+        			
+                	if (!trace.hasOwnProperty(entity.id))
+            	    {
+                	    trace[entity.id] = true;
+                	    
+        				impressions.push(entity);
+            	    }
+            	});
+        
+        		return impressions;
+        	})();
+        
+        	(function(payload, payload_max_size)
+            {
+        		var payloadSize = AEC.getPayloadSize(payload);
+
+        		if (payload_max_size > payloadSize)
+        		{
+        			(payload => 
+        	    	{
+        	    		AEC.CookieConsent.queue(function()
+	     	            {
+        	    			AEC.Cookie.impressions(payload).push(dataLayer);
+        	    			
+	     	            }).process();
+        	    		
+        	       	})(payload);
+
+        			<?php
+        			/**
+        			 * Private browser fallback
+        			 */
+        			?>
+        			
+        			dataLayerTransport.push(payload);
+        		}
+        		else 
+        		{
+        			var chunks = AEC.getPayloadChunks(payload.ecommerce.impressions, Math.ceil(payload.ecommerce.impressions.length/Math.ceil(payloadSize/payload_max_size)));
+        
+        			var lazyPush = function(chunks)
+        			{
+        				if (chunks.length)
+        				{
+        					var chunk = chunks.shift(), chunkPush = Object.assign({}, payload);
+        
+        					chunkPush['event'] 					= 'impression';
+        					chunkPush.ecommerce['impressions']  = chunk;
+        					chunkPush['eventCallback'] 			= (function(chunks)
+        					{
+        						return function()
+        						{
+        							lazyPush(chunks);
+        						}
+        					})(chunks);
+        
+        					(function(data)
+        					{
+        						AEC.Cookie.impressions(data).push(dataLayer);
+        						
+        					})(chunkPush);
+        				}
+        			};
+        
+        			/**
+        			 * Call lazy push
+        			 */
+        			lazyPush(chunks);
+        		}
+        		
+        	})(payload, <?php echo \Anowave\Ec\Helper\Constants::GOOGLE_PAYOAD_SIZE ?>);
+        
+        
+        	<?php 
+        	/**
+        	 * AdWords Dynamic Remarketing
+        	 */
+        	?>
+        	window.google_tag_params = window.google_tag_params || {};
+        
+        	window.google_tag_params.ecomm_pagetype = 'searchresults';
+        	window.google_tag_params.ecomm_category = '<?php echo __('Search Results') ?>';
+        	window.google_tag_params.returnCustomer = <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+        	
+        	<?php
+        	/**
+        	 * Facebook Pixel Tracking
+        	 */
+        	?>
+        	<?php if ($block->getHelper()->facebook()): ?>
+        
+        		(function(params)
+                {
+        			(function(callback)
+        			{
+        				if (AEC.Const.COOKIE_DIRECTIVE)
+        				{	
+        					AEC.CookieConsent.queue(callback).process();
+        				}
+        				else 
+        				{
+        					callback.apply(window,[]);
+        				}
+        			})
+        			(
+        				(function()
+        				{
+        					return function() 
+        					{
+        						AEC.EventDispatcher.on('ec.facebook.loaded', () => 
+                				{
+                					fbq("track", "Search", params, { eventID: AEC.UUID.generate({ event: 'Search' }) });
+                				});
+            				};
+            				
+        				})(params)
+        			);
+        			
+                })({ content_ids: payload.ecommerce.impressions.map(function(impression){ return impression.id; }), content_type: 'product_group', content_category: '<?php echo __('Search Results') ?>',search_string: '<?php echo $block->escapeHtml(isset($_GET['q']) ? $_GET['q'] : '') ?>',currency:'<?php echo $block->getHelper()->getCurrency() ?>', value: <?php echo $block->getHelper()->getVisitorId() ?> });
+        	
+        	<?php endif ?>
+        	
+        </script>
+    <?php endif ?>
+<?php endif ?>

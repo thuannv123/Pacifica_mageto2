@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="beamcheckout_ewallet" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Beam Checkout Payment eWallet</label>
+        <comment>Process payments methods</comment>
+        <field id="active" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Enable</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/beamcheckout_ewallet/active</config_path>
+            <comment>
+                <![CDATA[ Select <strong>Yes</strong> to enable the module. ]]>
+            </comment>
+        </field>
+        <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Title</label>
+            <config_path>payment/beamcheckout_ewallet/title</config_path>
+        </field>
+        <field id="descriptions" translate="label" type="editor" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Instructions</label>
+            <config_path>payment/beamcheckout_ewallet/descriptions</config_path>
+            <frontend_model>Marvelic\BeamCheckout\Block\Adminhtml\System\Config\Editor</frontend_model>
+        </field>
+        <field id="supported_payment_methods" translate="label" type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Supported Payment Methods</label>
+            <source_model>Marvelic\BeamCheckout\Model\Config\Source\SupportedPaymentMethod</source_model>
+        </field>
+        <field id="sort_order" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sort Order</label>
+            <validate>validate-number</validate>
+            <config_path>payment/beamcheckout_ewallet/sort_order</config_path>
+        </field>
+    </group>
+</include>

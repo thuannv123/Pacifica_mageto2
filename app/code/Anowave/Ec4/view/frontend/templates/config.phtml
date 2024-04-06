@@ -1,0 +1,32 @@
+<script data-ommit="true">
+
+    if (AEC.GA4)
+    {
+    	AEC.GA4.enabled = <?php echo json_encode($block->isGA4Enabled())?>;
+
+    	<?php
+    	/**
+    	 * Conversion event
+    	 */
+    	?>
+    	
+    	AEC.GA4.conversion_event = <?php echo json_encode($block->getConversionEvent())?>;
+
+    	<?php
+    	/**
+    	 * Set current currency
+    	 */
+    	?>
+    	
+    	AEC.GA4.currency = <?php echo json_encode($block->getHelper()->getBaseHelper()->getCurrency())?>;
+
+    	<?php
+    	/**
+    	 * Get quote details
+    	 */
+    	?>
+    	
+    	AEC.GA4.quote = <?php echo json_encode($block->getQuoteDetails()) ?>;
+    }
+    
+</script>

@@ -1,0 +1,65 @@
+<?php if (false !== $data = $block->getSearchPush()): ?>
+	<script data-ommit="true">
+
+    	(data => 
+    	{
+    		AEC.CookieConsent.queue(() => 
+    		{
+        		dataLayer.push(data);
+        		
+        	}).process();
+    		
+       	})(<?php echo $data->push ?>);
+    	
+		
+
+		window.google_tag_params.ecomm_category = '<?php echo __('Search Results') ?>';
+		window.google_tag_params.returnCustomer = <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+		
+		<?php if ($block->getHelper()->facebook()): ?>
+		
+		var push = <?php echo $data->push ?>, content_ids = [];
+
+		for(i = 0, l = push.ecommerce.impressions.length; i < l; i++)
+		{
+			content_ids.push(push.ecommerce.impressions[i].id);
+		}
+
+		window.content_ids = content_ids;
+
+		(function(callback)
+		{
+			if (AEC.Const.COOKIE_DIRECTIVE)
+			{
+				AEC.CookieConsent.queue(callback).process();
+			}
+			else 
+			{
+				callback.apply(window,[]);
+			}
+		})
+		(
+			(function(content_ids)
+			{
+				return () => 
+				{
+					AEC.EventDispatcher.on('ec.facebook.loaded', () => 
+    				{
+    					fbq("track", "Search", 
+    					{
+    						search_string: 		'<?php echo $block->escapeHtml(isset($_GET['q']) ? $_GET['q'] : '') ?>',
+    						content_ids:		content_ids,
+    						content_type:		'product_group',
+    						content_category: 	'<?php echo __('Search Results') ?>',
+    						currency: 			'<?php echo $block->getHelper()->getCurrency() ?>',
+    						value:				 <?php echo $block->getHelper()->getVisitorId() ?>
+    					}, 
+    					{ eventID: AEC.UUID.generate({ event: 'Search' }) });
+        			});
+				}
+			})(content_ids)
+		);
+		
+		<?php endif ?>
+	</script>
+<?php endif ?>

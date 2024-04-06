@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+-->
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+    <methods>
+        <method name="atome_payment_gateway">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
+    </methods>
+</payment>

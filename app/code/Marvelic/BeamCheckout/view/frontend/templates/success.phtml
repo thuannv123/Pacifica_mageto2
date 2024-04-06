@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+
+$increment_id = $block->getBeamCheckoutOrderId();
+$url = $block->getContinueUrl();
+$order_id = $block->getOrderId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$order = $objectManager->get(\Magento\Sales\Api\Data\OrderInterface::class)->loadByIncrementId($increment_id);
+$customerId = $order->getCustomerId();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$customerLogin = $customerSession->isLoggedIn();
+$currentCustomerId = $customerSession->getCustomerId();
+$guest = $order->getCustomerIsGuest();
+$methodCode = $order->getPayment()->getMethodInstance()->getCode();
+?>
+<?php if ($methodCode == 'beamcheckout_creditcard' || $methodCode == 'beamcheckout_ewallet' || $methodCode == 'beamcheckout_qrcode') : ?>
+    <div class="checkout-success">
+        <?php if ($increment_id) : ?>
+            <?php if ($customerLogin && $customerId == $currentCustomerId) : ?>
+                <p>Your order number is: <strong><a class="order-number" href="<?php echo $url; ?>sales/order/view/order_id/<?php echo $order_id; ?>"><?php echo $increment_id; ?></a> </strong></p>
+            <?php else : ?>
+                <?php if ($customerId != $currentCustomerId && !$customerLogin) : ?>
+                    <p>Your order # is: <span><?php echo $increment_id; ?></a> </span></p>
+                <?php else : ?>
+                    <p>Your order # is: <span><?php echo $increment_id; ?></a> </span></p>
+                <?php endif; ?>
+            <?php endif; ?>
+            <p><?= $block->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.')) ?></p>
+        <?php endif; ?>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <a class="action primary continue" href="<?= $block->escapeUrl($url) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+            </div>
+        </div>
+    </div>
+    <?php if (!$customerLogin) : ?>
+        <div id="registration" data-bind="scope:'registration'">
+            <br>
+            <div>
+                <p>You can track your order status by creating an account.</p>
+                <p><span data-bind="i18n: 'Email Address'">Email Address</span>: <span><?php echo $order->getCustomerEmail() ?></span></p>
+                <a class="action primary" href="<?= $block->escapeUrl($url) ?>checkout/account/delegateCreate/">
+                    <span data-bind="i18n: 'Create an Account'">Create an Account</span>
+                </a>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

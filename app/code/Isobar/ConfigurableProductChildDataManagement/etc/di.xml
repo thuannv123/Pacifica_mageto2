@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider">
+        <plugin name="disable_child_product_attributes_indexing"
+                type="Isobar\ConfigurableProductChildDataManagement\Plugin\Model\Indexer\Fulltext\Action\DataProviderPlugin"/>
+    </type>
+</config>

@@ -1,0 +1,202 @@
+/* linked accounts */
+
+.social-account-list{
+    display: inline-block;
+}
+
+.social-account-item{
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.social-account-item:first-child{
+    border-top: none;
+}
+
+.social-account-item .item-cell{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.social-link-avatar{
+    width: 200px;
+    white-space: nowrap;
+    padding: 0 40px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    overflow: hidden;
+}
+
+.social-account-wrapper .social-account-icon{
+    border-radius: 0;
+}
+
+.social-link-avatar-name{
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.social-account-unlink .action.primary{
+    line-height: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
+}
+
+.social-account-item div.clearfix {
+    clear: both;
+}
+
+.social-account-item .social-account-wrapper,
+.social-account-item .social-link-avatar{
+    line-height: 0;
+}
+
+.social-link-avatar-img,
+.social-link-avatar-name{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.social-link-avatar-img{
+    max-width: 40px;
+    border-radius: 50%;
+    -ms-border-radius: 50%;
+}
+
+.social-link-avatar-name{
+    line-height: normal;
+    margin-left: 10px;
+}
+
+
+.social-login-btn-kakao{
+    background-color: #FAE100;
+    color:#3C1E1E !important;
+}
+
+.social-login-icon-kakao {
+    background-image: url("../images/kakao-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: 1px solid #fff;
+}
+
+.social-login-icon-line {
+    background-image: url("../images/social-line.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: 1px solid #fff;
+}
+
+@media (max-width: 500px){
+    .social-link-avatar{
+        padding: 0 10px;
+    }
+
+    .social-link-avatar-name{
+        font-size: 12px;
+        width: 100px;
+    }
+}
+
+/* ==================== */
+
+/* login with social account */
+
+.social-login-list{
+    padding: 0;
+}
+
+.social-login-list li{
+    list-style: none;
+}
+
+.social-login-btn{
+    position: relative;
+    display: inline-block;
+    width: 193px;
+    padding-left: 5px;
+    color: white;
+    font: 300 15px 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 30px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.social-login-btn:visited{
+    color: #fff;
+}
+
+.social-login-btn:hover,
+.social-login-btn:active{
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-login-btn:active{
+    top: 2px;
+}
+
+.social-login-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    box-shadow: inset -1px 0px 0 0 rgba(255,255,255,0.15);
+}
+
+.social-login-label{
+    font-weight: 600;
+}
+
+.social-login-btn-naver{
+    background-color: #1fc700;
+}
+
+.social-login-btn-line{
+    background-color: #1fc700;
+}
+
+.social-login-icon-naver {
+    border-right: 1px solid #2db620;
+    background: url('../images/social-naver.PNG') no-repeat;
+    background-size: cover;
+}
+/* social account icon */
+
+.social-account-icon{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+/* social login blocks */
+
+/* cart page */
+.checkout-cart-index .social-login-list {
+    margin-top: 20px;
+}
+
+/* checkout page login popup */
+.block-authentication form[data-role='login'] ul.social-login-list {
+    padding-left: 0;
+}
+
+/* Magento Blank */
+
+/* customer login page */
+.customer-account-login .social-login-list.social-login-theme-magento_blank {
+    margin-left: 25.7%;
+}
+
+/* customer create page */
+.customer-account-create .social-login-list.social-login-theme-magento_blank {
+    margin-left: 25.7%;
+}

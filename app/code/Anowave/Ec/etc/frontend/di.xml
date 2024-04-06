@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Framework\View\Element\Template">
+        <plugin name="ec" type="Anowave\Ec\Block\Plugin" sortOrder="100" />
+    </type>
+    <type name="Magento\Cms\Block\Page">
+        <plugin name="ec" type="Anowave\Ec\Block\PluginPage" sortOrder="100" />
+    </type>
+    <type name="Magento\CatalogSearch\Block\Result">
+        <plugin name="ec" type="Anowave\Ec\Block\Result" sortOrder="200" />
+    </type>
+    <type name="Magento\Framework\View\Layout">
+        <plugin name="ec" type="Anowave\Ec\Model\DepersonalizePlugin" sortOrder="1" />
+    </type>
+    <type name="Magento\Framework\App\Action\AbstractAction">
+    	<plugin name="ec" type="Anowave\Ec\Plugin\App\Action\Context" sortOrder="15"/> 
+    </type>
+    <type name="Magento\Framework\App\PageCache\Identifier">
+        <plugin name="price" type="Anowave\Ec\Plugin\Framework\App\PageCache\Identifier" sortOrder="100" />
+    </type>
+    <type name="Magento\Framework\App\Http\Context">
+        <plugin name="ec" type="Anowave\Ec\Plugin\Framework\App\Http\Context" />
+    </type>
+    <type name="Magento\Theme\Controller\Result\JsFooterPlugin">
+        <plugin name="ec" type="Anowave\Ec\Plugin\JsFooterPlugin" />
+    </type>
+    <type name="Magento\Checkout\Model\Sidebar">
+        <plugin name="ec" type="Anowave\Ec\Plugin\Sidebar" />
+    </type>
+    <preference for="Magento\Checkout\Controller\Sidebar\RemoveItem" type="Anowave\Ec\Preference\RemoveItem" />
+    <preference for="Magento\Checkout\Controller\Sidebar\UpdateItemQty" type="Anowave\Ec\Preference\UpdateItemQty" />
+    <preference for="Magento\Catalog\Block\Product\ProductList\Related" type="Anowave\Ec\Preference\Related" />
+    <preference for="Magento\Catalog\Block\Product\ProductList\Upsell" type="Anowave\Ec\Preference\Upsell" />
+    <preference for="Magento\Framework\View\Asset\Merged" type="Anowave\Ec\Preference\Merged" />
+</config>

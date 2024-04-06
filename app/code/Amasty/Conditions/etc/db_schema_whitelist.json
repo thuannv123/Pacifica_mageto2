@@ -1,0 +1,15 @@
+{
+    "amasty_conditions_quote": {
+        "column": {
+            "id": true,
+            "quote_id": true,
+            "payment_code": true
+        },
+        "index": {
+            "AMASTY_CONDITIONS_QUOTE_QUOTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

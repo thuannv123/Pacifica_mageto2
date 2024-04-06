@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Isobar_Megamenu::menu_links"
+             title="Custom Menu Items"
+             module="Isobar_Megamenu"
+             parent="MenuIsobar_Base::menu"
+             action="megamenu/link/index"
+             resource="Isobar_Megamenu::menu"
+             sortOrder="10"
+        />
+        <add id="Isobar_Megamenu::menu_builder"
+             title="Menu Builder"
+             module="Isobar_Megamenu"
+             parent="MenuIsobar_Base::menu"
+             action="megamenu/builder/index"
+             resource="Isobar_Megamenu::menu"
+             sortOrder="20"
+        />
+    </menu>
+</config>

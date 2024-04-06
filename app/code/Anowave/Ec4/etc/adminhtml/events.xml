@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="admin_system_config_changed_section_ec4">
+        <observer name="ec" instance="Anowave\Ec4\Observer\Config" />
+    </event>
+    <event name="ec_schema_variables">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Schema\Variables" />
+    </event>
+     <event name="ec_schema_triggers">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Schema\Triggers" />
+    </event>
+   
+    <event name="ec_schema_tags">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Schema\Tags" />
+    </event>
+    <event name="ec_schema_options">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Options" />
+    </event>
+    <event name="ec_schema_validate">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Validate" />
+    </event>
+</config>

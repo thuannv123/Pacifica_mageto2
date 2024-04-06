@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Model\Category\Attribute\Backend\Image" type="Isobar\Megamenu\Model\Category\Attribute\Backend\Image"/>
+
+    <virtualType name="Isobar\Megamenu\Ui\DataProvider\Form\Link\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="use_default" xsi:type="array">
+                    <item name="class" xsi:type="string">Isobar\Megamenu\Ui\DataProvider\Form\Link\Modifier\UseDefault</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Isobar\Megamenu\Ui\DataProvider\Form\Link\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Isobar\Megamenu\Ui\DataProvider\Form\Link\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Isobar\Megamenu\Model\Backend\SaveLink\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="sort_order" xsi:type="number">20</item>
+                    <item name="object" xsi:type="object">Isobar\Megamenu\Model\Backend\SaveLink\DataCollector\General</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Isobar\Megamenu\Model\Backend\DataProvider\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="sort_order" xsi:type="number">20</item>
+                    <item name="object" xsi:type="object">Isobar\Megamenu\Model\Backend\DataProvider\DataCollector\General</item>
+                </item>
+                <item name="modify_status" xsi:type="array">
+                    <item name="sort_order" xsi:type="number">30</item>
+                    <item name="object" xsi:type="object">Isobar\Megamenu\Model\Backend\DataProvider\DataCollector\ModifyStatus</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

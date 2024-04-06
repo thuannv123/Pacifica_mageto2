@@ -1,0 +1,257 @@
+<?php
+/**
+ * Google Optimize Page Hiding Snippet
+ */
+?>
+<?php echo $block->getHelper()->getGoogleOptimizePageHidingSnippet() ?>
+<?php
+/**
+ * Google Optimize Standalone implementation
+ */
+?>
+<?php if ($block->getHelper()->getGoogleOptimizeIsStandalone()):?>
+
+	<script data-ommit="true">
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  
+		ga('create',  '<?php echo $block->getHelper()->getGoogleOptimizeAnalyticsId() ?>', 'auto');
+		ga('require', '<?php echo $block->getHelper()->getGoogleOptimizeContainerId() ?>');
+		
+	</script>
+	
+<?php endif ?>
+
+<script data-ommit="true">
+
+	window.dataLayer = window.dataLayer || [];
+
+	<?php
+	/**
+	 * Anowave Enhanced Ecommerce Class API
+	 */
+	?>
+	
+	window.AEC = window.AEC || { version: <?php echo json_encode($block->getHelper()->getVersion()) ?>	};
+
+	<?php
+	/**
+	 * AEC Constants
+	 */
+	?>
+	
+	AEC.Const = 
+	{
+		TIMING_CATEGORY_ADD_TO_CART:		'Add To Cart Time',
+		TIMING_CATEGORY_REMOVE_FROM_CART:	'Remove From Cart Time',
+		TIMING_CATEGORY_PRODUCT_CLICK:		'Product Detail Click Time',
+		TIMING_CATEGORY_CHECKOUT:			'Checkout Time',
+		TIMING_CATEGORY_CHECKOUT_STEP:		'Checkout Step Time',
+		TIMING_CATEGORY_PRODUCT_WISHLIST:	'Add to Wishlist Time',
+		TIMING_CATEGORY_PRODUCT_COMPARE:	'Add to Compare Time'
+	};
+
+	AEC.Const.URL 					= '<?php echo $block->getHelper()->getStore()->getBaseUrl() ?>';
+	AEC.Const.VARIANT_DELIMITER 	= '<?php echo \Anowave\Ec\Helper\Data::VARIANT_DELIMITER ?>';
+	AEC.Const.VARIANT_DELIMITER_ATT = '<?php echo \Anowave\Ec\Helper\Data::VARIANT_DELIMITER_ATT ?>';
+
+	<?php
+	/**
+	 * Checkout step indexes. Should match funnel configuration in GA
+	 */
+	?>
+	
+	AEC.Const.CHECKOUT_STEP_SHIPPING 	= <?php echo \Anowave\Ec\Helper\Constants::CHECKOUT_STEP_SHIPPING ?>;
+	AEC.Const.CHECKOUT_STEP_PAYMENT  	= <?php echo \Anowave\Ec\Helper\Constants::CHECKOUT_STEP_PAYMENT ?>;
+	AEC.Const.CHECKOUT_STEP_ORDER  		= <?php echo \Anowave\Ec\Helper\Constants::CHECKOUT_STEP_ORDER ?>;
+
+	<?php
+	/**
+	 * Custom dimension indexes
+	 */
+	?>
+	
+	AEC.Const.DIMENSION_SEARCH = <?php echo (int) $block->getHelper()->getInternalSearchDimension() ?>;
+
+	<?php
+	/**
+	 * Cookie Directive Constants
+	 */
+	?>
+
+	AEC.Const.COOKIE_DIRECTIVE 								= <?php echo json_encode($block->getHelper()->supportCookieDirective()) ?>;
+	AEC.Const.COOKIE_DIRECTIVE_SEGMENT_MODE 				= <?php echo json_encode($block->getHelper()->getCookieDirectiveIsSegmentMode()) ?>;
+	AEC.Const.COOKIE_DIRECTIVE_SEGMENT_MODE_EVENTS			= <?php echo json_encode($block->getHelper()->getCookieDirectiveConsentSegments()) ?>;	
+	AEC.Const.COOKIE_DIRECTIVE_CONSENT_GRANTED_EVENT 		= <?php echo json_encode(\Anowave\Ec\Helper\Constants::COOKIE_CONSENT_GRANTED_EVENT) ?>;
+	AEC.Const.COOKIE_DIRECTIVE_CONSENT_DECLINE_EVENT 		= <?php echo json_encode(\Anowave\Ec\Helper\Constants::COOKIE_CONSENT_DECLINE_EVENT) ?>;
+
+	<?php
+	/**
+	 * Check if cookie consent is granded
+	 */
+	?>
+	
+	AEC.Const.COOKIE_DIRECTIVE_CONSENT_GRANTED = AEC.CookieConsent.getConsent(<?php echo json_encode(\Anowave\Ec\Helper\Constants::COOKIE_CONSENT_GRANTED_EVENT) ?>);
+
+	<?php
+	/**
+	 * Category add redirect event
+	 */
+	?>
+	
+	AEC.Const.CATALOG_CATEGORY_ADD_TO_CART_REDIRECT_EVENT = <?php echo json_encode(\Anowave\Ec\Helper\Constants::CATALOG_CATEGORY_ADD_TO_CART_REDIRECT_EVENT) ?>;
+
+	<?php
+	/**
+	 * Define messages
+	 */
+	?>
+	
+	AEC.Message = 
+	{
+		confirm: 			 <?php echo $block->getHelper()->useRemoveConfirm() ?>,
+		confirmRemoveTitle:  <?php echo $block->getHelper()->getJsonHelper()->encode(__('Are you sure?')) ?>,
+		confirmRemove: 		 <?php echo $block->getHelper()->getJsonHelper()->encode(__('Are you sure you would like to remove this item from the shopping cart?')) ?>
+
+	};
+			
+	AEC.storeName 			= <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->getStoreName()) ?>;
+	AEC.currencyCode	 	= <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->getStore()->getCurrentCurrencyCode()) ?>;
+	AEC.useDefaultValues 	= <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->useDefaultValues()) ?>;
+	AEC.facebook 			= <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->facebook()) ?>;
+	AEC.facebookInitParams 	= <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->getFacebookAdvancedMatchingParameters()) ?>;
+
+	<?php
+	/**
+	 * Get super attributes
+	 */
+	?>
+	
+	AEC.SUPER = <?php echo $block->getHelper()->getSuper() ?>;
+
+	<?php
+	/**
+	 * Get configurable simple products
+	 */
+	?>
+	
+	AEC.CONFIGURABLE_SIMPLES = <?php echo $block->getHelper()->getConfigurableSimples() ?>;
+
+	<?php 
+	/**
+	 * Get bundle items 
+	 */
+	?>
+
+	AEC.BUNDLE = <?php echo $block->getHelper()->getBundle() ?>;
+
+	<?php
+	/**
+	 * localStorage
+	 */
+	?>
+
+	AEC.localStorage = <?php echo $block->getHelper()->useLocalStorage() ?>;
+
+	<?php 
+	/**
+	 * Get cart summary
+	 */
+	?>
+	
+	AEC.summary = <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->useSummary()) ?>;
+
+	<?php 
+	/**
+	 * Reset dataLayer[] before new push
+	 */
+	?>
+
+	AEC.reset = <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->useReset()) ?>;
+	
+</script>
+<?php if ($this->getHelper()->facebook()): ?>
+    <?php if ($block->getHelper()->supportCookieDirective()): ?>
+        <script type="text/plain" id="facebook-pixel" data-ommit="true">
+            <?php echo $block->getHelper()->getFacebookPixelCodePlain()?>
+        </script>
+        <script>
+        
+            AEC.CookieConsent.queue(() => 
+            {
+            	((script, head) => 
+            	{
+            		script.type = "text/javascript";
+            		script.text = document.getElementById('facebook-pixel').innerHTML;
+    
+            		head.appendChild(script);
+                    
+               	})(document.createElement("script"), document.getElementsByTagName("head")[0]);
+            }, <?php echo $block->getHelper()->getJsonHelper()->encode($block->getHelper()->getFacebookCookieTriggerEvent()) ?>);
+            
+        </script>
+    <?php else: ?>
+    	<?php echo $block->getHelper()->getFacebookPixelCode()?>
+    <?php endif ?>
+    
+    <script data-ommit="true">
+
+            <?php 
+            /**
+             * Facebook Pixel Load Listener
+             */       
+            ?>
+            
+            (() => 
+            {
+                let time = 0, loop = setInterval(() => 
+            	{
+                	time++;
+                	
+            		if ('undefined' !== typeof fbq)
+            		{
+            			AEC.EventDispatcher.trigger('ec.facebook.loaded', {});
+    
+            			clearInterval(loop);
+            		}
+
+            		if (time > 100)
+            		{
+                		console.log('Failed to detect ec.facebook.loaded event.');
+
+                		clearInterval(loop);
+            		}
+
+            	}, 100);
+            })();
+            
+    </script>
+<?php endif ?>
+<script data-ommit="true">
+
+    (summary => 
+    {
+    	if (summary)
+    	{
+        	let getSummary = (event) => 
+        	{
+            	AEC.Request.post(<?php echo json_encode($block->getUrl('datalayer/index/cart'))?>,{ event:event }, (response) => 
+            	{
+                	dataLayer.push(response);
+               	});
+            };
+
+            ['ec.cookie.remove.item.data','ec.cookie.update.item.data','ec.cookie.add.data'].forEach(event => 
+            {
+            	AEC.EventDispatcher.on(event, (event => 
+            	{
+                	return () => 
+                	{
+                    	setTimeout(() => { getSummary(event); }, 2000);
+                    };
+                })(event));
+            });
+    	}
+    })(AEC.summary);
+    
+</script>

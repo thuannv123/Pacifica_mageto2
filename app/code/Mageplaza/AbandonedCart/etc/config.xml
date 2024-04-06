@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_AbandonedCart
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <abandonedcart>
+            <general>
+                <enabled>0</enabled>
+                <enable_unsubscribe_link>1</enable_unsubscribe_link>
+                <send_email_recover>1</send_email_recover>
+                <related_product_out_of_stock>1</related_product_out_of_stock>
+            </general>
+            <sms_notification>
+                <enabled>1</enabled>
+                <enable_abandon_cart_number>1</enable_abandon_cart_number>
+                <message>
+"Hi {{customer_name}}
+We care about your smile and your pleasure. Please give us more chances. {{store_name}} wonders if this item list may recall your interest.
+Items: {{items}}.
+Order Total Excl. Tax: {{order_total}}.
+Your cart: {{cart_url}}
+How about a coupon {{coupon_code}} to help you complete the shopping cart more easily?
+Hurry up since this coupon is only valid until {{to_date}}"
+                </message>
+                <send_after>30</send_after>
+                <sms_provider>Twilio</sms_provider>
+            </sms_notification>
+            <analytics>
+                <enabled>0</enabled>
+            </analytics>
+            <coupon>
+                <valid>48</valid>
+                <length>12</length>
+                <dash>3</dash>
+            </coupon>
+            <report>
+                <time_measure>30</time_measure>
+                <date_range>7</date_range>
+            </report>
+        </abandonedcart>
+    </default>
+</config>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <!-- Modifying an existing step-->
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="registration-form" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Isobar_AmastyRegistrationOneStepCheckout/js/view/form/checkout/create-account</item>
+                                                            <item name="displayArea" xsi:type="string">after-shipping-address-form</item>
+                                                            <item name="sortOrder" xsi:type="string">10</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="deps" xsi:type="array">
+                                                                    <item name="0" xsi:type="string">checkout.steps.shipping-step.shippingAddress.customer-email</item>
+                                                                    <item name="1" xsi:type="string">checkoutProvider</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="additional-payment-validators" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="registration-validator" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Isobar_AmastyRegistrationOneStepCheckout/js/view/form/validator</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

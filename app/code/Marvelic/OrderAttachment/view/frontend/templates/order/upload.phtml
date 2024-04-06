@@ -1,0 +1,248 @@
+<?php if ($block->isCustomerAllowed() && $block->isValid() && $this->canShowOrderAttachment()) :
+    $files = $block->getAttachedFiles(); ?>
+    <div class="block block-order-details-view">
+        <div class="block-title">
+            <strong class="title" style="font-size: 25px;"><?php /* @escapeNotVerified */
+                                                            echo __('Please upload a payment slip') ?></strong>
+        </div>
+        <div class="block-content">
+            <img src="<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>" alt="<?php echo __('Loading...'); ?>" class="fileupload-loader" />
+            <form method="POST" enctype='multipart/form-data' action="<?php echo $block->getUrl('orderupload/upload/save'); ?>" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                <input type="hidden" name="order_id" value="<?php echo $block->getOrderId(); ?>" />
+                <input type="hidden" name="customer_id" value="<?php echo $block->getCustomerId(); ?>" />
+                <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>" />
+                <?php
+                $order = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->create(\Magento\Sales\Model\Order::class)
+                    ->load($block->getOrderId());
+                $grand_total = round($order->getBaseGrandTotal(), 2);
+                $formattedNumber = number_format($grand_total, 0, '.', ',');
+                ?>
+                <input type="hidden" name="grand_total" id="grand_total" value="<?php echo $formattedNumber; ?>" />
+                <thead>
+                    <?php
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $model = $objectManager->create('Isobar\BankTransferProcess\Model\BankTransfer');
+                    ?>
+                    <tr class="headings" style="display: flex; flex-direction:column;">
+                        <th>
+                            <?php echo $model->getDescriptions(); ?>
+                            <script>
+                                require(['jquery'], function($) {
+                                    $(document).ready(function() {
+                                        const lang = document.querySelector('html').getAttribute('lang');
+                                        if (lang == 'th') {
+                                            var table = $('#instructions');
+                                            var grand_total = $('#grand_total').val();
+                                            var amount = 'ยอดชำระ: ' + grand_total + ' บาท';
+                                            var row = $('<tr>' +
+                                                "<td><span style='float: left;'>" + amount + "</span></td>" +
+                                                '</tr>');
+                                            table.append(row);
+                                            $("#button").append("<button type='button' id='copy-text' style='float: right;'>คัดลอก</button>");
+                                        }
+                                        if (lang == 'en') {
+                                            var table = $('#instructions');
+                                            var grand_total = $('#grand_total').val();
+                                            var amount = 'Payment Amount: ' + grand_total + ' Baht';
+                                            var row = $('<tr>' +
+                                                "<td><span style='float: left;'>" + amount + "</span></td>" +
+                                                '</tr>');
+                                            table.append(row);
+                                            $("#button").append("<button type='button' id='copy-text' style='float: right;'>Copy</button>");
+                                        }
+                                        $("#copy-text").click(function() {
+                                            var copyText = $("#account-number").text();
+                                            var number = copyText.replace(/-/g, '');
+                                            var $tempInput = $('<input>');
+                                            $tempInput.val(number);
+                                            $('body').append($tempInput);
+                                            $tempInput.select();
+                                            document.execCommand('copy');
+                                            $tempInput.remove();
+                                            alert("Copied the number: " + number);
+                                        });
+                                    });
+                                });
+                            </script>
+                            <style>
+                                @media screen and (max-width: 768px) {
+                                    #button {
+                                        top: -11% !important;
+                                        position: absolute !important;
+                                        left: 68% !important;
+                                    }
+                                }
+
+                                @media screen and (max-width: 450px) {
+                                    #button {
+                                        top: -11% !important;
+                                        position: absolute !important;
+                                        left: 70% !important;
+                                    }
+                                }
+
+                                @media screen and (max-width: 414px) {
+                                    #button {
+                                        top: -11% !important;
+                                        position: absolute !important;
+                                        left: 78% !important;
+                                    }
+                                }
+                            </style>
+                        </th>
+                    </tr>
+                </thead>
+                <table class="data-table admin__table-primary edit-order-table order-orderupload-table">
+                    <tbody id="meetanshi-orderupload-added">
+                        <?php if (sizeof($files) > 0) : ?>
+                            <?php foreach ($files as $file) : ?>
+                                <?php if ($file['visible_customer_account']) : ?>
+                                    <tr>
+                                        <td>
+                                            <span><a target="_blank" href="<?php echo $block->pubMediaPath() . $file['file_path']; ?>"><?php echo $file['file_name']; ?></a></span>
+                                            <input type="hidden" name="orderupload[<?php echo $file['id']; ?>][file_exist]" value="<?php echo $file['id']; ?>" />
+                                            <input type="hidden" name="orderupload[<?php echo $file['id']; ?>][file_name]" value="<?php echo $file['file_name']; ?>" />
+                                            <input type="hidden" name="orderupload[<?php echo $file['id']; ?>][file_path]" value="<?php echo $file['file_path']; ?>" />
+                                        </td>
+                                        <td><textarea rows="6" cols="25" name="orderupload[<?php echo $file['id']; ?>][comment]" title="<?php echo __('Comment') ?>"><?php echo $file['comment']; ?></textarea>
+                                        </td>
+                                        <td><?php echo $file['created_at']; ?></td>
+                                        <?php if ($block->canDelete()) : ?>
+                                            <td>
+                                                <div class="admin__actions-switch" data-role="switcher">
+                                                    <input type="checkbox" class="admin__actions-switch-checkbox" id="removeItem<?php echo $file['id']; ?>" name="orderupload[<?php echo $file['id']; ?>][remove]" value="1">
+                                                    <label class="admin__actions-switch-label" for="removeItem<?php echo $file['id']; ?>">
+                                                        <span class="admin__actions-switch-text" data-text-on="Yes" data-text-off="No"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <script id="meetanshi-orderupload-added-template" type="text/x-magento-template">
+
+                            <tr>
+                            <td>
+                                <span><%- fileName %> (<%- fileSize %>)</span>
+                                <input type="hidden"
+                                       name="orderupload[<%- index %>][new_file]"
+                                       value="1"/>
+                                <input type="hidden"
+                                       name="orderupload[<%- index %>][file_name]"
+                                       value="<%- fileName %>"/>
+                                <input type="hidden"
+                                       name="orderupload[<%- index %>][file_path]"
+                                       value="<%- file %>"/>
+                            </td>
+                            <td><textarea rows="6" cols="30"
+                                          name="orderupload[<%- index %>][comment]"
+                                          title="<?php echo __('Comment') ?>"></textarea></td>
+                            <td><%- currentDate %></td>
+                            <?php if ($block->canDelete()) : ?>
+                                <td>
+                                    <div class="admin__actions-switch"
+                                         data-role="switcher">
+                                        <input type="checkbox"
+                                               class="admin__actions-switch-checkbox"
+                                               id="removeItem<%- index %>" name="orderupload[<%- index %>][remove]"
+                                               value="1">
+                                        <label class="admin__actions-switch-label"
+                                               for="removeItem<%- index %>">
+                                        <span class="admin__actions-switch-text"
+                                              data-text-on="Yes"
+                                              data-text-off="No"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            <?php endif; ?>
+                        </tr>
+                    </script>
+                    </tbody>
+
+                    <tfoot id="uploadfiles">
+                        <tr>
+                            <td colspan="4">
+                                <div id="drop_file_zone" ondragover="return false" onclick="document.getElementById('meetanshi-orderupload').click()">
+                                    <div id="drag_upload_file">
+                                        <span class="meetanshi-file-upload" style="display: block;">
+                                            <span id="meetanshi-orderupload-add-link" class="meetanshi-file-upload__link" data-switch-title="<?php echo __('Drop files here') ?>">
+                                                <p style="width: 35px;background: white;border-radius: 50%;color: #1a1919;border: 1px solid #1a1919;display: inline-block;height: 35px;line-height: 35px; margin-right: 1%">+</p>
+                                                <?php echo __('Drop files here') ?>
+                                            </span>
+                                            <input type="file" id="meetanshi-orderupload" name="file[]" data-url="<?php echo $block->getFileUploadUrl(); ?>" multiple />
+                                        </span>
+                                        <span style="font-size: 15px;"><?php echo __('Allowed file types : ' . $block->getFileExtension()); ?></span>
+                                    </div>
+                                </div>
+                                <style>
+                                    #drop_file_zone {
+                                        margin-top: 7px;
+                                        margin-bottom: 10px;
+                                        background-color: #EEE;
+                                        border: #999 3px dashed;
+                                        height: 122px;
+                                        padding: 8px;
+                                        font-size: 18px;
+                                    }
+
+                                    #meetanshi-orderupload {
+                                        display: none;
+                                    }
+
+                                    #drag_upload_file {
+                                        text-align: center;
+                                        margin: 20px auto;
+                                    }
+
+                                    #drag_upload_file span {
+                                        text-align: center;
+                                    }
+
+                                    @media only screen and (max-width: 768px) {
+                                        #drop_file_zone {
+                                            height: 152px;
+                                        }
+                                    }
+                                </style>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div class="actions-toolbar">
+                                    <div class="primary" style="float: none; display: flex; justify-content: center; align-items: center;">
+                                        <button type="submit" title="<?php echo __('Upload') ?>" class="action submit primary" style="margin-right: 0">
+                                            <span><?php echo __('Upload') ?></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div id="meetanshi-orderupload-allowedsize" style="display: none;"><?php echo $block->allowedDocSizes(); ?></div>
+                <div id="meetanshi-orderupload-maxFileSize" style="display: none;"><?php echo $block->fileSize(); ?></div>
+                <div id="meetanshi-orderupload-error" style="display: none;"></div>
+                <script type="text/x-magento-init">
+                    {
+                        "#meetanshi-orderupload": {
+                            "meetanshiFileUpload": {
+                                "addLink": "#meetanshi-orderupload-add-link",
+                                "itemTemplate": "#meetanshi-orderupload-added-template",
+                                "itemsContainer": "#meetanshi-orderupload-added",
+                                "removeLinks": ".action-item-remove",
+                                "errorContainer": "#meetanshi-orderupload-error",
+                                "allowedSize": "#meetanshi-orderupload-allowedsize",
+                                "maxFileSize": "#meetanshi-orderupload-maxFileSize"
+                            }
+                        }
+                    }
+
+                </script>
+            </form>
+        </div>
+    </div>
+<?php endif; ?>

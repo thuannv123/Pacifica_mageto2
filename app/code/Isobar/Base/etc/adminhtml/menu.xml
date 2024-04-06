@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Isobar Team
+ * @copyright Copyright (c) 2020 Isobar (https://www.isobar.com)
+ * @package Isobar_Base
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MenuIsobar_Base::menu"
+             title="Isobar"
+             module="Isobar_Base"
+             translate="title"
+             sortOrder="69"
+             dependsOnConfig="isobar_base/menu/enable"
+             resource="MenuIsobar_Base::menu"/>
+
+        <add id="Isobar_Base::extensions"
+             title="Modules &amp; General"
+             module="Isobar_Base"
+             translate="title"
+             sortOrder="9998"
+             action="adminhtml/system_config/edit/section/isobar_base"
+             parent="MenuIsobar_Base::menu"
+             resource="Isobar_Base::config"/>
+
+    </menu>
+</config>

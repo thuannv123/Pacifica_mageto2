@@ -1,0 +1,41 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!--@subject {{trans "%subject" subject=$emailSubject}} @-->
+<!--@vars {
+"var store.getFrontendName()":"Store Name",
+"var store.getBaseUrl()":"Store URL"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="main" align="center">
+    <tr>
+        <td class="main-content">
+            <p>{{trans "Hello,"}}</p>
+            <p>{{trans "Customer "}} <strong>{{trans "%customer_name " customer_name=$customer_name}}</strong> {{trans "has Deleted Your Account and this account may no longer be accessible."}}</p>
+            <p>{{trans "You can find more details ​at "}}<strong>{{trans "Customer Log Delete Your Account."}}</strong>></p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

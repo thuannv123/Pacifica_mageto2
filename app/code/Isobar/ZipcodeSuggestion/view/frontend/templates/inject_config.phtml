@@ -1,0 +1,10 @@
+<?php
+
+/** @var $viewModel \Isobar\ZipcodeSuggestion\ViewModel\InjectConfig */
+$viewModel = $block->getViewModel();
+?>
+<script>
+    window.isModuleZicodeSuggestionEnabled = <?= $viewModel->getModuleStatusInBackend() ?>;
+    window.suggestionCountry = '<?= $viewModel->getSuggestionCountry() ?>';
+    window.lableTHDistrict = "<?= __('District') ?>";
+</script>

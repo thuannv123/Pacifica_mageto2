@@ -1,0 +1,778 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<tab id="anowave" translate="label" sortOrder="1" class="anowave">
+			<label>Anowave</label>
+		</tab>
+		<section id="ec" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label><![CDATA[Google Tag Manager]]></label>
+			<tab>anowave</tab>
+			<resource>Anowave_Ec::anowave</resource>
+			<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Options</label>
+				<attribute type="expanded">1</attribute>
+				<field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable Google Tag Manager</comment>
+                </field>
+                <field id="license" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>License</label>
+                    <frontend_model>Anowave\Package\Block\License\Field</frontend_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="code_split" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use GTM split snippet</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                    <comment>Using split snippet is recommended setting.</comment>
+                </field>
+                <field id="code_head" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Tag Manager Code (Head)</label>
+                    <comment>Obtain in GTM / Admin / Install Google Tag Manager / HEAD</comment>
+                    <depends>
+                    	<field id="*/*/active">1</field>
+                        <field id="*/*/code_split">1</field>
+                    </depends>
+                </field>
+                <field id="code_body" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Tag Manager Code (Body)</label>
+                    <comment>Obtain in GTM / Admin / Install Google Tag Manager / BODY</comment>
+                    <depends>
+                    	<field id="*/*/active">1</field>
+                        <field id="*/*/code_split">1</field>
+                    </depends>
+                </field>
+                <field id="code" translate="label" type="textarea" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Tag Manager Code</label>
+                    <depends>
+                    	<field id="*/*/active">1</field>
+                        <field id="*/*/code_split">0</field>
+                    </depends>
+                </field>
+                <field id="account" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Universal Analytics Tracking ID</label>
+                    <comment>Your Universal Analytics Property ID. This ID is used for tracking offline orders, refunds etc. and should be consistent across all settings including GTM variables and tags.</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="disable_by_ip" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable by IP</label>
+                    <comment>Specify IP address(es) that will have the module disabled per visit</comment>
+                    <depends>
+                    	<field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="disable_by_ip_auth" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable customer non-id by IP</label>
+                    <comment>Specify IP address(es) that will have force the module to simulate always non-logged customer. Suitable for cache warmers.</comment>
+                    <depends>
+                    	<field id="*/*/active">1</field>
+                    </depends>
+                </field>
+			</group>
+			<group id="adwords" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Google AdWords <sup>Conversion Tracking / Dynamic Remarketing</sup>]]></label>
+				<attribute type="expanded">0</attribute>
+				<field id="conversion" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Adwords Conversion Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>With AdWords conversion tracking, you can see how effectively your ad clicks lead to valuable customer activity, such as website purchases, phone calls, app downloads, newsletter sign-ups, and more.</comment>
+                </field>
+                <field id="gtag" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Implementation type</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\AdWords\Implementation</source_model>
+                    <comment>Choose implementation type. More implementation types are available in Beta mode.</comment>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                    </depends>
+                </field>
+				<field id="conversion_id" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion ID</label>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">0</field>
+                    </depends>
+                    <comment>Required</comment>
+                </field>
+				<field id="conversion_label" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion Label</label>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">0</field>
+                    </depends>
+                    <comment>Optional</comment>
+                </field>
+                <field id="conversion_currency" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion currency</label>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">0</field>
+                    </depends>
+                    <comment>Optional</comment>
+                </field>
+                <field id="conversion_color" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion color</label>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">0</field>
+                    </depends>
+                    <comment>Optional</comment>
+                </field>
+                <field id="conversion_format" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion format</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Conversion\Format</source_model>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">0</field>
+                    </depends>
+                    <comment>Optional</comment>
+                </field>
+                <field id="gtag_global_site_tag" translate="label" type="textarea" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Global site tag</label>
+                    <depends>
+                    	<field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">1</field>
+                    </depends>
+                    <comment>Obtain in AdWords -> (3 dot icon) -> Measurement -> Conversions -> Edit/Create Conversion -> Tag Setup</comment>
+                </field>
+                <field id="gtag_send_to" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send to parameter</label>
+                    <depends>
+                    	<field id="ec/adwords/conversion">1</field>
+                        <field id="ec/adwords/gtag">1</field>
+                    </depends>
+                    <comment>Ex. AW-123456789/AbC-D_efG-h12_34-567</comment>
+                </field>
+                <field id="ecomm_prodid" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Dynamic Remarketing ecomm_prodid</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Id</source_model>
+                    <comment>Allows for ecomm_prodid to be either ID or SKU. Default: SKU</comment>
+                </field>
+                <field id="dynx" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable AdWords Dynx_</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable customn dynx_ parameters</comment>
+                </field>
+                <field id="allow_enhanced_conversions" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Enhnaced Conversions support</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the module will push 'enhanced_conversion_data' variable into dataLayer[] object</comment>
+                </field>
+			</group>
+			<group id="customer_reviews" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Google Customer Reviews</label>
+				<attribute type="expanded">0</attribute>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="merchant_id" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant ID</label>
+                  	<comment>Your Merchant Center ID. You can get this value from the Google Merchant Center.</comment>
+                  	<depends>
+                        <field id="ec/customer_reviews/enable">1</field>
+                    </depends>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Badge position</label>
+                  	<source_model>Anowave\Ec\Model\System\Config\Source\CustomerReviews\Position</source_model>
+                  	<comment>Sets badge render position on screen</comment>
+                  	<depends>
+	                    <field id="ec/customer_reviews/enable">1</field>
+	                </depends>
+                </field>
+                <field id="delivery_date" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delivery date</label>
+                  	<source_model>Anowave\Ec\Model\System\Config\Source\CustomerReviews\Delivery</source_model>
+                  	<depends>
+	                    <field id="ec/customer_reviews/enable">1</field>
+	                </depends>
+                </field>
+                <field id="use_gtin" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable GTIN</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Send products GTIN</comment>
+                </field>
+                <field id="gtin" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GTIN attribute</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\CustomerReviews\Attribute</source_model>
+                    <comment>Set GTIN product attribute</comment>
+                    <depends>
+                    	<field id="ec/customer_reviews/use_gtin">1</field>
+                    </depends>
+                </field>
+			</group>
+			<group id="facebook" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Facebook Pixel Tracking</label>
+				<attribute type="expanded">0</attribute>
+				<field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="facebook_pixel_code" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook pixel code</label>
+                  	<comment>Obtain from AdManager -> Actions > View Pixel Code in Pixels page</comment>
+                  	<depends>
+                        <field id="ec/facebook/active">1</field>
+                    </depends>
+                </field>
+                <field id="facebook_value" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook value</label>
+                  	<source_model>Anowave\Ec\Model\System\Config\Source\Value</source_model>
+                  	<depends>
+	                    <field id="ec/facebook/active">1</field>
+	                </depends>
+                </field>
+                <field id="facebook_conversions_api" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Facebook Conversions API (server-side)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="facebook_conversions_api_pixel_id" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Conversions API Pixel Id</label>
+                    <depends>
+	                    <field id="ec/facebook/active">1</field>
+	                    <field id="ec/facebook/facebook_conversions_api">1</field>
+	                </depends>
+                </field>
+                <field id="facebook_conversions_api_access_token" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Conversions API Access token</label>
+                    <depends>
+	                    <field id="ec/facebook/active">1</field>
+	                    <field id="ec/facebook/facebook_conversions_api">1</field>
+	                </depends>
+	                <comment>In Events Manager, select the pixel that you have implemented in your website. Click the Settings tab and scrolldown to the Conversions API section. Click the Generate access token link and copy the access token.</comment>
+                </field>
+                <field id="facebook_conversions_api_test_event_code" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Conversions API Test Event Code (optional)</label>
+                    <depends>
+	                    <field id="ec/facebook/active">1</field>
+	                    <field id="ec/facebook/facebook_conversions_api">1</field>
+	                </depends>
+	                <comment>A test event code to use for testing purposes. Must be removed in production mode.</comment>
+                </field>
+                <field id="facebook_consent_trigger_event" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GDPR event</label>
+                  	<source_model>Anowave\Ec\Model\System\Config\Source\Facebook\Event</source_model>
+                  	<depends>
+	                    <field id="ec/facebook/active">1</field>
+	                    <field id="ec/cookie/enable">1</field>
+	                </depends>
+	                <comment>Pick an event that will fire Facebook pixel</comment>
+                </field>
+                <field id="facebook_content_id" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook content_ids[] attribute</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Id</source_model>
+                    <comment>Allows for content_ids[] to be either ID or SKU. Default: SKU</comment>
+                </field>
+			</group>
+			<group id="selectors" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Advanced Developer Configuration</label>
+				<attribute type="expanded">0</attribute>
+				<field id="cart" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Cart selector</label>
+                    <comment>Default: //button[@id="product-addtocart-button"]</comment>
+                </field>
+                <field id="cart_list" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Cart selector (in listings)</label>
+                    <comment>Default: div/div/div/div/div/form/button[contains(@class,"tocart")]</comment>
+                </field>
+                <field id="cart_delete" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove from Cart selector</label>
+                    <comment>Default: //a[contains(@class,"action-delete")]|//a[contains(@class,"remove")]</comment>
+                </field>
+                <field id="list" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Impression list selector</label>
+                    <comment>Default: //ol[contains(@class, "products")]/li</comment>
+                </field>
+                <field id="click" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Impression click selector</label>
+                    <comment>Default: div/a</comment>
+                </field>
+                <field id="list_crosssell" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Impression cross sell selector</label>
+                    <comment>Default: //div[contains(@class,"product-items")]/div</comment>
+                </field>
+                <field id="list_widget" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Widget list selector</label>
+                    <comment>Default: //ol[contains(@class,"product-items")]/li</comment>
+                </field>
+                <field id="list_widget_click" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Widget list click selector</label>
+                    <comment>Default: div/a[contains(@class,"product-item-photo")]</comment>
+                </field>
+                <field id="list_widget_cart" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Widget list add cart selector</label>
+                    <comment>Default: div/div/div/div/button[contains(@class,"tocart")]</comment>
+                </field>
+                <field id="add_wishlist" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Wishlist selector</label>
+                    <comment>Default: //a[contains(@class,"towishlist")]</comment>
+                </field>
+                <field id="add_compare" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Compare selector</label>
+                    <comment>Default: //a[contains(@class,"tocompare")]</comment>
+                </field>
+                <field id="list_wishlist" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Wishlist selector (in listings)</label>
+                    <comment>Default: div/div/div/div/div[contains(@class,"towishlist")]</comment>
+                </field>
+                <field id="list_compare" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Compare selector (in listings)</label>
+                    <comment>Default: div/div/div/div/div[contains(@class,"tocompare")]</comment>
+                </field>
+                <field id="beta_placeholders" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-processing strip</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Strip and restore inline HTML prior to pre-processing data-* selectors</comment>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Debug mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>In Debug mode, the module will display payload information about backend orders, refunds, reverse transactions etc.</comment>
+                </field>
+			</group>
+			<group id="api" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Google Tag Manager <sup>API</sup>]]></label>
+				<attribute type="expanded">0</attribute>
+				<field id="use_built_in_credentials" translate="label" type="select" sortOrder="-4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use built-in settings</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Override</source_model>
+                    <comment>Google Tag Manager API configuration settings</comment>
+                </field>
+                <field id="throttle" translate="label" type="select" sortOrder="-3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Throttle</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Throttle</source_model>
+                    <comment>A lower value will slow down API completion time but will avoid quota limitations</comment>
+                </field>
+                <field id="override_about" translate="label" type="text" sortOrder="-2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>About</label>
+                    <frontend_model>Anowave\Ec\Block\Field\ApiAbout</frontend_model>
+                    <depends>
+                    	<field id="ec/api/use_built_in_credentials">0</field>
+                    </depends>
+                </field>
+                <field id="override_client_id" translate="label" type="text" sortOrder="-1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <depends>
+                    	<field id="ec/api/use_built_in_credentials">0</field>
+                    </depends>
+                    <comment></comment>
+                </field>
+                <field id="override_client_secret" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client secret</label>
+                    <depends>
+                    	<field id="ec/api/use_built_in_credentials">0</field>
+                    </depends>
+                    <comment></comment>
+                </field>
+                <field id="google_auth" translate="label" type="hidden" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                	<label>Authentication</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Auth</frontend_model>
+                </field>
+                <field id="google_gtm_ua" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Universal Analytics Tracking ID</label>
+                    <comment>ex.: UA-000000-01.</comment>
+                </field>
+                <field id="google_gtm_account_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account ID</label>
+                    <comment>Google Tag Manager Account ID ex.: 19671043.</comment>
+                </field>
+                <field id="google_gtm_container" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Container ID</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Container</source_model>
+                    <frontend_model>Anowave\Ec\Block\Field\Comment</frontend_model>
+                </field>
+                <field id="google_gtm_enable_remarketing" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configure AdWords Dynamic Remarketing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the API will create AdWords Dynamic Remarketing tag</comment>
+                </field>
+                <field id="google_adwords_conversion_id" translate="label" type="text" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion ID</label>
+                    <comment>Used for AdWords Dynamic Remarketing</comment>
+                    <depends>
+                    	<field id="ec/api/google_gtm_enable_remarketing">1</field>
+                    </depends>
+                </field>
+                <field id="google_adwords_conversion_label" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords Conversion label</label>
+                    <comment>Used for AdWords Dynamic Remarketing</comment>
+                    <depends>
+                    	<field id="ec/api/google_gtm_enable_remarketing">1</field>
+                    </depends>
+                </field>
+			</group>
+			<group id="gmp" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Google Analytics Measurement Protocol]]></label>
+				<attribute type="expanded">0</attribute>
+				<field id="use_measurement_protocol_only" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track server-side ONLY</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the extension will track frontend orders via measurement protocol ONLY. All other events will still be tracked using client-side implementation. ATTENTION: If enabled, 'purchase' event will not be pushed into dataLayer[] object on success page.</comment>
+                </field>
+				<field id="use_measurement_protocol" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track offline orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the extension will track admin orders using Google Analytics Measurement Protocol</comment>
+                </field>
+                <field id="use_measurement_protocol_cancel" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track canceled orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the extension will send a negative transaction to Google Analytics to cancel existing record.</comment>
+                </field>
+                <field id="use_measurement_protocol_refund" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track refunds</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the extension will send a refund request upon creating Credit Memo</comment>
+                </field>
+			</group>
+			<group id="optimize" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Google Optimize]]></label>
+				<attribute type="expanded">0</attribute>
+				<field id="implementation" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Implementation type</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Optimize\Implementation</source_model>
+                    <comment>Choose implementation type. More implementation types are available in Beta mode. In Assisted mode, you MUST install Google Optimize via tag in GTM itself. This mode is used to insert page hiding snippet ONLY.</comment>
+                    <depends>
+                        <field id="ec/adwords/conversion">1</field>
+                    </depends>
+                </field>
+                <field id="use_optimize_page_hiding_snippet" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Optimize Page Hiding Snippet</label>
+                    <depends>
+                    	<field id="ec/optimize/use_optimize">1</field>
+                    </depends>
+                    <comment>To reduce the page flicker and give users a better user experience it's optional that you add the page hiding snippet to your webpages. </comment>
+                </field>
+                <field id="use_optimize_container_id" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Optimize Container ID</label>
+                    <depends>
+                    	<field id="ec/optimize/use_optimize">1</field>
+                    	<field id="ec/optimize/implementation">1</field>
+                    </depends>
+                 </field>
+			</group>
+			<group id="options" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Enhanced Ecommerce Tracking Preferences]]></label>
+				<field id="identifier" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Identifier</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Id</source_model>
+                    <comment>Select identifier attribute. Default: SKU</comment>
+                </field>
+				<field id="use_segments" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use category segments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allows for filtering reports by category level</comment>
+                </field>
+                <field id="use_skip_translate" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>No translation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Use admin labels for product variants. If enabled, current store will be pushed in dataLayer[] to allow for separating results using custom dimension.</comment>
+                </field>
+                <field id="use_simples" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use simple SKU(s) only</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Applicable for configurable products. If enabled, module will send simple SKU instead of parent SKU. Variant will be kept intact. May result in incorrect correlation between products click/add to cart and performance reports.</comment>
+                </field>
+                <field id="use_variant_sku" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use first variant SKU(s)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, ecomm_prodid[] (AdWords Dynamic Remarketing) will be set to the first variant from the configurable product. Applicable for product detail page only.</comment>
+                    <depends>
+                    	<field id="ec/options/use_simples">1</field>
+                    </depends>
+                </field>
+                <field id="use_brand_attribute" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand attribute</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Brand</source_model>
+                    <comment>Default: manufacturer</comment>
+                </field>
+                <field id="use_brand_attribute_delimiter" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand delimiter</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\BrandDelimiter</source_model>
+                    <comment>Default: comma</comment>
+                </field>
+                <field id="use_remove_confirm" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use remove confirmation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the site will display a confirmation popup to customers upon removing product(s) from shopping cart.</comment>
+                </field>
+                <field id="use_local_storage" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Use localStorage confirmation <sup>BETA</sup>]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                    	<field id="ec/beta/mode">1</field>
+                    </depends>
+                    <comment>If enabled, the extension will use a localStorage feature to better correlate categories with add/remove/checkout events. Provides more accurate reports for products in multiple categories. Note that this feature will work only on modern browsers that support localStorage.</comment>
+                </field>
+                <field id="use_disable_payment_method_tracking" translate="label" type="multiselect" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Filter-out payment method <sup>BETA</sup>]]></label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Payment\Methods</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>Orders/Transactions made using selected methods will not be tracked in Google Analytics. Filtering out transactions by payment method is suitable for finance options or transactions that are paid/processed later and/or are likely to not process. </comment>
+                    <depends>
+                    	<field id="ec/beta/mode">1</field>
+                    </depends>
+                </field>
+                <field id="use_detail_list" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add 'list' parameter in detail actionField</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add 'list' parameter in detail JSON.</comment>
+                </field>
+                <field id="use_private_fallback" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activate Private Fallback</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Private Fallback will send Pageview data to Google Analytics via server-side call if browser is in Private/Incognito mode. </comment>
+                </field>
+                <field id="impression_payload_model" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Impresson payload model</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\PayloadModel\Impression</source_model>
+                 </field>
+                <field id="impression_payload_model_about" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>About impression payload model</label>
+                    <frontend_model>Anowave\Ec\Block\Field\ImpressionModelAbout</frontend_model>
+                    <depends>
+                    	<field id="ec/options/impression_payload_model">1</field>
+                    </depends>
+                </field>
+                <field id="use_summary" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable summary cart callback</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the module will push cart contents into dataLayer[] after events such as addToCart, removeFromCart, cart update etc. e.g. dataLayer.event.summary[]</comment>
+                </field>
+                <field id="use_reset" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset dataLayer[] object</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, data pushed in dataLayer[] will get reset prior to next push. This is most useful with a page that will remain open and the data layer size continues to grow over time.</comment>
+                </field>
+            </group>
+            <group id="tax" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Tax Preferences</label>
+				<field id="revenue" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Transaction revenue</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Tax</source_model>
+                    <comment>Modifies 'revenue' parameter e.g. total transaction value</comment>
+                </field>
+                <field id="revenue_product" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Transaction product item price</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\TaxItem</source_model>
+                    <comment>Modifies 'price' parameter e.g. product price in items array []</comment>
+                </field>
+                <field id="ecomm_totalvalue" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AdWords total value</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Tax</source_model>
+                    <comment>Modifies 'ecomm_totalvalue' parameter e.g. google_tag_params.ecomm_totalvalue (on success page)</comment>
+                </field>
+			</group>
+            <group id="amp" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Accelerated Mobile Pages</label>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable AMP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add support for AMP (Accelerated Mobile Pages)</comment>
+                </field>
+            </group>
+            <group id="affiliate" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Affiliate tracking</label>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable affiliate tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add support for affiliate tracking</comment>
+                </field>
+                <field id="parameter" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Affiliate parameter</label>
+                    <comment>Parameter to look for in URL/request to map session to affilaiate. Ex.: /?aff=</comment>
+                    <depends>
+                    	<field id="ec/affiliate/enable">1</field>
+                    </depends>
+                </field>
+                <field id="dimension" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Affiliate custom dimension index</label>
+                    <comment>Custom dimension index (obtain from Google Analytics). Should be product-scoped dimension. Defaults to 20.</comment>
+                    <depends>
+                    	<field id="ec/affiliate/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="search" translate="label" type="hidden" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Internal Search tracking</label>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Internal Search tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Add support for internal search tracking. Searched queries will be correlated with other data such as impression, events and transactions.</comment>
+                </field>
+				<field id="dimension" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search dimension index</label>
+                    <comment>Custom dimension index (obtain from Google Analytics). Should be product-scoped dimension. Defaults to 18.</comment>
+                    <depends>
+                    	<field id="ec/search/enable">1</field>
+                    </depends>
+                </field>
+			</group>
+			<group id="cookie" translate="label" type="hidden" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Cookie Consent Directive / GDPR</label>
+				<field id="enable" translate="label" type="select" sortOrder="-1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Cookie Consent</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable EUROPA Cookie Consent Directive</comment>
+                </field>
+                <field id="mode" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consent mode</label>
+                    <source_model>Anowave\Ec\Model\System\Config\Source\Consent\Mode</source_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Select consent mode</comment>
+                </field>
+                <field id="mode_segment_checkall" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Check all by default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    	<field id="ec/cookie/mode">1</field>
+                    </depends>
+                    <comment>Display consent checkboxes as selected by default.</comment>
+                </field>
+                <field id="mode_segment_about" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>About segment mode</label>
+                    <frontend_model>Anowave\Ec\Block\Field\CookieSegmentAbout</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    	<field id="ec/cookie/mode">1</field>
+                    </depends>
+                </field>
+                <field id="about" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>About</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Cookie</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                </field>
+                <field id="content" translate="label" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Consent content</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                </field>
+                <field id="content_background_color" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background color</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Color</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Choose background color. Default: rgb(255,255,255) e.g. White</comment>
+                </field>
+                <field id="content_border_radius" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Border radius</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Set GDRP popup border radius in pixels. Default: 8</comment>
+                </field>
+                <field id="content_text_color" translate="label" type="textarea" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text color</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Color</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Choose text color. Default: rgb(0,0,0) e.g. Black</comment>
+                </field>
+                <field id="content_accept_color" translate="label" type="textarea" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Accept link color</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Color</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Choose accept link color. Default: rgb(0,0,0) e.g. Black</comment>
+                </field>
+                <field id="content_checkbox_color" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkbox color</label>
+                    <frontend_model>Anowave\Ec\Block\Field\Color</frontend_model>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Choose checkbox color. Default: rgb(0,0,0) e.g. Black</comment>
+                </field>
+                <field id="content_text_accept" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Confirm" link text</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies confirmation link text</comment>
+                </field>
+                <field id="content_text_accept_all" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Confirm all" link text</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies confirmation all link text</comment>
+                </field>
+                <field id="content_text_confirm" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Thank you" text</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies "thank you"  text</comment>
+                </field>
+                <field id="content_text_learn" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Learn more" link text</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies "Learn more" link text</comment>
+                </field>
+                <field id="content_link_learn" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Learn more" link URL</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies "Learn more" link URL address</comment>
+                </field>
+                <field id="content_text_decline" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Decline" link text</label>
+                    <depends>
+                    	<field id="ec/cookie/enable">1</field>
+                    </depends>
+                    <comment>Modifies "Decline" link text</comment>
+                </field>
+			</group>
+			<group id="dimensions" translate="label" type="hidden" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Custom Dimensions]]></label>
+				<field id="stock" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Stock dimension index</label>
+                    <comment>Set stock dimension index. Should match the index set in your Google Analytics profile. Type: product-scoped</comment>
+                </field>
+			</group>
+			<group id="performance" translate="label" type="hidden" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Performance API <sup>Beta</sup>]]></label>
+				<field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Performance API</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Performance API is an experimental feature that will send page performance metrics to Google Analytics. This can allow you to identify how your page performs by aggregating a collective performance data</comment>
+                </field>
+			</group>
+			<group id="beta" translate="label" type="hidden" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label><![CDATA[Beta <sup><img src=" data:image/gif;base64,R0lGODlhFAAHAIABAP8AAP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkI4QkRENzlDNTI1MTFFNzhFQjdBNkY3M0NDMzhGQTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkI4QkREN0FDNTI1MTFFNzhFQjdBNkY3M0NDMzhGQTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyQjhCREQ3N0M1MjUxMUU3OEVCN0E2RjczQ0MzOEZBMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyQjhCREQ3OEM1MjUxMUU3OEVCN0E2RjczQ0MzOEZBMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAAUAAcAAAIdhBGHuhoJn0SPmhpltqd27H2LBkYXRGkp1zmlVQAAOw==" /></sup>]]></label>
+				<field id="mode" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable beta mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enabling BETA mode will activate a few features that are still under testing and may or may not appear in future updates. These features will be prefixed "beta".</comment>
+                </field>
+			</group>
+            <group id="logs" translate="label" type="hidden" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Log(s)</label>
+				<attribute type="expanded">0</attribute>
+				<field id="enable" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Anowave\Ec\Block\Field\Log</frontend_model>
+					<comment>The event log reflects latest 10 events that have occured.</comment>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>

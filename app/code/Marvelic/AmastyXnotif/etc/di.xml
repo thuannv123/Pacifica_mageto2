@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <preference for="Amasty\Xnotif\Plugins\ConfigurableProduct\Block\Product\View\Type\Configurable" type="Marvelic\AmastyXnotif\Plugins\ConfigurableProduct\Block\Product\View\Type\Configurable"/>
+    <preference for="Amasty\Xnotif\Model\Notification\DefaultAlert\Service\CustomerService" type="Marvelic\AmastyXnotif\Model\Notification\DefaultAlert\Service\CustomerService"/>
+</config>

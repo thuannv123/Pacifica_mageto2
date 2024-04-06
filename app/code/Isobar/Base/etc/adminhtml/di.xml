@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Isobar Team
+ * @copyright Copyright (c) 2020 Isobar (https://www.isobar.com)
+ * @package Isobar_Base
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Backend\Block\Menu">
+        <plugin name="Isobar_Base:menu" type="Isobar\Base\Plugin\Backend\Block\Menu"/>
+    </type>
+
+    <type name="Magento\Backend\Model\Menu\Item">
+        <plugin name="Isobar_Base:correct-market-url" type="Isobar\Base\Plugin\Backend\Model\Menu\Item"/>
+    </type>
+
+    <type name="Magento\Backend\Model\Menu\Builder">
+        <plugin name="Isobar_Base::menu_builder" type="Isobar\Base\Plugin\Backend\Model\Menu\Builder"/>
+    </type>
+
+</config>

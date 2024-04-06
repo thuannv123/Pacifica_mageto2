@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Model\ProductRender\Image">
+        <plugin name="image_type_plugin" type="Marvelic\Catalog\Plugin\ProductRender\Image" sortOrder="100"/>
+    </type>
+
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\Listing\Collector\Image" type="Marvelic\Catalog\Ui\DataProvider\Product\Listing\Collector\Image" />
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductRenderCollectorInterface">
+        <arguments>
+            <argument name="productProviders" xsi:type="array">
+                <item name="color" xsi:type="object">\Marvelic\Catalog\Ui\DataProvider\Product\Listing\Collector\Color</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Marvelic\Catalog\Api\Data\ProductRenderColorInterface" type="Marvelic\Catalog\Model\ProductRenderColor" />
+
+</config>

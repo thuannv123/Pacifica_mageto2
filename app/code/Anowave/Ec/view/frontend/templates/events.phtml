@@ -1,0 +1,63 @@
+<script data-ommit="true">
+
+    document.addEventListener("DOMContentLoaded", () => 
+    {
+    	let bind = () => 
+    	{
+    		Object.entries(
+	    	{
+	    		addToCart: event => 
+	    		{
+	    			AEC.add(event.currentTarget, dataLayer);
+	    		},
+	    		removeFromCart:event => 
+	    		{
+	    			AEC.remove(event.currentTarget, dataLayer);
+	    		},
+	    		productClick:event => 
+	    		{
+	    			AEC.click(event.currentTarget, dataLayer);	
+	    		},
+	    		addToWishlist:event => 
+	    		{
+	    			AEC.wishlist(event.currentTarget, dataLayer);
+	    		},
+	    		addToCompare:event => 
+	    		{
+	    			AEC.compare(event.currentTarget, dataLayer);
+	    		},
+	    		addToCartSwatch:event => 
+	    		{
+	    			AEC.addSwatch(event.currentTarget, dataLayer);
+	    		}
+	        }).forEach(([event, callback]) => 
+	    	{
+	    	    [...document.querySelectorAll('[data-event]:not([data-bound])')].filter(element => { return element.dataset.event === event; }).forEach(element => 
+	        	{
+	            	element.addEventListener('click', callback);
+
+	            	element.dataset.bound = true;
+	        	});
+		  	});
+        };
+
+        bind();
+
+        if("PerformanceObserver" in window)
+        {
+        	const observer = new PerformanceObserver((items) => 
+        	{
+                items.getEntries().filter(({ initiatorType }) => initiatorType === "xmlhttprequest").forEach((entry) => 
+                {
+                    bind();
+                });
+      		});
+
+      		observer.observe(
+      		{
+          		entryTypes: ["resource"]
+      		});
+        }
+    });
+    
+</script>

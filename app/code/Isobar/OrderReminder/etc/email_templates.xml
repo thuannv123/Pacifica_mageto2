@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="isobar_order_reminder_general_pickup_template"
+              label="Isobar Order Reminder for notification customers"
+              file="isobar_order_reminder_customer_notification.html"
+              type="html"
+              module="Isobar_OrderReminder"
+              area="frontend"
+    />
+</config>

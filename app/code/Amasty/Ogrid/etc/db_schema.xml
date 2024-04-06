@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Extended Order Grid for Magento 2
+ */-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="amasty_ogrid_attribute" resource="default" engine="innodb" comment="Amasty Order Grid Attribute">
+    <column xsi:type="smallint" name="entity_id" padding="5" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="smallint" name="attribute_id" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Attribute Id"/>
+    <column xsi:type="varchar" name="attribute_code" nullable="true" length="255" comment="Attribute Code"/>
+    <column xsi:type="varchar" name="frontend_label" nullable="true" length="255" comment="Frontend Label"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="AMASTY_OGRID_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="amasty_ogrid_attribute" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="SET NULL"/>
+    <constraint xsi:type="unique" referenceId="AMASTY_OGRID_ATTRIBUTE_ATTRIBUTE_ID">
+      <column name="attribute_id"/>
+    </constraint>
+  </table>
+  <table name="amasty_ogrid_attribute_index" resource="default" engine="innodb" comment="Amasty Order Grid Attribute Index">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="int" name="order_item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Order Item Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="AMASTY_OGRID_ATTR_IDX_ORDER_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID" table="amasty_ogrid_attribute_index" column="order_item_id" referenceTable="sales_order_item" referenceColumn="item_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="AMASTY_OGRID_ATTRIBUTE_INDEX_ORDER_ITEM_ID">
+      <column name="order_item_id"/>
+    </constraint>
+  </table>
+</schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="track">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">track</item>
+                        <item name="label" xsi:type="string" translate="true">Send transaction to Google Analytics</item>
+                        <item name="url" xsi:type="url" path="track/analytics/track"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_columns">
+        <column name="ec_track" class="Anowave\Ec\Ui\Component\Listing\Column\Track">
+	        <argument name="data" xsi:type="array">
+	        	<item name="options" xsi:type="object">Anowave\Ec\Model\System\Config\Source\Track</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">UA/GA4</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument> 
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Anowave\Ec\Observer\Refund">
+		<plugin name="ec4" type="Anowave\Ec4\Plugin\Refund" sortOrder="1" />
+	</type>
+	<type name="Anowave\Ec\Block\Comment">
+		<plugin name="ec4" type="Anowave\Ec4\Plugin\Comment" sortOrder="1" />
+	</type>
+	<preference for="Anowave\Ec\Model\Api" type="Anowave\Ec4\Model\Api" />
+</config>

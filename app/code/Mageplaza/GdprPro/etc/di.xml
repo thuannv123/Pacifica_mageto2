@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Grid collection-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageplaza_gdpr_delete_account_log_listing_data_source" xsi:type="string">Mageplaza\GdprPro\Model\ResourceModel\DeleteAccountLogs\Grid\Collection</item>
+                <item name="mageplaza_gdpr_download_log_listing_data_source" xsi:type="string">Mageplaza\GdprPro\Model\ResourceModel\DownloadLogs\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Mageplaza\Gdpr\GraphQl\Model\Resolver\Configs\Get" type="Mageplaza\GdprPro\GraphQl\Model\Resolver\Configs\Get" />
+    <preference for="Mageplaza\GdprPro\Api\Data\Config\AnonymiseConfigInterface" type="Mageplaza\GdprPro\Model\Api\Data\Config\AnonymiseConfig"/>
+    <preference for="Mageplaza\GdprPro\Api\Data\Config\CookieRestrictionConfigInterface" type="Mageplaza\GdprPro\Model\Api\Data\Config\CookieRestrictionConfig"/>
+    <preference for="Mageplaza\GdprPro\Api\Data\Config\EmailConfigInterface" type="Mageplaza\GdprPro\Model\Api\Data\Config\EmailConfig"/>
+    <preference for="Mageplaza\GdprPro\Api\Data\Config\GeneralConfigInterface" type="Mageplaza\GdprPro\Model\Api\Data\Config\GeneralConfig"/>
+    <preference for="Mageplaza\GdprPro\Api\RequestsManagementInterface" type="Mageplaza\GdprPro\Model\Api\RequestsManagement"/>
+</config>

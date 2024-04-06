@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="ec" instance="Anowave\Ec\Observer\Success" />
+    </event>
+    <event name="multishipping_checkout_controller_success_action">
+        <observer name="ec" instance="Anowave\Ec\Observer\Success" />
+    </event>
+    <event name="controller_action_predispatch_contact_index_post">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Contact\Post" />
+    </event>
+    <event name="newsletter_subscriber_save_after">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Newsletter" />
+    </event>
+    <event name="customer_customer_authenticated">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Login" />
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_updatePost">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Cart\Update" />
+    </event>
+    <event name="controller_front_send_response_before">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Response\Before" />
+    </event>
+    <event name="customer_login">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Cookie\Login" />
+    </event>
+    <event name="customer_logout">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Cookie\Logout" />
+    </event>
+    <event name="cookie_destroy_private_data">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Cookie\Destroy" />
+    </event>
+    <event name="search_query_load_after">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Cookie\Search" />
+    </event>
+    <event name="ec_get_search_click_attributes">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Search\Attributes" />
+    </event>
+    <event name="ec_get_search_attributes">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Search\Attributes" />
+    </event>
+    <event name="customer_register_success">
+    	<observer name="ec" instance="Anowave\Ec\Observer\Customer\Register" />
+    </event>
+    <event name="ec_get_purchase_push_after">
+    	<observer name="facebook" instance="Anowave\Ec\Observer\Facebook\Purchase" />
+    </event>
+   	<event name="ec_get_detail_data_after">
+   		<observer name="facebook" instance="Anowave\Ec\Observer\Facebook\Detail" />
+   	</event>
+   	<event name="checkout_cart_add_product_complete">
+   		<observer name="facebook" instance="Anowave\Ec\Observer\Facebook\Add" />
+   	</event>
+   	<event name="ec_get_checkout">
+   		<observer name="facebook" instance="Anowave\Ec\Observer\Facebook\Checkout" />
+   	</event>
+</config>

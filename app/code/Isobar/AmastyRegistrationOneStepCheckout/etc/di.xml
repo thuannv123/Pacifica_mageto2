@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Isobar\AmastyRegistrationOneStepCheckout\Api\AccountManagementInterface"
+                type="Isobar\AmastyRegistrationOneStepCheckout\Model\AccountManagement"/>
+
+    <preference for="Isobar\AmastyRegistrationOneStepCheckout\Api\Data\CustomerRegisterInterface"
+                type="Isobar\AmastyRegistrationOneStepCheckout\Model\CustomerRegister"/>
+
+     <virtualType name="Isobar\AmastyRegistrationOneStepCheckout\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/mymodule.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Isobar\AmastyRegistrationOneStepCheckout\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">MyModule Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Isobar\AmastyRegistrationOneStepCheckout\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Isobar\AmastyRegistrationOneStepCheckout\Api\AccountManagementInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Isobar\AmastyRegistrationOneStepCheckout\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\CheckoutCore\Model\Sales\OrderCustomerExtractor">
+        <plugin name="add_additional_customer_register_fields"
+                type="Isobar\AmastyRegistrationOneStepCheckout\Plugin\CustomerExtractDataPlugin"/>
+    </type>
+</config>

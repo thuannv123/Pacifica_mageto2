@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="directory_district" resource="default">
+        <column xsi:type="int" name="district_id" padding="11" nullable="false" identity="true" unsigned="true" comment="District Id"/>
+        <column xsi:type="int" name="region_id" padding="10" nullable="false" unsigned="true" comment="Reference region_id in directory_country_region_name"/>
+        <column xsi:type="varchar" name="country_id" length="2" nullable="false" comment="Reference country_id in directory_country"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Name of District"/>
+        <column xsi:type="varchar" name="th_name" length="255" nullable="false" comment="Name of District in ThaiLand"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="district_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="DIRECTORY_DISTRICT_REGION_ID_DIRECTORY_COUNTRY_REGION_REGION_ID" table="directory_district" column="region_id"
+                    referenceTable="directory_country_region_name" referenceColumn="region_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="DIRECTORY_DISTRICT_COUNTRY_ID_DIRECTORY_COUNTRY_COUNTRY_ID" table="directory_district"  column="country_id"
+                    referenceTable="directory_country" referenceColumn="country_id" onDelete="CASCADE"/>
+    </table>
+    <table name="directory_subdistrict" resource="default">
+        <column xsi:type="int" name="subdistrict_id" padding="11" nullable="false" identity="true" unsigned="true" comment="Sub District Id"/>
+        <column xsi:type="int" name="district_id" padding="11" nullable="false" unsigned="true" comment="Reference district_id in directory_district"/>
+        <column xsi:type="varchar" name="zipcode" length="10" nullable="false" comment="Zip code"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Name of SubDistrict"/>
+        <column xsi:type="varchar" name="th_name" length="255" nullable="false" comment="Name of SubDistrict in ThaiLand"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subdistrict_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="DIRECTORY_SUB_DISTRICT_ID" table="directory_subdistrict" column="district_id"
+                    referenceTable="directory_district" referenceColumn="district_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="quote_address" resource="default">
+        <column xsi:type="varchar" name="subdistrict" length="255" nullable="true" comment="SubDistrict in ThaiLand"/>
+    </table>
+    <table name="sales_order_address" resource="default">
+        <column xsi:type="varchar" name="subdistrict" length="255" nullable="true" comment="SubDistrict in ThaiLand"/>
+    </table>
+</schema>

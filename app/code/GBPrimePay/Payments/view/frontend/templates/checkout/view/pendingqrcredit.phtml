@@ -1,0 +1,112 @@
+<?php
+/**
+ * GBPrimePay_Payments extension
+ * @package GBPrimePay_Payments
+ * @copyright Copyright (c) 2020 GBPrimePay Payments (https://gbprimepay.com/)
+ */
+// @codingStandardsIgnoreFile
+/** @var \GBPrimePay\Payments\Block\Checkout\View\PendingQrcredit $block */
+$configData = $block->getConfigData();
+$isEnableSave = $configData->getIsSave();
+$cards = $block->getDataCard();
+$customerId = $block->customerSession->getCustomerId() ? '1' : '0';
+$baseUrl = $block->getBaseUrl();
+$assignQrcredit = $block->getUrl("gbprimepay/checkout/eventsassignqrcredit");
+$responseQrcredit = $block->getUrl("gbprimepay/checkout/responseqrcredit");
+$transaction = $block->getTransactionQrcredit();
+$transaction_id = $block->getTransactionID();
+$transaction_key = $block->getTransactionKEY();
+$_transactionId = $this->getRequest()->getParam('key');
+$_orderId = $this->getRequest()->getParam('id');
+$_form_key = $transaction['key_id_qrcredit'];
+$returnUrlQrcredit = $configData->getresponseUrl('response_qrcredit').'form_key/'.$_form_key;
+
+$returnUrlQrcredit = $configData->getresponseUrl('response_qrcredit');
+$img_checked = $configData->getImageURLs('checked');
+$img_logopay = $configData->getImageURLs('logopay');
+
+if($transaction['order_complete_qrcredit'] != 0){
+    echo $block->getFormKey();
+    echo '<div class="qrcredit_display" id="gbprimepay-qrcredit-payment-successful" style="display:block;">';
+    echo '<center><br><br>';
+    echo '<img src="' . $img_checked . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+    echo '<h3>';
+    echo __('GBPrimePay QR Visa Successful!');
+    echo '</h3>';
+    echo '<img src="' . $img_logopay . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+    echo '<br><br><br>';
+    echo __('Pay with QR Visa has been received and &quot;Order is Now Complete&quot;.');
+    echo '<br><br><br>';
+    echo __('Redirecting...');
+    echo '<br><br><br><br><br><br>';
+    echo '</center>';
+    echo '</div>';
+?>
+<script>
+require([
+    'jquery',
+    'prototype',
+    'domReady!'
+], function ($, domReady) {
+    'use strict';
+    setInterval(function(){get_return_url($);},10000);
+});
+function get_return_url($){
+window.location.href = '<?php echo $returnUrlQrcredit; ?>';
+}
+</script>
+<?php
+}else{
+    echo '<div class="qrcredit_display" id="gbprimepay-qrcredit-waiting-payment" style="display:block;">';
+    echo '<center>';
+    echo '<img src="' . $transaction['order_generate_qrcredit'] . '"  style="padding:0px 0px 0px 0px;width:100%;max-width:300px;"/>';
+    echo '<br><br>';
+    echo '</center>';
+    echo '</div>';
+?>
+<script>
+require([
+    'jquery',
+    'prototype',
+    'domReady!'
+], function ($, domReady) {
+    'use strict';
+    get_ajax_transaction($);
+    setInterval(function(){get_ajax_transaction($);},7000);
+});
+function get_ajax_transaction($){
+var urlresponseQrcredit = '<?php echo $responseQrcredit; ?>';
+var idQrcredit = '<?php echo $_orderId; ?>';
+var keyQrcredit = '<?php echo $_transactionId; ?>';
+$.ajax({
+    type: 'POST',
+    url: urlresponseQrcredit,
+    dataType: "json",
+    cache: false,
+    data: {
+        id: idQrcredit,
+        key: keyQrcredit
+    },
+    success: function (response) {
+        if (response.success) {
+            if(response.gbp_reference_no && response.gbp_reference_no * 1){
+                    var $orderFormkey = $("input[name='form_key']").val();  
+                    window.location.replace(window.location.pathname + '/form_key/' + $orderFormkey);
+                    window.console.log(response.gbp_reference_no);
+            }
+        }
+    }
+});
+}
+</script>
+<?php
+}
+?>
+<script type="text/javascript">
+require([
+ 'Magento_Customer/js/customer-data'
+ ], function (customerData) {
+ var sections = ['customer', 'cart'];
+customerData.reload(sections, true);
+ });
+</script>

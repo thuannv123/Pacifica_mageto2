@@ -1,0 +1,34 @@
+<?php
+/** @var $block \Aheadworks\Popup\Block\Adminhtml\Popup\Edit */
+?>
+<?= /* @noEscape */ $block->getFormInitScripts() ?>
+<?php if ($block->getButtonsHtml('header')): ?>
+    <div class="page-form-actions" <?= /* @noEscape */ $block->getUiId('content-header') ?>>
+        <?= /* @noEscape */ $block->getButtonsHtml('header') ?>
+    </div>
+<?php endif; ?>
+<?php if ($block->getButtonsHtml('toolbar')): ?>
+    <div class="page-main-actions">
+        <div class="page-actions">
+            <div class="page-actions-buttons">
+                <?= /* @noEscape */ $block->getButtonsHtml('toolbar') ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?= $block->getFormHtml() ?>
+<?php if ($block->hasFooterButtons()): ?>
+    <div class="content-footer">
+        <p class="form-buttons"><?= /* @noEscape */ $block->getButtonsHtml('footer') ?></p>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "awPopupEditForm": {"validationUrl": "<?= $block->escapeJs($block->getValidationUrl()) ?>"}
+        }
+    }
+</script>
+
+<?= /* @noEscape */ $block->getFormScripts() ?>

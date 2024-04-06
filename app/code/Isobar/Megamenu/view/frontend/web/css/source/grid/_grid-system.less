@@ -1,0 +1,302 @@
+//
+//  Grid System
+//  _____________________________________________
+
+.make-flex() {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex(@grow-shrink-basis) {
+    -ms-flex: @grow-shrink-basis;
+    -webkit-flex: @grow-shrink-basis;
+    flex: @grow-shrink-basis;
+}
+
+.flex-direction(@direction) {
+    -webkit-flex-direction: @direction;
+    -ms-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
+.flex-wrap(@wrap) {
+    -webkit-flex-wrap: @wrap;
+    -ms-flex-wrap: @wrap;
+    flex-wrap: @wrap;
+}
+
+.flex-grow(@grow) {
+    -webkit-flex-grow: @grow;
+    -ms-flex-positive: @grow;
+    flex-grow: @grow;
+}
+
+.flex-basis(@basis) {
+    -webkit-flex-basis: @basis;
+    -ms-flex-preferred-size: @basis;
+    flex-basis: @basis;
+    max-width: @basis;
+}
+
+.justify-content(@align) {
+    -webkit-justify-content: @align;
+    & when (@align = flex-start) {
+        -ms-flex-pack: start;
+    }
+
+    & when (@align = flex-end) {
+        -ms-flex-pack: end;
+    }
+
+    & when (@align = space-around) {
+        -ms-flex-pack: distribute;
+    }
+
+    & when (@align = space-between) {
+        -ms-flex-pack: justify;
+    }
+
+    & when not(@align = flex-start)
+      and not(@align = flex-end)
+      and not(@align = space-around)
+      and not(@align = space-between){
+        -ms-flex-pack: @align;
+    }
+    justify-content: @align;
+}
+
+.align-content(@align) {
+    -webkit-align-content: @align;
+    & when (@align = flex-start) {
+        -ms-flex-pack: start;
+    }
+
+    & when (@align = flex-end) {
+        -ms-flex-pack: end;
+    }
+
+    & when (@align = space-around) {
+        -ms-flex-pack: distribute;
+    }
+
+    & when (@align = space-between) {
+        -ms-flex-pack: justify;
+    }
+
+    & when (@align = center) {
+        -ms-flex-pack: center;
+    }
+
+    & when (@align = stretch) {
+        -ms-flex-pack: stretch;
+    }
+
+    & when not(@align = flex-start)
+      and not(@align = flex-end)
+      and not(@align = space-around)
+      and not(@align = space-between)
+      and not(@align = center)
+      and not(@align = stretch) {
+        -ms-flex-pack: @align;
+    }
+    align-content: @align;
+}
+
+.align-items(@valign) {
+    -webkit-align-items: @valign;
+    & when (@valign = flex-start) {
+        -ms-flex-align: start;
+    }
+
+    & when (@valign = flex-end) {
+        -ms-flex-align: end;
+    }
+
+    & when not(@valign = flex-start)
+      and not(@valign = flex-end) {
+        -ms-flex-align: @valign;
+    }
+    align-items: @valign;
+}
+
+.align-self(@valign) {
+    -webkit-align-self: @valign;
+    & when (@valign = flex-start) {
+        -ms-flex-item-align: start;
+    }
+
+    & when (@valign = flex-end) {
+        -ms-flex-item-align: end;
+    }
+
+    & when not(@valign = flex-start)
+      and not(@valign = flex-end) {
+        -ms-flex-item-align: @valign;
+    }
+    align-self: @valign;
+}
+
+.order(@order) {
+    -webkit-order: @order;
+    -ms-flex-order: @order;
+    order: @order
+}
+
+.make-container(@gutter: 30px) {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+}
+
+.make-row(@gutter: 30px) {
+    margin-left: ceil((@gutter / -2));
+    margin-right: floor((@gutter / -2));
+}
+
+.make-col(@gutter: 30px) {
+    padding-left: ceil((@gutter / 2));
+    padding-right: floor((@gutter / 2));
+}
+
+.make-grid(@resolution, @count: 12) {
+     > .ol-@{resolution}-preffix-0 {
+        margin-left: 0%;
+    }
+
+     .for(@i: 1) when (@i <= @count) {
+
+        > .col-@{resolution}-@{i} {
+            .flex-basis(percentage(@i / @count));
+        }
+
+        > .col-@{resolution}-preffix-@{i} {
+            margin-left: percentage(@i / @count);
+
+        }
+        .for((@i + 1));
+    }
+    .for();
+}
+
+.make-fallback(@resolution, @count: 12) {
+    .for-xs(@i: 1) when (@i <= @count) {
+        .col-xs-@{i} {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: percentage(@i / @count);
+        }
+        .for-xs((@i + 1));
+    }
+    .for-xs();
+
+    .for-sm(@i: 1) when (@i <= @count) {
+        .col-sm-@{i} {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: percentage(@i / @count);
+        }
+        .for-sm((@i + 1));
+    }
+    .for-sm();
+
+    .for-md(@i: 1) when (@i <= @count) {
+        .col-md-@{i} {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: percentage(@i / @count);
+        }
+        .for-md((@i + 1));
+    }
+    .for-md();
+
+    .for-lg(@i: 1) when (@i <= @count) {
+        .col-lg-@{i} {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: percentage(@i / @count);
+        }
+        .for-lg((@i + 1));
+    }
+    .for-lg();
+
+    [class*="col-xs-preffix-"],
+    [class*="col-sm-preffix-"],
+    [class*="col-md-preffix-"],
+    [class*="col-lg-preffix-"] {
+        margin-left: auto;
+    }
+}
+
+.make-grid-system(@resolution) {
+    .row-@{resolution}-center {
+        .justify-content(center);
+    }
+
+    .row-@{resolution}-left {
+        .justify-content(flex-start);
+    }
+
+    .row-@{resolution}-right {
+        .justify-content(flex-end);
+    }
+
+    .row-@{resolution}-justify {
+        .justify-content(space-between);
+    }
+
+    .row-@{resolution}-around {
+        .justify-content(space-around);
+    }
+
+    .row-@{resolution}-top {
+        .align-items(flex-start);
+    }
+
+    .row-@{resolution} {
+        .flex-direction(row);
+    }
+
+    .row-@{resolution}-reverse {
+        .flex-direction(row-reverse);
+    }
+
+    .row-@{resolution}-middle {
+        .align-items(center);
+    }
+
+    .row-@{resolution}-bottom {
+        .align-items(flex-end);
+    }
+
+    .col-@{resolution}-top {
+        .align-self(flex-start);
+    }
+
+    .col-@{resolution}-middle {
+        .align-self(center);
+    }
+
+    .col-@{resolution}-bottom {
+        .align-self(flex-end);
+    }
+
+    .row  {
+            .make-grid(@resolution, @column-count);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

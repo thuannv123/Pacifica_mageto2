@@ -1,0 +1,35 @@
+<div class="swatch-opt" data-role="swatch-options" data-bind="if: isAllowed($row())">
+    <div class="swatch-attribute color" data-attribute-code="color" data-attribute-id="93">
+        <div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox"
+            aria-labelledby="option-label-color-93" class="swatch-attribute-options clearfix">
+            <!-- ko foreach: { data: getOptionColor($row()), as: 'option' } -->
+            <div class="swatch-option color" aria-checked="false" aria-describedby="option-label-color-93" data-bind="attr: {
+                    'data-option-label': option.label,
+                    'data-option-id': option.id,
+                    'data-option-tooltip-value': option.tooltipValue,
+                    'data-option-productId': option.productId,
+                    'data-option-tooltip-thumb': option.thumb && option.thumb !== 'empty',
+                    'data-option-type': option.type,
+                    'aria-label': option.label,
+                    'index': option.index
+                },
+                style: {
+                    'background': option.type === 2 ? 'url(' + option.tooltipValue + ') no-repeat center' : option.tooltipValue + ' no-repeat center',
+                    'background-size': option.type === 2 ? 'cover' : '',
+                    'object-fit': option.type === 2 ? 'cover' : '',
+                    'display': option.index >= option.limit ? 'none' : ''
+                },
+                click: function () { $parent.onClick(option); $parent.getProductUrl(option); },
+                css: {
+                    'selected': $parent.selectedOption() && $parent.selectedOption().id === option.id && $parent.selectedOption().productId === option.productId
+                }" role="option" data-thumb-width="110" data-thumb-height="90">
+            </div>
+            <!-- /ko -->
+            <!-- ko if: getOptionColor($row()).length > getOptionLimit($row()) -->
+            <a href="#" class="swatch-more" data-bind="click: function () { swatchMore($row()); }">
+                <span data-bind="text: '+' + (getOptionColor($row()).length - getOptionLimit($row()))"></span>
+            </a>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

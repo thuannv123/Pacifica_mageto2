@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="ec_get_add_wishlist_attributes">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Wishlist\Attributes" />
+    </event>
+    <event name="ec_get_add_compare_attributes">
+        <observer name="ec4" instance="Anowave\Ec4\Observer\Compare\Attributes" />
+    </event>
+    <event name="ec_get_detail_data_after">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Product\Detail" />
+    </event>
+    <event name="ec_get_add_attributes">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Cart\Attributes" />
+    </event>
+    <event name="ec_get_add_list_attributes">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Cart\ListAttributes" />
+    </event>
+    <event name="ec_get_checkout">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Checkout" />
+    </event>
+    <event name="ec_get_checkout_products">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Checkout\Products" />
+    </event>
+    <event name="ec_order_products_get_after">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Purchase\Products" />
+    </event>
+    <event name="ec_get_click_attributes">
+    	<observer name="ec4" instance="Anowave\Ec4\Observer\Click\Attributes" />
+    </event>
+</config>

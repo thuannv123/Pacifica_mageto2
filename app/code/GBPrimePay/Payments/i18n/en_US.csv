@@ -1,0 +1,65 @@
+"Payment Method","Payment Method", module, GBPrimePay_Payments
+"My billing and shipping address are the same","My billing and shipping address are the same", module, GBPrimePay_Payments
+"GBPgetUseothercard","Use other card...", module, GBPrimePay_Payments
+"GBPinstallment_js_payments","THB/Month", module, GBPrimePay_Payments
+"GBPinstallment_js_total","Total Amount", module, GBPrimePay_Payments
+"Issuers Bank","Issuers Bank", module, GBPrimePay_Payments
+"Terms","Terms", module, GBPrimePay_Payments
+"GBPlabel_card_issuer_bank","Card issuer bank..", module, GBPrimePay_Payments
+"GBPlabel_term","The number of monthly installments..", module, GBPrimePay_Payments
+"GBPlabel_months","months", module, GBPrimePay_Payments
+"GBPlabel_issuer_kasikorn","Kasikornbank Public Company Limited.", module, GBPrimePay_Payments
+"GBPlabel_issuer_krungthai","Krung Thai Bank Public Company Limited.", module, GBPrimePay_Payments
+"GBPlabel_issuer_thanachart","TMBThanachart Bank Public Company Limited.", module, GBPrimePay_Payments
+"GBPlabel_issuer_ayudhya","Bank of Ayudhya Public Company Limited.", module, GBPrimePay_Payments
+"GBPlabel_issuer_firstchoice","Krungsri First Choice.", module, GBPrimePay_Payments
+"GBPlabel_issuer_scb","Siam Commercial Bank Public Company Limited.", module, GBPrimePay_Payments
+"Payment Information","Payment Information", module, GBPrimePay_Payments
+"Credit Card Number","Credit/Debit Card Number", module, GBPrimePay_Payments
+"GBPCredit Card Number","Card Number", module, GBPrimePay_Payments
+"Expiration Date","Expiration Date", module, GBPrimePay_Payments
+"Month","Month", module, GBPrimePay_Payments
+"Year","Year", module, GBPrimePay_Payments
+"Card Verification Number","CVV", module, GBPrimePay_Payments
+"Save for next time ?","Save for next time ?", module, GBPrimePay_Payments
+"Place Order","Place Order", module, GBPrimePay_Payments
+"Continue to Payment","Continue to Payment", module, GBPrimePay_Payments
+"Pay with Credit Card","Pay with Credit Card", module, GBPrimePay_Payments
+"Pay with Credit Card Installment","Pay with Credit Card Installment", module, GBPrimePay_Payments
+"Pay with QR Code","Pay with QR Code", module, GBPrimePay_Payments
+"Pay with QR Visa","Pay with QR Visa", module, GBPrimePay_Payments
+"Pay with QR Wechat","Pay with QR Wechat", module, GBPrimePay_Payments
+"Pay with Bill Payment","Pay with Bill Payment", module, GBPrimePay_Payments
+"GBPgetTitleDirect","Pay with Credit/Debit Card", module, GBPrimePay_Payments
+"GBPgetTitleInstallment","Pay with Credit Card Installment", module, GBPrimePay_Payments
+"GBPgetTitleQrcode","Pay with QR Code", module, GBPrimePay_Payments
+"GBPgetTitleQrcredit","Pay with QR Visa", module, GBPrimePay_Payments
+"GBPgetTitleQrwechat","Pay with QR Wechat", module, GBPrimePay_Payments
+"GBPgetTitleBarcode","Pay with Bill Payment", module, GBPrimePay_Payments
+"GBPgetInstructionDirect","Credit Card", module, GBPrimePay_Payments
+"GBPgetInstructionInstallment","Credit Card Installment", module, GBPrimePay_Payments
+"GBPgetInstructionQrcode","QR Code", module, GBPrimePay_Payments
+"GBPgetInstructionQrcredit","QR Visa", module, GBPrimePay_Payments
+"GBPgetInstructionQrwechat","QR Wechat", module, GBPrimePay_Payments
+"GBPgetInstructionBarcode","Bill Payment", module, GBPrimePay_Payments
+"Redirecting...","Redirecting...", module, GBPrimePay_Payments
+"GBTXTPaymentsFailedtryagain","GBPrimePay Payments Failed!. Please try again.", module, GBPrimePay_Payments
+"GBTXTCreditCardSuccessful","GBPrimePay Credit Card Successful!", module, GBPrimePay_Payments
+"GBTXTCreditCardSuccessfulDetail","Pay with Credit Card has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBTXTCreditCardFailed","GBPrimePay Credit Card Failed!", module, GBPrimePay_Payments
+"GBTXTCreditCardFailedDetail","Pay with Credit Card has been failure and <span style=""color: #ff5501;"">&quot;Order is Canceled&quot;</span>.", module, GBPrimePay_Payments
+"GBPrimePay Credit Card Installment Successful!","GBPrimePay Credit Card Installment Successful!", module, GBPrimePay_Payments
+"Pay with Credit Card Installment has been received and &quot;Order is Now Complete&quot;.","Pay with Credit Card Installment has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBPrimePay Credit Card Installment Failed!","GBPrimePay Credit Card Installment Failed!", module, GBPrimePay_Payments
+"Pay with Credit Card Installment has been failure and <span style=""color: #ff5501;"">&quot;Order is Canceled&quot;</span>.","Pay with Credit Card Installment has been failure and <span style=""color: #ff5501;"">&quot;Order is Canceled&quot;</span>.", module, GBPrimePay_Payments
+"GBPrimePay QR Code Successful!","GBPrimePay QR Code Successful!", module, GBPrimePay_Payments
+"Pay with QR Code has been received and &quot;Order is Now Complete&quot;.","Pay with QR Code has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBPrimePay QR Visa Successful!","GBPrimePay QR Visa Successful!", module, GBPrimePay_Payments
+"Pay with QR Visa has been received and &quot;Order is Now Complete&quot;.","Pay with QR Visa has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBPrimePay QR Wechat Successful!","GBPrimePay QR Wechat Successful!", module, GBPrimePay_Payments
+"Pay with QR Wechat has been received and &quot;Order is Now Complete&quot;.","Pay with QR Wechat has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBPrimePay Bill Payment Successful!","GBPrimePay Bill Payment Successful!", module, GBPrimePay_Payments
+"Pay with Bill Payment has been received and &quot;Order is Now Complete&quot;.","Pay with Bill Payment has been received and &quot;Order is Now Complete&quot;.", module, GBPrimePay_Payments
+"GBPgetDesQrcode","Pay via Mobile Banking with QR Code from GB Pay Comfortable and secure with PCI DSS 3.2.1 security compliant", module, GBPrimePay_Payments
+"Name On Card","Name On Card",module, GBPrimePay_Payments
+"GBPayment Method","Payment Method",module, GBPrimePay_Payments

@@ -1,0 +1,97 @@
+<script data-ommit="true">
+
+	if (typeof dataLayer !== "undefined")
+	{
+		<?php
+		/**
+		 * Apply private data
+		 */
+		?>
+		
+		AEC.Request.get(AEC.url('datalayer/index/events'), {}, response => 
+		{
+			Object.entries(response.events).forEach(([key, event]) => 
+			{
+				dataLayer.push(event);
+			});
+		});
+
+		<?php
+		/**
+		 * Facebook events
+		 */
+		?>
+		
+		AEC.EventDispatcher.on('ec.facebook.loaded', () => 
+		{
+			<?php foreach ($block->getHelper()->getFacebookEvents() as $event => $parameters):?>
+
+    			fbq('track', <?php echo json_encode($event) ?>, <?php echo $parameters ?>, { eventID: AEC.UUID.generate( { event: <?php echo json_encode($event) ?> }) });
+    
+    		<?php endforeach ?>
+		});
+
+		<?php
+	    /**
+	     * AdWords Dynamic Remarketing
+	     */
+		?>
+		
+		if (window.google_tag_params)
+		{
+			(function(callback)
+			{
+				if (AEC.Const.COOKIE_DIRECTIVE)
+				{
+					if (!AEC.Const.COOKIE_DIRECTIVE_CONSENT_GRANTED)
+					{
+						AEC.CookieConsent.queue(callback);
+					}
+					else
+					{
+						callback.apply(window,[]);
+					}
+				}
+				else 
+				{
+					callback.apply(window,[]);
+				}
+			})
+			(
+				(function(dataLayer)
+				{
+					return () => 
+					{
+						AEC.Cookie.remarketing({ event:'fireRemarketingTag', google_tag_params: window.google_tag_params }).push(dataLayer);
+					}
+				})(dataLayer)
+			);
+		}
+
+		<?php
+		/**
+		 * Ad-Blocker fallback
+		 */
+		?>
+
+		<?php if ($block->getHelper()->usePrivateFallback()): ?>
+		
+    		window.addEventListener('load', (event) => 
+    		{
+    			if (!AEC.gtm())
+				{
+					AEC.Request.post(AEC.url('datalayer/index/datalayer'), { data: dataLayerTransport.serialize() }, response => 
+					{
+						console.log('Google Tag Manager may be blocked by Ad-Blocker or not included in page');
+					});
+				}
+    		});
+    		
+		<?php endif ?>
+	}
+	else
+	{
+		console.log('dataLayer[] is not intialized. Check if GTM is installed properly');
+	}
+	
+</script>

@@ -1,0 +1,49 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<!--@subject {{trans "Your %store_name account has been deleted due to inactivity" store_name=$store.getFrontendName()}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">Dear <strong>{{trans "%name" name=$customer_firstname}}</strong>,</p>
+<p>{{trans "Thank you for your activities on our store"}}</p>
+<p>{{trans "We've noticed you haven't used your account for a long time"}}</p>
+<p>{{trans "The account under %email will be automatically removed" email=$email}}</p>
+<p><b>{{trans "What’s going to happen to your account?"}}</b></p>
+<p>{{trans "Data related to your account will be deleted. This includes all embedded or shared images"}}</p>
+<p><b>{{trans "Why are we doing this?"}}</b></p>
+<p>{{trans "In compliance with the EU General Data Protection Regulation (GDPR), we will be removing user data for accounts that are no longer active."}}</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table width="100%" class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr width="100%">
+                    <td align="center" style="background:#EAEAEA; text-align:center;">
+                        <p>{{trans "Thank you, %store_name!" store_name=$store.getFrontendName()}}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+

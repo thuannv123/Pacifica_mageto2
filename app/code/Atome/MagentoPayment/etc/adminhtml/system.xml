@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="atome_payment_gateway" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label><![CDATA[<img class="atome-logo" src="https://gateway.apaylater.com/plugins/common/assets/svg/logo-pd.svg" style="height: 1.5em;" />]]></label>
+                <field id="version" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Version</label>
+                    <frontend_model>Atome\MagentoPayment\Block\Adminhtml\System\Config\Form\Field\ModuleVersion</frontend_model>
+                </field>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/atome_payment_gateway/active</config_path>
+                </field>
+
+                <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                <field id="country" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Country/Region</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\Country</source_model>
+                    <config_path>payment/atome_payment_gateway/country</config_path>
+                </field>
+
+                <field id="api_env" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Environment</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\ApiEnv</source_model>
+                    <config_path>payment/atome_payment_gateway/api_env</config_path>
+                    <comment>The test environment is on for testing purposes. Please enable the production to process real transactions.</comment>
+                </field>
+
+                <field id="merchant_api_key" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>API Key</label>
+                    <config_path>payment/atome_payment_gateway/merchant_api_key</config_path>
+                    <validate>required-entry no-whitespace</validate>
+                </field>
+
+                <field id="merchant_api_secret" translate="label" type="text" sortOrder="13" showInDefault="50" showInWebsite="1" showInStore="0">
+                    <label>API Password</label>
+                    <config_path>payment/atome_payment_gateway/merchant_api_secret</config_path>
+                    <validate>required-entry no-whitespace</validate>
+                </field>
+
+                <field id="min_spend" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Minimum Amount</label>
+                    <config_path>payment/atome_payment_gateway/min_spend</config_path>
+                    <backend_model>\Atome\MagentoPayment\Services\View\Model\MinimumAmount</backend_model>
+                    <validate>positive-number no-whitespace</validate>
+                    <tooltip><![CDATA[Order will not be placed when order total is less than minimum amount. Price divider will not be shown when product price is less than minimum amount.]]></tooltip>
+                </field>
+
+                <field id="max_spend" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Amount</label>
+                    <config_path>payment/atome_payment_gateway/max_spend</config_path>
+                    <can_be_empty>1</can_be_empty>
+                    <validate>positive-number integer no-whitespace</validate>
+                    <tooltip><![CDATA[Order will not be placed when order total is over than maximum amount. Price divider will not be shown when product price is over than maximum amount.]]></tooltip>
+                </field>
+
+                <field id="cancel_timeout" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cancel Timeout (minutes)</label>
+                    <config_path>payment/atome_payment_gateway/cancel_timeout</config_path>
+                    <validate>integer no-whitespace between-10-720</validate>
+                    <backend_model>\Atome\MagentoPayment\Services\View\Model\CancelTimeout</backend_model>
+                    <comment><![CDATA[Support flexible setting between 10 min to 720 min. By default, the order will be canceled in 12 hours if without payment.]]></comment>
+                </field>
+
+                <field id="debug" translate="label" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/atome_payment_gateway/debug_mode</config_path>
+                    <tooltip><![CDATA[More detailed logs will be recorded when checked]]></tooltip>
+                </field>
+
+                <field id="price_divider_product_list" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Price Divider (Product List)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/atome_payment_gateway/price_divider_product_list</config_path>
+
+                </field>
+                <field id="price_divider_product_detail" translate="label" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Price Divider (Product Detail)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/atome_payment_gateway/price_divider_product_detail</config_path>
+                </field>
+
+                <field id="new_order_status" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>New Order Status</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\NewOrderStatus</source_model>
+                    <config_path>payment/atome_payment_gateway/new_order_status</config_path>
+                    <tooltip>Status of the order before payment</tooltip>
+                </field>
+
+                <field id="order_status" translate="label" type="select" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order Status</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\OrderStatus</source_model>
+                    <config_path>payment/atome_payment_gateway/order_status</config_path>
+                    <tooltip>Status of the order after payment</tooltip>
+                </field>
+
+
+                <field id="order_email_send_by" translate="label" type="select" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order Email Send By</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\OrderEmailSendBy</source_model>
+                    <config_path>payment/atome_payment_gateway/order_email_send_by</config_path>
+                </field>
+
+                <field id="clear_cart_without_paying" translate="label" type="select" sortOrder="43" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Clear Cart Without Paying</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/atome_payment_gateway/clear_cart_without_paying</config_path>
+                </field>
+
+                <!--The order of payment methods, the smaller the number, the more forward-->
+                <field id="sort_order" translate="label" type="select" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\SortOrder</source_model>
+                    <config_path>payment/atome_payment_gateway/sort_order</config_path>
+                    <tooltip>Will determine the order of the payment method on the checkout page</tooltip>
+                </field>
+
+                <field id="exclude_category" translate="label" type="multiselect" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Exclude Category</label>
+                    <source_model>\Atome\MagentoPayment\Services\View\Source\CategoryList</source_model>
+                    <config_path>payment/atome_payment_gateway/exclude_category</config_path>
+                    <can_be_empty>1</can_be_empty>
+                    <comment><![CDATA[Please select the "direct category" of the product instead of the parent category.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

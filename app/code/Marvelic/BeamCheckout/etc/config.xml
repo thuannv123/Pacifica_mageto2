@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <payment>
+            <beamcheckout>
+                <account_setting>
+                    <merchantId></merchantId>
+                    <apiKey></apiKey>
+                    <secretKey></secretKey>
+                    <beamcheckout_cron_setting>
+                        <cron_setting>0 */1 * * *</cron_setting>
+                    </beamcheckout_cron_setting>
+                    <expiry_setting>
+                        <paymentExpiry>00,30,00</paymentExpiry>
+                    </expiry_setting>
+                </account_setting>
+            </beamcheckout>
+            <beamcheckout_creditcard>
+                <payment_action>capture</payment_action>
+                <model>Marvelic\BeamCheckout\Model\BeamCheckoutCreditCard</model>
+                <active>0</active>
+                <title>Beam Checkout / Payment (CreditCard)</title>
+                <sort_order></sort_order>
+                <visible_on_front>0</visible_on_front>
+                <allowspecific>0</allowspecific>
+            </beamcheckout_creditcard>
+            <beamcheckout_ewallet>
+                <payment_action>capture</payment_action>
+                <model>Marvelic\BeamCheckout\Model\BeamCheckoutEwallet</model>
+                <active>0</active>
+                <title>Beam Checkout / Payment (eWallet)</title>
+                <sort_order></sort_order>
+                <visible_on_front>0</visible_on_front>
+                <allowspecific>0</allowspecific>
+            </beamcheckout_ewallet>
+            <beamcheckout_qrcode>
+                <payment_action>capture</payment_action>
+                <model>Marvelic\BeamCheckout\Model\BeamCheckoutQrcode</model>
+                <active>0</active>
+                <title>Beam Checkout / Payment (QR Code)</title>
+                <sort_order></sort_order>
+                <visible_on_front>0</visible_on_front>
+                <allowspecific>0</allowspecific>
+            </beamcheckout_qrcode>
+        </payment>
+    </default>
+</config>

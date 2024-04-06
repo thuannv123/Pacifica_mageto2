@@ -1,0 +1,62 @@
+<?php /** @var $block Isobar\SocialLogin\Block\Account\Edit */ ?>
+<form class="form"
+      action="<?= /* @noEscape */ $block->escapeUrl($block->getUrl('social/account/save')) ?>"
+      method="post"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset" data-hasrequired="<?= /* @noEscape */ __('* Required Fields') ?>">
+        <div class="field note">
+            <?= /* @noEscape */ __('Provide missing information to complete customer registration'); ?>
+        </div>
+
+        <div class="field field-name-firstname required">
+            <label class="label" for="firstname">
+                <span><?= /* @noEscape */ __('First Name') ?></span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="firstname"
+                       name="firstname"
+                       value="<?= $block->escapeHtml($block->getFirstnameValue()); ?>"
+                       title="<?= /* @noEscape */ __('First Name') ?>"
+                       class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <div class="field field-name-lastname required">
+            <label class="label" for="lastname">
+                <span><?= /* @noEscape */ __('Last Name') ?></span>
+            </label>
+
+            <div class="control">
+                <input type="text" id="lastname"
+                       name="lastname"
+                       value="<?= $block->escapeHtml($block->getLastnameValue()); ?>"
+                       title="<?= /* @noEscape */ __('Last Name') ?>"
+                       class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <div class="field email required">
+            <label for="email_address" class="label">
+                <span><?= /* @noEscape */ __('Email') ?></span>
+            </label>
+            <div class="control">
+                <input type="email"
+                       name="email"
+                       alt="email"
+                       value="<?= $block->escapeHtml($block->getEmailValue()); ?>"
+                       id="email_address"
+                       class="input-text"
+                       data-validate="{required:true, 'validate-email':true}" />
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary">
+                <span><?= /* @noEscape */ __('Save and register') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

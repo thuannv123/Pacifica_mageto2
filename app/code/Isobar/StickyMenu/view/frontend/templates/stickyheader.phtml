@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var $block \Isobar\StickyMenu\Block\StickyHeader
+ */
+?>
+
+<?php if ($block->isStickyEnable()) { ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Isobar_StickyMenu/js/sticky-header": {}
+            }
+        }
+    </script>
+<?php } ?>

@@ -1,0 +1,26 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRender\ImageInterface">
+        <attribute code="image_type" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="color" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_id" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_value" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_product_id" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_thumb" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_type" type="int"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductRenderInterface">
+        <attribute code="option_limit" type="int"/>
+    </extension_attributes>
+</config>

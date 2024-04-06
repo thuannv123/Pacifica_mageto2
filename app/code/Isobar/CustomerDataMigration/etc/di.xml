@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Firebear\ImportExport\Controller\Adminhtml\Job\Save" type="Isobar\CustomerDataMigration\Controller\Adminhtml\Job\SaveJob" />
+    <preference for="Firebear\ImportExport\Model\Import\Customer" type="Isobar\CustomerDataMigration\Model\Import\CustomerJob" />
+    <type name="Isobar\CustomerDataMigration\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <virtualType name="Isobar\CustomerDataMigration\Logger\Logger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">sendResetEmailLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Isobar\CustomerDataMigration\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Isobar\CustomerDataMigration\Cron\CronSendResetPass">
+        <arguments>
+            <argument name="logger" xsi:type="object">Isobar\CustomerDataMigration\Logger\Logger</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--Account Model-->
+    <preference for="Isobar\SocialLogin\Api\Data\AccountInterface" type="Isobar\SocialLogin\Model\Account" />
+    <preference for="Isobar\SocialLogin\Api\AccountRepositoryInterface" type="Isobar\SocialLogin\Model\AccountRepository" />
+    <preference for="Isobar\SocialLogin\Api\AccountSearchInterface" type="Isobar\SocialLogin\Model\AccountSearch" />
+
+    <!-- Account converter -->
+    <preference for="Isobar\SocialLogin\Model\Provider\Account\ConverterInterface"
+                type="Isobar\SocialLogin\Model\Provider\Account\Converter" />
+    <!-- Customer converter -->
+    <preference for="Isobar\SocialLogin\Model\Provider\Customer\ConverterInterface"
+                type="Isobar\SocialLogin\Model\Provider\Customer\Converter" />
+    <!-- Customer validator -->
+    <preference for="Isobar\SocialLogin\Model\Provider\Customer\ValidatorInterface"
+                type="Isobar\SocialLogin\Model\Provider\Customer\Validator" />
+    <!-- Login Block Templates -->
+    <virtualType name="Isobar\SocialLogin\Model\LoginBlock\Template\Default" type="Isobar\SocialLogin\Model\LoginBlock\Template">
+        <arguments>
+            <argument name="path" xsi:type="string">Isobar_SocialLogin::customer/login/default.phtml</argument>
+            <argument name="additionalData" xsi:type="array">
+                <item name="size" xsi:type="string">big</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Isobar\SocialLogin\Model\LoginBlock\Template\Provider">
+        <arguments>
+            <argument name="templatesData" xsi:type="array">
+                <item name="default" xsi:type="array">
+                    <item name="title" xsi:type="string">Default</item>
+                    <item name="template_instance" xsi:type="object">Isobar\SocialLogin\Model\LoginBlock\Template\Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Admin UI -->
+    <!-- Accounts grid -->
+    <virtualType name="Isobar\SocialLogin\Model\ResourceModel\Account\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">isobar_social_account</argument>
+            <argument name="resourceModel" xsi:type="string">Isobar\SocialLogin\Model\ResourceModel\Account</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="social_account_listing_data_source" xsi:type="string">Isobar\SocialLogin\Model\ResourceModel\Account\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="SocialGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SocialAccountGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Isobar\SocialLogin\Model\ResourceModel\Account\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SocialGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <!-- Register Providers -->
+    <type name="Isobar\SocialLogin\Model\ProviderManagement">
+        <arguments>
+            <argument name="factories" xsi:type="array">
+                <item name="kakao" xsi:type="object">KakaoFactory</item>
+                <item name="naver" xsi:type="object">NaverFactory</item>
+                <item name="line" xsi:type="object">LineFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Kakao -->
+    <!-- config -->
+    <virtualType name="SocialProviderKakaoConfig" type="Isobar\SocialLogin\Model\Config\Provider">
+        <arguments>
+            <argument name="code" xsi:type="string">kakao</argument>
+            <argument name="pathPrefix" xsi:type="string">social/kakao/</argument>
+        </arguments>
+    </virtualType>
+    <!-- storage -->
+    <virtualType name="SocialServiceKakaoStorage" type="Isobar\SocialLogin\Model\Provider\Service\Storage\Session">
+        <arguments>
+            <argument name="namespace" xsi:type="string">kakao</argument>
+        </arguments>
+    </virtualType>
+    <!-- credentials -->
+    <virtualType name="SocialServiceKakaoCredentials" type="Isobar\SocialLogin\Model\Provider\Service\Credentials\ConfigProvider">
+        <arguments>
+            <argument name="consumerIdPath" xsi:type="string">social/kakao/key</argument>
+            <argument name="consumerSecretPath" xsi:type="string">social/kakao/secret</argument>
+            <argument name="providerCode" xsi:type="string">kakao</argument>
+        </arguments>
+    </virtualType>
+    <!-- config -->
+    <virtualType name="SocialServiceKakaoConfig" type="Isobar\SocialLogin\Model\Provider\Service\Config\Base" />
+    <!-- service builder -->
+    <virtualType name="KakaoServiceBuilder" type="Isobar\SocialLogin\Model\Provider\ServiceBuilder\OAuth2">
+        <arguments>
+            <argument name="storage" xsi:type="object">SocialServiceKakaoStorage</argument>
+            <argument name="credentials" xsi:type="object">SocialServiceKakaoCredentials</argument>
+            <argument name="config" xsi:type="object">SocialServiceKakaoConfig</argument>
+            <argument name="service" xsi:type="string">Isobar\SocialLogin\Model\Provider\Service\Kakao</argument>
+        </arguments>
+    </virtualType>
+    <!-- Callback request processor -->
+    <virtualType name="KakaoCallbackRequestProcessor" type="Isobar\SocialLogin\Model\Provider\RequestProcessor\Callback\OAuth2">
+        <arguments>
+            <argument name="accountRetriever" xsi:type="object">Isobar\SocialLogin\Model\Provider\Account\Retriever\Kakao</argument>
+        </arguments>
+    </virtualType>
+    <!-- factory -->
+    <virtualType name="KakaoFactory" type="Isobar\SocialLogin\Model\Provider\Factory\Base">
+        <arguments>
+            <argument name="serviceBuilder" xsi:type="object">KakaoServiceBuilder</argument>
+            <argument name="loginRequestProcessorType" xsi:type="string">Isobar\SocialLogin\Model\Provider\RequestProcessor\Login\OAuth2</argument>
+            <argument name="callbackRequestProcessorType" xsi:type="string">KakaoCallbackRequestProcessor</argument>
+            <argument name="config" xsi:type="object">SocialProviderKakaoConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- EOF Kakao -->
+
+    <!-- Naver -->
+    <!-- config -->
+    <virtualType name="SocialProviderNaverConfig" type="Isobar\SocialLogin\Model\Config\Provider">
+        <arguments>
+            <argument name="code" xsi:type="string">naver</argument>
+            <argument name="pathPrefix" xsi:type="string">social/naver/</argument>
+        </arguments>
+    </virtualType>
+    <!-- storage -->
+    <virtualType name="SocialServiceNaverStorage" type="Isobar\SocialLogin\Model\Provider\Service\Storage\Session">
+        <arguments>
+            <argument name="namespace" xsi:type="string">naver</argument>
+        </arguments>
+    </virtualType>
+    <!-- credentials -->
+    <virtualType name="SocialServiceNaverCredentials" type="Isobar\SocialLogin\Model\Provider\Service\Credentials\AdditionalConfigProvider">
+        <arguments>
+            <argument name="consumerIdPath" xsi:type="string">social/naver/key</argument>
+            <argument name="consumerSecretPath" xsi:type="string">social/naver/secret</argument>
+            <argument name="publicKeyPath" xsi:type="string">social/naver/public</argument>
+            <argument name="providerCode" xsi:type="string">naver</argument>
+        </arguments>
+    </virtualType>
+    <!-- config -->
+    <virtualType name="SocialServiceNaverConfig" type="Isobar\SocialLogin\Model\Provider\Service\Config\Base" >
+        <arguments>
+            <argument name="scopes" xsi:type="array">
+                <item name="0" xsi:type="string">VALUABLE_ACCESS</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- service builder -->
+    <virtualType name="NaverServiceBuilder" type="Isobar\SocialLogin\Model\Provider\ServiceBuilder\OAuth2">
+        <arguments>
+            <argument name="storage" xsi:type="object">SocialServiceNaverStorage</argument>
+            <argument name="credentials" xsi:type="object">SocialServiceNaverCredentials</argument>
+            <argument name="config" xsi:type="object">SocialServiceNaverConfig</argument>
+            <argument name="service" xsi:type="string">Isobar\SocialLogin\Model\Provider\Service\Naver</argument>
+        </arguments>
+    </virtualType>
+    <!-- Callback request processor -->
+    <virtualType name="NaverCallbackRequestProcessor" type="Isobar\SocialLogin\Model\Provider\RequestProcessor\Callback\OAuth1\Naver">
+        <arguments>
+            <argument name="accountRetriever" xsi:type="object">Isobar\SocialLogin\Model\Provider\Account\Retriever\Naver</argument>
+        </arguments>
+    </virtualType>
+    <!-- factory -->
+    <virtualType name="NaverFactory" type="Isobar\SocialLogin\Model\Provider\Factory\Base">
+        <arguments>
+            <argument name="serviceBuilder" xsi:type="object">NaverServiceBuilder</argument>
+            <argument name="loginRequestProcessorType" xsi:type="string">Isobar\SocialLogin\Model\Provider\RequestProcessor\Login\OAuth2</argument>
+            <argument name="callbackRequestProcessorType" xsi:type="string">NaverCallbackRequestProcessor</argument>
+            <argument name="config" xsi:type="object">SocialProviderNaverConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- EOF Naver -->
+
+    <!-- Line -->
+    <!-- config -->
+    <virtualType name="SocialProviderLineConfig" type="Isobar\SocialLogin\Model\Config\Provider">
+        <arguments>
+            <argument name="code" xsi:type="string">line</argument>
+            <argument name="pathPrefix" xsi:type="string">social/line/</argument>
+        </arguments>
+    </virtualType>
+    <!-- storage -->
+    <virtualType name="SocialServiceLineStorage" type="Isobar\SocialLogin\Model\Provider\Service\Storage\Session">
+        <arguments>
+            <argument name="namespace" xsi:type="string">line</argument>
+        </arguments>
+    </virtualType>
+    <!-- credentials -->
+    <virtualType name="SocialServiceLineCredentials" type="Isobar\SocialLogin\Model\Provider\Service\Credentials\ConfigProvider">
+        <arguments>
+            <argument name="consumerIdPath" xsi:type="string">social/line/key</argument>
+            <argument name="consumerSecretPath" xsi:type="string">social/line/secret</argument>
+            <argument name="providerCode" xsi:type="string">line</argument>
+        </arguments>
+    </virtualType>
+    <!-- config -->
+    <virtualType name="SocialServiceLineConfig" type="Isobar\SocialLogin\Model\Provider\Service\Config\Base" />
+    <!-- service builder -->
+    <virtualType name="LineServiceBuilder" type="Isobar\SocialLogin\Model\Provider\ServiceBuilder\OAuth2">
+        <arguments>
+            <argument name="storage" xsi:type="object">SocialServiceLineStorage</argument>
+            <argument name="credentials" xsi:type="object">SocialServiceLineCredentials</argument>
+            <argument name="config" xsi:type="object">SocialServiceLineConfig</argument>
+            <argument name="service" xsi:type="string">Isobar\SocialLogin\Model\Provider\Service\Line</argument>
+        </arguments>
+    </virtualType>
+    <!-- Callback request processor -->
+    <virtualType name="LineCallbackRequestProcessor" type="Isobar\SocialLogin\Model\Provider\RequestProcessor\Callback\OAuth2">
+        <arguments>
+            <argument name="accountRetriever" xsi:type="object">Isobar\SocialLogin\Model\Provider\Account\Retriever\Line</argument>
+        </arguments>
+    </virtualType>
+    <!-- factory -->
+    <virtualType name="LineFactory" type="Isobar\SocialLogin\Model\Provider\Factory\Base">
+        <arguments>
+            <argument name="serviceBuilder" xsi:type="object">LineServiceBuilder</argument>
+            <argument name="loginRequestProcessorType" xsi:type="string">Isobar\SocialLogin\Model\Provider\RequestProcessor\Login\OAuth2</argument>
+            <argument name="callbackRequestProcessorType" xsi:type="string">LineCallbackRequestProcessor</argument>
+            <argument name="config" xsi:type="object">SocialProviderLineConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- EOF Line -->
+
+    <!-- Callback forwards -->
+    <type name="Isobar\SocialLogin\Controller\Account\Callback">
+        <arguments>
+            <argument name="forwardsMap" xsi:type="array">
+                <item name="login" xsi:type="string">callback_login</item>
+                <item name="link" xsi:type="string">callback_link</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

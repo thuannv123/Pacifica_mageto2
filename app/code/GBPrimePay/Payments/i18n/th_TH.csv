@@ -1,0 +1,65 @@
+"Payment Method","ช่องทางการชำระเงิน", module, GBPrimePay_Payments
+"My billing and shipping address are the same","ที่อยู่สำหรับการเรียกเก็บเงินและการจัดส่ง", module, GBPrimePay_Payments
+"GBPgetUseothercard","ใช้บัตรอื่น...", module, GBPrimePay_Payments
+"GBPinstallment_js_payments","บาท/เดือน", module, GBPrimePay_Payments
+"GBPinstallment_js_total","ยอดรวมทั้งหมด", module, GBPrimePay_Payments
+"Issuers Bank","ธนาคารผู้ออกบัตร", module, GBPrimePay_Payments
+"Terms","ระยะเวลาการผ่อนชำระ", module, GBPrimePay_Payments
+"GBPlabel_card_issuer_bank","ธนาคารผู้ออกบัตร..", module, GBPrimePay_Payments
+"GBPlabel_term","ระยะเวลาการผ่อนชำระ..", module, GBPrimePay_Payments
+"GBPlabel_months","เดือน", module, GBPrimePay_Payments
+"GBPlabel_issuer_kasikorn","ธนาคารกสิกรไทย", module, GBPrimePay_Payments
+"GBPlabel_issuer_krungthai","ธนาคารกรุงไทย", module, GBPrimePay_Payments
+"GBPlabel_issuer_thanachart","ธนาคารทหารไทยธนชาต", module, GBPrimePay_Payments
+"GBPlabel_issuer_ayudhya","ธนาคารกรุงศรีอยุธยา", module, GBPrimePay_Payments
+"GBPlabel_issuer_firstchoice","กรุงศรีเฟิร์สช้อยส์", module, GBPrimePay_Payments
+"GBPlabel_issuer_scb","ธนาคารไทยพาณิชย์", module, GBPrimePay_Payments
+"Payment Information","กรอกข้อมูลบัตรเครดิต", module, GBPrimePay_Payments
+"Credit Card Number","หมายเลขบัตรเครดิต/เดบิต", module, GBPrimePay_Payments
+"GBPCredit Card Number","หมายเลขบัตร", module, GBPrimePay_Payments
+"Expiration Date","วันหมดอายุของบัตรเครดิต", module, GBPrimePay_Payments
+"Month","เดือน", module, GBPrimePay_Payments
+"Year","ปี", module, GBPrimePay_Payments
+"Card Verification Number","CVV", module, GBPrimePay_Payments
+"Save for next time ?","จดจำบัตร ?", module, GBPrimePay_Payments
+"Place Order","ทำการสั่งซื้อ", module, GBPrimePay_Payments
+"Continue to Payment","ดำเนินการชำระเงิน", module, GBPrimePay_Payments
+"Pay with Credit Card","ชำระด้วยบัตรเครดิต", module, GBPrimePay_Payments
+"Pay with Credit Card Installment","ชำระด้วยผ่อนชำระผ่านบัตรเครดิต", module, GBPrimePay_Payments
+"Pay with QR Code","ชำระด้วยคิวอาร์โค้ด", module, GBPrimePay_Payments
+"Pay with QR Visa","ชำระด้วยคิวอาร์วีซ่า", module, GBPrimePay_Payments
+"Pay with QR Wechat","ชำระด้วยคิวอาร์วีแชต", module, GBPrimePay_Payments
+"Pay with Bill Payment","ชำระด้วยใบเแจ้งยอดชำระเงิน", module, GBPrimePay_Payments
+"GBPgetTitleDirect","ชำระด้วยบัตรเครดิต/เดบิต", module, GBPrimePay_Payments
+"GBPgetTitleInstallment","ชำระด้วยผ่อนชำระผ่านบัตรเครดิต", module, GBPrimePay_Payments
+"GBPgetTitleQrcode","ชำระด้วยคิวอาร์โค้ด", module, GBPrimePay_Payments
+"GBPgetTitleQrcredit","ชำระด้วยคิวอาร์วีซ่า", module, GBPrimePay_Payments
+"GBPgetTitleQrwechat","ชำระด้วยคิวอาร์วีแชต", module, GBPrimePay_Payments
+"GBPgetTitleBarcode","ชำระด้วยใบเแจ้งยอดชำระเงิน", module, GBPrimePay_Payments
+"GBPgetInstructionDirect","บัตรเครดิต", module, GBPrimePay_Payments
+"GBPgetInstructionInstallment","ผ่อนชำระผ่านบัตรเครดิต", module, GBPrimePay_Payments
+"GBPgetInstructionQrcode","คิวอาร์โค้ด", module, GBPrimePay_Payments
+"GBPgetInstructionQrcredit","คิวอาร์วีซ่า", module, GBPrimePay_Payments
+"GBPgetInstructionQrwechat","คิวอาร์วีแชต", module, GBPrimePay_Payments
+"GBPgetInstructionBarcode","ใบเแจ้งยอดชำระเงิน", module, GBPrimePay_Payments
+"Redirecting...","กำลังเปลี่ยนหน้า...", module, GBPrimePay_Payments
+"GBTXTPaymentsFailedtryagain","จีบีไพร์มเพย์ การชำระเงินไม่สมบูรณ์!. กรุณาทำการชำระเงินใหม่อีกครั้ง.", module, GBPrimePay_Payments
+"GBTXTCreditCardSuccessful","ชำระด้วยบัตรเครดิต การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"GBTXTCreditCardSuccessfulDetail","ชำระด้วยบัตรเครดิตได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments
+"GBTXTCreditCardFailed","ชำระด้วยบัตรเครดิต การชำระเงินถูกปฏิเสธ!", module, GBPrimePay_Payments
+"GBTXTCreditCardFailedDetail","ชำระด้วยบัตรเครดิต การชำระเงิน ไม่สมบูรณ์ <span style=""color: #ff5501;"">&quot;กรุณาชำระเงินทำการชำระเงินใหม่อีกครั้ง&quot;</span>.", module, GBPrimePay_Payments
+"GBPrimePay Credit Card Installment Successful!","ชำระด้วยผ่อนชำระผ่านบัตรเครดิต การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"Pay with Credit Card Installment has been received and &quot;Order is Now Complete&quot;.","ชำระด้วยผ่อนชำระผ่านบัตรเครดิตได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments
+"GBPrimePay Credit Card Installment Failed!","ชำระด้วยผ่อนชำระผ่านบัตรเครดิต การชำระเงินถูกปฏิเสธ!", module, GBPrimePay_Payments
+"Pay with Credit Card Installment has been failure and <span style=""color: #ff5501;"">&quot;Order is Canceled&quot;</span>.","ชำระด้วยผ่อนชำระผ่านบัตรเครดิต การชำระเงิน ไม่สมบูรณ์ <span style=""color: #ff5501;"">&quot;กรุณาชำระเงินทำการชำระเงินใหม่อีกครั้ง&quot;</span>.", module, GBPrimePay_Payments
+"GBPrimePay QR Code Successful!","ชำระด้วยคิวอาร์โค้ด การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"Pay with QR Code has been received and &quot;Order is Now Complete&quot;.","ชำระด้วยคิวอาร์โค้ดได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments
+"GBPrimePay QR Visa Successful!","ชำระด้วยคิวอาร์วีซ่า การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"Pay with QR Visa has been received and &quot;Order is Now Complete&quot;.","ชำระด้วยคิวอาร์วีซ่าได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments
+"GBPrimePay QR Wechat Successful!","ชำระด้วยคิวอาร์วีแชต การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"Pay with QR Wechat has been received and &quot;Order is Now Complete&quot;.","ชำระด้วยคิวอาร์วีแชตได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments
+"GBPrimePay Bill Payment Successful!","ชำระด้วยใบเแจ้งยอดชำระเงิน การชำระเงินสำเร็จ!", module, GBPrimePay_Payments
+"Pay with Bill Payment has been received and &quot;Order is Now Complete&quot;.","ชำระด้วยใบเแจ้งยอดชำระเงินได้รับการชำระเงินแล้ว &quot;คำสั่งซื้อเสร็จสมบูรณ์&quot;.", module, GBPrimePay_Payments 
+"GBPgetDesQrcode","ชำระเงินผ่าน Mobile Banking ด้วย QR Code จาก GB Pay สะดวกสบายและปลอดภัยตามมาตรฐานความปลอดภัย PCI DSS 3.2.1", module, GBPrimePay_Payments
+"Name On Card","ชื่อผู้ถือบัตร",module, GBPrimePay_Payments
+"GBPayment Method","วิธีการชำระเงิน",module, GBPrimePay_Payments

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sales_order" resource="sales" comment="Sales Flat Order">
+        <column xsi:type="varchar" name="exported" length="2" nullable="true"
+                default="0" comment="Flag exported order"/>
+    </table>
+    <table name="firebear_import_history">
+        <column xsi:type="varchar" name="status" length="2" nullable="true"
+                default="0" comment="status: 1: created, 2: processing, 3:success, 4:falied"/>
+    </table>
+</schema>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Controller\Adminhtml\Order\AddComment" type="Marvelic\BankTransfer\Controller\Adminhtml\Order\AddComment"/>
+    <preference for="Magento\Sales\Model\Order\Config" type="Marvelic\BankTransfer\Model\Order\Config"/>
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View\History" type="Marvelic\BankTransfer\Block\Adminhtml\Order\View\History"/>
+</config>

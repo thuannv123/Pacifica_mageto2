@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_entity">
+        <column xsi:type="int" name="is_password_reset_require" nullable="true" default="0" comment="Is Password Reset Require"/>
+        <column xsi:type="int" name="reset_password_email_sent" nullable="true" default="0" comment="Reset Password Email Sent"/>
+        <column xsi:type="int" name="is_password_reset" nullable="true" default="0" comment="Is Password Reset"/>
+    </table>
+</schema>

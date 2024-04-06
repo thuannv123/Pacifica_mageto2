@@ -1,0 +1,12 @@
+<?php
+if ($this->getNameInLayout() == 'catalog.sidebarnav' && $this->isVertical() == 1) : ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+    <!-- Sidebar Nav -->
+    <nav class="navigation navigation-megamenu desktop-only" data-action="navigation" role="navigation">
+        <div class="block-title"><?= $block->escapeHtml(__('CATEGORIES')) ?></div>
+        <ul data-mage-init='{"megamenu":{"menus": "li ul:not(.mm-submenu), li.level0 > .megamenu-wrapper", "responsive":true, "expanded":true, "position":{"my":"left top","at":"right top"}}}'>
+            <?php echo $_menu; ?>
+        </ul>
+    </nav>
+<?php endif; ?>

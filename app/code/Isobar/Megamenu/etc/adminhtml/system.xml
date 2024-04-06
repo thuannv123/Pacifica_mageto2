@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="megamenu" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Megamenu</label>
+            <tab>isobar</tab>
+            <resource>Isobar_Megamenu::config</resource>
+            <group id="config" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Megamenu Config</label>
+                <field id="megamenu_general_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable module</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="megamenu_general_show_left" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Menu position</label>
+                    <source_model>Isobar\Megamenu\Model\Config\Source\Vertical</source_model>
+                </field>
+                <field id="megamenu_general_active_mobile" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable Ajax Menu on Mobile</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="megamenu_general_active_mobile_logo" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable/Disable</label>
+                    <comment>Enable/Disable Ajax Menu on Mobile (Only Aerie)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                         <field id="megamenu_general_active_mobile">1</field>
+                     </depends>
+                </field>
+            </group>
+             <group id="color_setting" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Color Settings</label>
+                 <field id="color_theme_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Enable color theme</label>
+                     <comment>Enable/Disable Color Theme</comment>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+                 <field id="color_scheme_template" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Color Scheme Template</label>
+                    <source_model>Isobar\Megamenu\Model\Config\Source\ColorScheme</source_model>
+                     <frontend_model>Isobar\Megamenu\Block\Adminhtml\DefaultColor</frontend_model>
+                     <depends>
+                         <field id="*/*/color_theme_active">1</field>
+                     </depends>
+                 </field>
+                 <field id="menu_background_color" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Background Color</label>
+                    <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                     <depends>
+                         <field id="*/*/color_theme_active">1</field>
+                     </depends>
+                 </field>
+                 <field id="active_background_color" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active Menu Item Background Color</label>
+                     <comment>Leave empty if no highlighting for active menu items is required.
+                         Current setting is for categories only.</comment>
+                     <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                     <depends>
+                         <field id="*/*/color_theme_active">1</field>
+                     </depends>
+                </field>
+                <field id="menu_text_color" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Text Color</label>
+                    <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="*/*/color_theme_active">1</field>
+                    </depends>
+                </field>
+                <field id="submenu_background_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Submenu Background Color</label>
+                    <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="*/*/color_theme_active">1</field>
+                    </depends>
+                </field>
+                <field id="submenu_background_image" translate="label comment" type="image" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Submenu Background Image</label>
+                    <backend_model>Isobar\Megamenu\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">config/default</base_url>
+                    <depends>
+                        <field id="*/*/color_theme_active">1</field>
+                    </depends>
+                </field>
+                <field id="submenu_text_color" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Submenu Text Color</label>
+                    <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="*/*/color_theme_active">1</field>
+                    </depends>
+                </field>
+                <field id="menu_item_hover_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Item Hover Color</label>
+                    <frontend_model>Isobar\Megamenu\Block\Adminhtml\Color</frontend_model>
+                    <depends>
+                        <field id="*/*/color_theme_active">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

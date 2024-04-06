@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="aw_popup_block" resource="default" engine="innodb" comment="aw_popup_block">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Popup ID"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Popup Name"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false"
+                comment="Status"/>
+        <column xsi:type="text" name="customer_groups" nullable="false" comment="Customer Groups"/>
+        <column xsi:type="text" name="store_ids" nullable="false" comment="Store IDs"/>
+        <column xsi:type="text" name="page_type" nullable="false" comment="Popup Type"/>
+        <column xsi:type="text" name="position" nullable="false" comment="Position"/>
+        <column xsi:type="text" name="event" nullable="false" comment="Event"/>
+        <column xsi:type="int" name="event_value" padding="11" unsigned="false" nullable="true" identity="false"
+                comment="X value for event"/>
+        <column xsi:type="text" name="effect" nullable="false" comment="Effect"/>
+        <column xsi:type="int" name="cookie_lifetime" padding="11" unsigned="false" nullable="true" identity="false"
+                comment="Cookie Lifetime"/>
+        <column xsi:type="text" name="content" nullable="false" comment="Content"/>
+        <column xsi:type="text" name="custom_css" nullable="false" comment="Custom CSS"/>
+        <column xsi:type="text" name="product_condition" nullable="false" comment="Product Condition"/>
+        <column xsi:type="text" name="category_ids" nullable="false" comment="Category IDs"/>
+        <column xsi:type="int" name="view_count" padding="11" unsigned="false" nullable="false" identity="false"
+                comment="Popup view count"/>
+        <column xsi:type="int" name="click_count" padding="11" unsigned="false" nullable="false" identity="false"
+                comment="Popup click count"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+    <table name="aw_popup_block_segment" resource="default" engine="innodb" comment="AW Popup Segment Table">
+        <column xsi:type="int" name="popup_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Popup ID"/>
+        <column xsi:type="int" name="segment_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Segment ID"/>
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_POPUP_BLOCK_SEGMENT_POPUP_ID_AW_POPUP_BLOCK_ID"
+                    table="aw_popup_block_segment" column="popup_id" referenceTable="aw_popup_block"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <index referenceId="AW_POPUP_BLOCK_SEGMENT_POPUP_ID_SEGMENT_ID" indexType="btree">
+            <column name="popup_id"/>
+            <column name="segment_id"/>
+        </index>
+    </table>
+</schema>

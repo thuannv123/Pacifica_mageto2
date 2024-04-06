@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Free Gift Base for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="items_additional_data">
+        <!--add images data for added products by coupon-->
+        <observer name="Amasty_Promo::setMarkToQuoteItem" instance="Amasty\Promo\Observer\SetMarkToQuoteItem" />
+    </event>
+</config>

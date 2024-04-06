@@ -1,0 +1,26 @@
+{
+    "amasty_ogrid_attribute": {
+        "column": {
+            "entity_id": true,
+            "attribute_id": true,
+            "attribute_code": true,
+            "frontend_label": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_OGRID_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID": true,
+            "AMASTY_OGRID_ATTRIBUTE_ATTRIBUTE_ID": true
+        }
+    },
+    "amasty_ogrid_attribute_index": {
+        "column": {
+            "entity_id": true,
+            "order_item_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_OGRID_ATTR_IDX_ORDER_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID": true,
+            "AMASTY_OGRID_ATTRIBUTE_INDEX_ORDER_ITEM_ID": true
+        }
+    }
+}

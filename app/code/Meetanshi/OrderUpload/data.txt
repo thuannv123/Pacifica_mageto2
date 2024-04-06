@@ -1,0 +1,45 @@
+===== Magento 2 Order Attachment - 2 Hours - RQW-TRCXC-925 ===== 10-03-2023
+We have gone live (Magento 2.4.3-p1) with the order attachment extension, but we see some issues,
+please see our root cause and need your help in fixing these issues and update the plugin
+
+Issue #1 - When doing the shipment import from the firebear extension, a group email is sent and some customer get wrong email
+The extension overrides the Magento native function, but now this function has changed and currently,
+the code is not fully compatible with the current Magento version (we are using 2.4.3-p1)
+This is the out-of-date function of Meetanshi
+
+\Meetanshi\OrderUpload\Helper\Template\TransportBuilder::prepareMessage
+
+Also, the extension is missing the reset() function, so the previous data (customer name, email) is still available for the next email,
+so that’s why some customers still get the wrong email.
+
+protected function reset()
+{
+   $this->messageData = [];
+   $this->templateIdentifier = null;
+   $this->templateVars = null;
+   $this->templateOptions = null;
+   return $this;
+}
+
+Issue #2 - When order is placed from the Magento backend, it uses default sender email ID (wrong website) to send out the emails
+This issue came from an Order Attachment extension, which they’re still using the out-of-date code from Magento.
+
+\Meetanshi\OrderUpload\Model\Order\Email\SenderBuilder::configureEmailTemplate
+
+$this->transportBuilder->setFrom($this->identityContainer->getEmailIdentity());
+
+They’re calling a function setFrom (without store code) but currently, Magento changed to another function with store code inside (setFromByScope):
+
+\Magento\Sales\Model\Order\Email\SenderBuilder::configureEmailTemplate
+
+$this->transportBuilder->setFromByScope(
+     $this->identityContainer->getEmailIdentity(),
+     $this->identityContainer->getStore()->getId()
+ );
+
+Extension: https://drops.meetanshi.com/f/HSIbJ3
+
+-----------------------------------------------------------------
+
+
+

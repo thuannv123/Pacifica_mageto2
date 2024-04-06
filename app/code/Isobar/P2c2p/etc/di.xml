@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="P2c2p\P2c2pPayment\Controller\Payment\Response" type="Isobar\P2c2p\Controller\Payment\Response" />
+    <type name="Magento\Framework\Session\SessionStartChecker">
+        <plugin name="CallbackSessionChecker"
+                type="Isobar\P2c2p\Plugin\CallbackSessionChecker"/>
+    </type>
+    <virtualType name="p2c2pHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/p2c2p_23.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="p2c2pLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">p2c2pHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Isobar\P2c2p\ViewModel\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">p2c2pLogger</argument>
+        </arguments>
+    </type>
+</config>

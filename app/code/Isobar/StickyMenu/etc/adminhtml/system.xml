@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="isobar" sortOrder="999" translate="label">
+			<label>Isobar Accelerator</label>
+		</tab>
+		<section id="theme_setting" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Theme Setting</label>
+			<tab>isobar</tab>
+			<resource>Isobar_StickyMenu::config_isobar_stickymenu</resource>
+			<group id="navigation" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Header and Top Navigation</label>
+				<field id="enable_sticky_menu" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Enable Sticky Menu</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

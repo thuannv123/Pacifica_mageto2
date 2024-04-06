@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="checkout.cart.handle.reload.section"
+                   template="Isobar_OrderReminder::handle_reload_section_cart.phtml"
+                   after="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Isobar\OrderReminder\ViewModel\HandleReloadCart</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

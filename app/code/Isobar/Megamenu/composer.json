@@ -1,0 +1,21 @@
+{
+    "name": "isobar/megamenu",
+    "description": "Extension Mega menu",
+    "require": {
+        "php": "^7.1.0",
+        "isobar/base": ">=1.0.2"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Isobar\\Megamenu\\": ""
+        }
+    }
+}

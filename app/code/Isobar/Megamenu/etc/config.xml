@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <megamenu>
+            <megamenu_general_active>1</megamenu_general_active>
+        </megamenu>
+        <Isobar_Megamenu>
+            <guide>https://bluecom.atlassian.net/wiki/spaces/MG/pages/1040942321/Mega+Menu</guide>
+        </Isobar_Megamenu>
+    </default>
+</config>

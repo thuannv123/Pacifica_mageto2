@@ -1,0 +1,17 @@
+<table class="amogrid-table-container">
+    <tr class="amogrid-tr">
+        <!-- ko repeat: {foreach: getColumns(), item: '$subCol'} -->
+        <th class="amogrid-th" data-bind="template: $subCol().getHeader()"></th>
+        <!-- /ko -->
+    </tr>
+    <!-- ko repeat: {foreach: getItems($row()), item: '$subRow'} -->
+    <tr class="amogrid-tr">
+        <!-- ko repeat: {foreach: getColumns(), item: '$subCol'} -->
+        <td data-bind="css: $subCol().getFieldClass(),
+                       click: $subCol().getFieldHandler($subRow()),
+                       template: $subCol().getBody()">
+        </td>
+        <!-- /ko -->
+    </tr>
+    <!-- /ko -->
+</table>

@@ -1,0 +1,111 @@
+﻿// Import
+@import '_grid-system.less';
+
+// Vars
+
+@list: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+@res: 'xs', 'sm', 'md', 'lg';
+
+// Main Styles
+.container {
+  .make-container(@gutter-width);
+  min-width: @container-xs;
+  max-width: @screen-xs-min;
+
+  @media (min-width: @screen-sm-min) {
+    max-width: @container-sm;
+  }
+  @media (min-width: @screen-md-min) {
+    max-width: @container-md;
+  }
+  @media (min-width: @screen-lg-min) {
+    max-width: @container-lg;
+  }
+}
+
+.container-fluid {
+  .make-container(@gutter-width);
+}
+
+.row {
+  .make-row(@gutter-width);
+}
+
+.for-each-loop(@index) when (@index > 0) {
+    @i: extract(@list, @index);
+
+    .for-each-loop2(@index2) when (@index2 > 0) {
+        @j: extract(@res, @index2);
+        [class*='col-@{j}-@{i}'] {
+            .make-col(@gutter-width);
+        }
+        .for-each-loop2(@index2 - 1);
+    }
+    .for-each-loop2(length(@res));
+
+    .for-each-loop(@index - 1);
+}
+.for-each-loop(length(@list));
+
+@media (min-width: @screen-xs-min) {
+  * + [class*=col-xs-] {
+    margin-top: 0;
+  }
+
+  .row {
+    .make-flex();
+    .flex(0 1 auto);
+    .flex-direction(row);
+    .flex-wrap(wrap);
+  }
+
+    .for-each-loop3(@index3) when (@index3 > 0) {
+        @i: extract(@list, @index3);
+
+        .for-each-loop4(@index4) when (@index4 > 0) {
+            @j: extract(@res, @index4);
+            .row > [class*='col-@{j}-@{i}'] {
+                .flex(0 0 auto);
+                .flex-basis(100%);
+            }
+            .for-each-loop4(@index4 - 1);
+        }
+        .for-each-loop4(length(@res));
+
+        .for-each-loop3(@index3 - 1);
+    }
+    .for-each-loop3(length(@list));
+
+  .make-grid-system(xs);
+}
+
+@media (min-width: @screen-sm-min) {
+  * + [class*=col-sm-] {
+    margin-top: 0;
+  }
+
+  .make-grid-system(sm);
+}
+
+@media (min-width: @screen-md-min) {
+  * + [class*=col-md-] {
+    margin-top: 0;
+  }
+
+  .make-grid-system(md);
+}
+
+@media (min-width: @screen-lg-min) {
+  * + [class*=col-lg-] {
+    margin-top: 0;
+  }
+
+  .make-grid-system(lg);
+}
+
+
+
+
+
+
+

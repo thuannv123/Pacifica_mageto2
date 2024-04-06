@@ -1,0 +1,86 @@
+<div>
+	<a href="javascript:void(0)" data-ga4-guide="true">User Guide</a>
+</div>
+<div data-ga4-guide-content="true" style="display:none">
+    <p>Anowave_Ec4 module works on top of our Anowave_Ec module, it's designed to modify the dataLayer[] object as per GA4 specification (<a href="https://developers.google.com/tag-manager/ecommerce-ga4" target="_blank">https://developers.google.com/tag-manager/ecommerce-ga4)</a></p>
+    
+    <p><strong>When installed:</strong></p>
+    
+    <ol>
+    	<li>A new field called Measurement ID appears in Google Tag Manager API configuration section. This is obtained from Google Analytics 4 and it's in the following format: G-XXXXXXXXXX</li>
+    	<li>A 3 new checkboxes appear that allow you to: 
+    		<p>
+    			a) Create GA4 variables
+                b) Create GA4 triggers
+                c) Create GA4 tags (creates also the Google Analytics 4 configuration tag)
+    		</p>
+    	</li>
+    	<li>
+    		<p><strong>Google Analytics 4 Configuration tag</strong></p>
+    		<p>
+    			The Google Analytics: GA4 Configuration tag initializes Google Analytics for your Google Analytics 4 property on a particular page. It handles behavior such as setting of Google Analytics cookies, sending automatic and enhanced measurement events, and declaration of common settings. This is in effect what tracks Pageviews and installs Google Analytics 4 on your site
+    		</p>
+    	</li>
+    	<li>
+    		<p><strong>dataLayer[] modifications</strong></p>
+    		<p>dataLayer[] object gets modified as per GA4 specification (https://developers.google.com/tag-manager/ecommerce-ga4)</p>
+    	</li>
+    	<li>
+    		<p><strong>To our understanding</strong></p>
+    		<p>It's better to create a new empty container and use the API to configure it for GA4 by clicking only the GA4 checkboxes from our API, this will create the GA4 variables, triggers and tags including the Google Analytics 4 Configuration tag. Having the container inflated with the old tags is not a mistake, however they may not fire or if some of them fired it could duplicate and/or corrupt data.</p>
+    	</li>
+    	<li>
+    		<p><strong>There are certain limitations of GA4</strong> (due to being in beta mode probably) which you have to be aware of: </p>
+    		<p>
+    			a) You can no longer track checkout in terms of checkout steps. There are a few events dispatched: begin_checkout, add_payment_info, add_shipping_info<br />
+    			b) Product list attribution no longer works, it's simply not available yet in GA4<br />
+    			c) There are no more product-scoped dimensions. 
+    		</p>
+    	</li>
+    	<li>
+    		<p><strong>Running GA4 and UA in parallel</strong></p>
+    		<p>When you activate GA4, UA will not work properly simply because dataLayer[] object is modified to match the GA4 specification in terms of event names, however we have designed the dataLayer[] to hold the data required by both UA and the GA4.</p>
+    		<p>To run them both, a change is required in the triggers for UA tags. Since GA4 events are different, some of the event based tags in UA will not fire automatically.</p>
+    		<p>For example addToCart in UA is add_to_cart in GA4. Thus Event Equals Add To Cart trigger will not fire. To get the EE Add To Cart trigger working, you must change its trigger from Event Equals Add To Cart to GA4 Event Equals Add To Cart. The same logic applies for other tags such as EE Remove From Cart etc.</p>
+    		<p>Tag changes required: </p>
+    		<p>
+    			1. EE Add To Cart tag must be changed to fire on GA4 Event Equals Add To Cart trigger <br />
+                2. EE Remove From Cart tag must be changed to fire on GA4 Event Equals Remove From Cart<br />
+                3. EE Product Click tag must be changed to fire on GA4 Event Equals Select Item<br />
+                4. EE Async Impression tag must be changed to fire on GA4 Event Equals View Item List<br />
+                5. EE Promotion view tag must be changed to fire on GA4 Event Equals Select Promotion<br />
+                6. EE Promotion Click tag must be changed to fire on GA4 Event Equals View Promotion
+    		</p>
+    		<p>If you plan to have GA4 and UA configured in separate containers, it is possible to add both snippets in the GTM head field from the configuration. This will load them both on frontend.</p>
+    	</li>
+    </ol>       
+</div>
+<script>
+	require(['jquery','Magento_Ui/js/modal/modal'],function($,modal)
+	{
+		$('a[data-ga4-guide]').on('click', function()
+		{
+			var content = $('[data-ga4-guide-content]').html();
+
+			$('<div />').html(content).modal(
+			{
+	            title: 'Google Analytics 4',
+	            autoOpen: true,
+	            closed: function () {},
+	            buttons: 
+		        [
+			        {
+		                text: 'I understand',
+		                attr: 
+			            {
+		                    'data-action': 'confirm'
+		                },
+		                'class': 'action-primary'
+		            }
+		         ]
+	         });
+
+			return false;
+		});
+	});
+</script>

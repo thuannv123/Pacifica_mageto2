@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="\Atome\MagentoPayment\Services\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="\Atome\MagentoPayment\Services\Logger\MonologLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">atome</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">\Atome\MagentoPayment\Services\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Model\ResourceModel\Quote">
+        <plugin name="atomeQuoteAroundSave" type="\Atome\MagentoPayment\Services\Order\QuotePlugin"/>
+    </type>
+
+    <type name="Magento\Config\Model\Config">
+        <plugin name="admin_system_config_save_plugin" type="\Atome\MagentoPayment\Services\View\ConfigPlugin" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="updateOrderStatus" xsi:type="object">Atome\MagentoPayment\Console\UpgradeOrderStatusCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

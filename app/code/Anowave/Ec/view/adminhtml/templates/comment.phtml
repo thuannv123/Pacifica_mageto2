@@ -1,0 +1,21 @@
+<?php if ($block->getErrors()):?>
+	<strong>Error(s) occured:</strong>
+	<?php foreach ($block->getErrors() as $error):?>
+		<div><?php echo $error ?></div>
+	<?php endforeach ?>
+<?php else: ?>
+	<p class="note">
+		<span>Google Tag Manager Container ID ex.: 754831</span>
+	</p>
+	<br /><br />
+	
+	Sign in to Google to get Container ID dropdown populated automatically for you
+	<div style="margin:10px 0px 10px 0px; color:#ababab; font-size:12px; line-height:18px;">
+		1. Login to Google by clicking the blue "Sign in to Google" button shown above<br />
+		2. Enter your Google Tag Manager Account ID above<br />
+		3. Click "Save config" <br />
+		4. You will see a list of your containers and their corresponding ID's on next page load<br />
+		5. We recommend configuring empty container initially<br />
+		6. If you have troubles using the API, contact our Help Desk 
+	</div>
+<?php endif ?>

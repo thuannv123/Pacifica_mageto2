@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Isobar_LogDataPayment">
+        <sequence>
+            <module name="Atome_MagentoPayment" />
+            <module name="P2c2p_P2c2pPayment" />
+        </sequence>
+    </module>
+</config>

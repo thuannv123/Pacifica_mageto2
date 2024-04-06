@@ -1,0 +1,9 @@
+<?php $radius = $block->getHelper()->getCookieDirectiveRadius() ?>
+<style>
+	.ec-gtm-cookie-directive > div { background: <?php echo $block->getHelper()->getCookieDirectiveBackgroundColor() ?>; color: <?php echo $block->getHelper()->getCookieDirectiveTextColor() ?>; -webkit-border-radius: <?php echo $radius ?>; -moz-border-radius: <?php echo $radius ?>; -ms-border-radius: <?php echo $radius ?>; -o-border-radius: <?php echo $radius ?>; border-radius: <?php echo $radius ?>;  }
+	.ec-gtm-cookie-directive > div > div > div a.action.accept,
+    .ec-gtm-cookie-directive > div > div > div a.action.accept-all { color: <?php echo $block->getHelper()->getCookieDirectiveTextAcceptColor() ?>; }
+	.ec-gtm-cookie-directive > div > div > div .ec-gtm-cookie-directive-note-toggle { color: <?php echo $block->getHelper()->getCookieDirectiveTextAcceptColor() ?>; }
+    .ec-gtm-cookie-directive-segments { background: <?php echo $block->getHelper()->getCookieDirectiveBackgroundColor() ?>; }
+    .ec-gtm-cookie-directive-segments > div input[type="checkbox"] + label:before { border:1px solid <?php echo $block->getHelper()->getCookieDirectiveCheckboxColor() ?>; }  
+</style>

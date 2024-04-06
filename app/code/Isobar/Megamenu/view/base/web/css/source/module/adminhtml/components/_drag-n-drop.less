@@ -1,0 +1,41 @@
+//
+//  Drag-n-Drop component
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    .isobar-menu-items-tree {
+        & {
+            .menu-flex(none, center, wrap);
+
+            list-style: none;
+            font-size: 2rem;
+        }
+
+        .menu-item {
+            & {
+                flex-basis: 200px;
+                box-sizing: border-box;
+                margin-bottom: @menu__indent__xl;
+                padding: 35px @menu__indent__l * 2;
+                border: 1px dashed #ccc;
+                border-radius: 4px;
+                background: #fff;
+                white-space: nowrap;
+                cursor: pointer;
+            }
+
+            &:hover {
+                border-color: #a0a0a0;
+                box-shadow: 0 2px 4px rgba(32, 77, 112, .16);
+            }
+
+            &:not(:last-child) {
+                margin-right: @menu__indent__xl;
+            }
+        }
+    }
+}

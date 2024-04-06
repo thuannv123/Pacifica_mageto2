@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_postdispatch_checkout_index_index">
+        <observer name="validate_address_account" instance="Isobar\ZipcodeSuggestion\Observer\ValidateAddressCustomer"/>
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_index">
+        <observer name="validate_address_account" instance="Isobar\ZipcodeSuggestion\Observer\ValidateAddressCustomer"/>
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer instance="Isobar\ZipcodeSuggestion\Observer\Sales\SubmitCustomData" name="thai_address_save_custom_data_to_order"/>
+    </event>
+</config>

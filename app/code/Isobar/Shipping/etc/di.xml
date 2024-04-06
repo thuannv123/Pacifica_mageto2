@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Shipping\Controller\Adminhtml\Order\Shipment\AddTrack" type="Isobar\Shipping\Controller\Adminhtml\Order\Shipment\AddTrack" />
+    <preference for="Magento\Shipping\Controller\Adminhtml\Order\ShipmentLoader" type="Isobar\Shipping\Controller\Adminhtml\Order\ShipmentLoader" />
+    <preference for="Magento\Sales\Model\Order\ShipmentDocumentFactory" type="Isobar\Shipping\Model\Order\ShipmentDocumentFactory" />
+
+    <!--  For add tracking url when import shipment with firebear  -->
+    <preference for="Firebear\ImportExport\Model\Import\Order\Shipment\Track"
+                type="Isobar\Shipping\Model\Import\Order\Shipment\Track"/>
+</config>

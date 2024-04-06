@@ -1,0 +1,38 @@
+{
+    "aw_popup_block": {
+        "column": {
+            "id": true,
+            "name": true,
+            "status": true,
+            "customer_groups": true,
+            "store_ids": true,
+            "page_type": true,
+            "position": true,
+            "event": true,
+            "event_value": true,
+            "effect": true,
+            "cookie_lifetime": true,
+            "content": true,
+            "custom_css": true,
+            "product_condition": true,
+            "category_ids": true,
+            "view_count": true,
+            "click_count": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_popup_block_segment": {
+        "column": {
+            "popup_id": true,
+            "segment_id": true
+        },
+        "index": {
+            "AW_POPUP_BLOCK_SEGMENT_POPUP_ID_SEGMENT_ID": true
+        },
+        "constraint": {
+            "AW_POPUP_BLOCK_SEGMENT_POPUP_ID_AW_POPUP_BLOCK_ID": true
+        }
+    }
+}

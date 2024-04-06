@@ -1,0 +1,97 @@
+<?php if (false !== $data = $block->getDetailPushForward()): ?>
+	<script data-ommit="true">
+
+		<?php
+		/**
+		 * AdWords Dynamic Remarketing
+		 */
+		?>
+
+		<?php if (true): ?>
+		
+    		window.google_tag_params.ecomm_pagetype 	= '<?php echo $data->google_tag_params['ecomm_pagetype'] ?>';
+    		window.google_tag_params.ecomm_category 	= '<?php echo $data->google_tag_params['ecomm_category'] ?>';
+    		window.google_tag_params.ecomm_prodid		= '<?php echo $data->google_tag_params['ecomm_prodid'] ?>';
+    		window.google_tag_params.ecomm_totalvalue 	=  <?php echo $data->google_tag_params['ecomm_totalvalue'] ?>;
+    		window.google_tag_params.returnCustomer 	=  <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+
+    	<?php endif ?>
+
+		<?php if ($block->getHelper()->supportDynx()): ?>
+
+    		window.google_tag_params.dynx_pagetype 		= 'offerdetail';
+    		window.google_tag_params.dynx_itemid 		= window.google_tag_params.ecomm_prodid;
+    		window.google_tag_params.dynx_totalvalue 	= window.google_tag_params.ecomm_totalvalue;
+		
+		<?php endif ?>
+		
+		<?php
+		/**
+		 * Detail push
+		 */
+		?>
+
+		AEC.CookieConsent.queue(() => 
+		{
+			AEC.Cookie.detail(<?php echo $data->push ?>).push(dataLayer);
+			
+		}).process();
+		
+		<?php
+		/**
+		 * Private browser fallback
+		 */
+		?>
+
+		dataLayerTransport.push(<?php echo $data->push ?>);
+
+		<?php if ($block->getHelper()->supportFacebookConversionsApi()): ?>
+		
+    		(async data => 
+    		{
+    			AEC.Request.post(AEC.url('datalayer/index/facebook'), { payload: data, form_key: <?php echo json_encode($block->getHelper()->getFormKey()) ?>}, response => 
+    			{
+    				return true;
+    			});
+    			
+    		})(<?php echo $data->push ?>);
+
+		<?php endif ?>
+
+		<?php
+		/**
+		 * Grouped product map
+		 */
+		?>
+		
+		window.G = <?php echo $data->group ?>;
+
+		<?php if ($block->getHelper()->facebook()): ?>
+
+			(() => 
+			{
+				let callback = () => 
+				{
+					fbq('track', 'ViewContent', <?php echo $data->fbq ?>, { eventID: AEC.UUID.generate({ event: 'ViewContent' }) });
+				}; 
+
+				if (AEC.Const.COOKIE_DIRECTIVE)
+	    		{
+	    			AEC.CookieConsent.queue(() => 
+	    			{
+	    				AEC.EventDispatcher.on('ec.facebook.loaded', callback);
+	    			});
+	    		}
+	    		else 
+	    		{
+	    			AEC.EventDispatcher.on('ec.facebook.loaded', callback);
+	    		}
+	    		
+			})();
+
+    		
+
+		<?php endif ?>
+	</script>
+
+<?php endif ?>

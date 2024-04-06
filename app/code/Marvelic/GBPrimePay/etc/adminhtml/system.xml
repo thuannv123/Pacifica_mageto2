@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gbprimepay">
+            <group id="gbprimepay_required">
+
+                <field id="cron_setting" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Cron Setting</label>
+                    <comment><![CDATA[Enter cron expression<br/>
+                        <br/>
+                        * * * * *<br/>
+                        | | | | |<br/>
+                        | | | | +---- Day of the Week   (range: 0-6, 1 standing for Monday)<br/>
+                        | | | +------ Month of the Year (range: 1-12)<br/>
+                        | | +-------- Day of the Month  (range: 1-31)<br/>
+                        | +---------- Hour              (range: 0-23)<br/>
+                        +------------ Minute            (range: 0-59)<br/>
+                        Example: * */1 * * * - every minute past every hour.<br/>
+                        <br/>
+                        Read more about cron expressions - <a target="_blank" href="https://en.wikipedia.org/wiki/Cron">here</a>]]>
+                    </comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Magento\Backend\Block\Template" name="payment_link_block" template="Marvelic_BeamCheckout::order/view/payment_link.phtml" />
+    </body>
+</page>

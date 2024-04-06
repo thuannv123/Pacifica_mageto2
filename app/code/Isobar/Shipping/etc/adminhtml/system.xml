@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" translate="label">
+            <group id="custom_carrier" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="25" translate="label">
+                <label>Custom Carrier</label>
+                <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1" sortOrder="10" translate="label"
+                       type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1" sortOrder="50" translate="label"
+                       type="text">
+                    <label>Title</label>
+                </field>
+                <field id="url" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1" sortOrder="50" translate="label"
+                       type="text">
+                    <label>Tracking Url</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @copyright: Copyright © 2024 Marvelic. All rights reserved.
+ * @author   : Marvelic Engine Co.,Ltd. <info@marvelic.co.th>
+ */
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Beam Checkout & Payment Link') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?php echo __("Payment Link:"); ?>
+        <div class="order-payment-method-title"><br>
+            <a><?php echo $block->getData('payment_link'); ?></a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Isobar\FreeShippingProcessor\Model\Carrier\Freeshipping" type="Marvelic\OfflineShipping\Model\Carrier\Freeshipping"/>
+
+    <type name="Magento\Quote\Model\Cart\ShippingMethodConverter">
+        <plugin name="add_instructions_to_method" type="Marvelic\OfflineShipping\Plugin\Carrier\Instructions" disabled="false" sortOrder="30"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\Rate">
+        <plugin name="add_instructions_to_method_rate" type="Marvelic\OfflineShipping\Plugin\Quote\Address\Rate" disabled="false" sortOrder="3"/>
+    </type>
+</config>

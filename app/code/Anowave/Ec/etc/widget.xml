@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+	<widget class="Anowave\Ec\Block\Widget\Cookie" id="ec_cookie">
+		<label>GDPR Cookie Settings</label>
+		<description>Allows visitors to manage their cookie preferences</description>
+	</widget>
+</widgets>

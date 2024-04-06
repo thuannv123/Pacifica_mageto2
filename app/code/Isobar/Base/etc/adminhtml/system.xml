@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Isobar Team
+ * @copyright Copyright (c) 2020 Isobar (https://www.isobar.com)
+ * @package Isobar_Base
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="isobar" translate="label" sortOrder="999999" class="Isobar-tab icbase-tab-container">
+            <label>Isobar Extensions</label>
+        </tab>
+        <section id="isobar_base" translate="label" type="text" sortOrder="-5000" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label><![CDATA[Extensions &amp; Information]]></label>
+            <tab>isobar</tab>
+            <resource>Isobar_Base::config</resource>
+
+            <group id="menu" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Menu</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable Isobar Menu Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="information" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>System Information</label>
+                <frontend_model>Isobar\Base\Block\Info</frontend_model>
+            </group>
+        </section>
+    </system>
+</config>

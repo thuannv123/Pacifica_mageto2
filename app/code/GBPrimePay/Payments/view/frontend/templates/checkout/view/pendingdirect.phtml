@@ -1,0 +1,105 @@
+<?php
+/**
+ * GBPrimePay_Payments extension
+ * @package GBPrimePay_Payments
+ * @copyright Copyright (c) 2020 GBPrimePay Payments (https://gbprimepay.com/)
+ */
+// @codingStandardsIgnoreFile
+/** @var \GBPrimePay\Payments\Block\Checkout\View\PendingDirect $block */
+$configData = $block->getConfigData();
+$isEnableSave = $configData->getIsSave();
+$cards = $block->getDataCard();
+$customerId = $block->customerSession->getCustomerId() ? '1' : '0';
+$baseUrl = $block->getBaseUrl();
+$transaction = $block->getTransactionDirect();
+$_form_key = $transaction['transaction_form'];
+$returnUrlSuccess = $block->getUrl("checkout/onepage/success");
+$returnUrlFailed = $configData->clearCartUrl();
+
+$img_checked = $configData->getImageURLs('checked');
+$img_unchecked = $configData->getImageURLs('unchecked');
+$img_logopay = $configData->getImageURLs('logopay');
+
+
+$gbdevdebug = $configData->GBdevDebug();
+
+ if($gbdevdebug == "true"){
+  echo '<br>transaction<pre>';print_r($transaction);echo '</pre>';
+ }
+
+if(($transaction['payStatus'] == "") || ($transaction['payStatus'] == "failure")){
+  echo $block->getFormKey();
+  echo '<div class="direct_display" id="gbprimepay-direct-payment-failed" style="display:block;">';
+  echo '<center><br><br>';
+  echo '<img src="' . $img_unchecked . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<h3>';
+  echo __('GBTXTCreditCardFailed');
+  echo '</h3>';
+  echo '<img src="' . $img_logopay . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<br><br><br>';
+  echo __('GBTXTCreditCardFailedDetail');
+  echo '<br><br><br>';
+  echo __('Redirecting...');
+  echo '<br><br><br><br><br><br>';
+  echo '</center>';
+  echo '</div>';
+?>
+<script>
+require([
+  'jquery',
+  'prototype',
+  'domReady!'
+], function ($, domReady) {
+  'use strict';
+  setInterval(function(){get_return_url($);},10000);
+});
+function get_return_url($){
+var $orderFormkey = $("input[name='form_key']").val();         
+var $orderURL = "<?php echo $returnUrlFailed; ?>";      
+window.location.replace($orderURL);
+}
+</script>
+<?php
+}else{
+  echo $block->getFormKey();
+  echo '<div class="direct_display" id="gbprimepay-direct-payment-successful" style="display:block;">';
+  echo '<center><br><br>';
+  echo '<img src="' . $img_checked . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<h3>';
+  echo __('GBTXTCreditCardSuccessful');
+  echo '</h3>';
+  echo '<img src="' . $img_logopay . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<br><br><br>';
+  echo __('GBTXTCreditCardSuccessfulDetail');
+  echo '<br><br><br>';
+  echo __('Redirecting...');
+  echo '<br><br><br><br><br><br>';
+  echo '</center>';
+  echo '</div>';
+?>
+<script>
+require([
+  'jquery',
+  'prototype',
+  'domReady!'
+], function ($, domReady) {
+  'use strict';
+  setInterval(function(){get_return_url($);},10000);
+});
+function get_return_url($){
+var $orderFormkey = $("input[name='form_key']").val();         
+var $orderURL = "<?php echo $returnUrlSuccess; ?>";      
+window.location.replace($orderURL + 'form_key/' + $orderFormkey);
+}
+</script>
+<?php
+}
+?>
+<script type="text/javascript">
+require([
+ 'Magento_Customer/js/customer-data'
+ ], function (customerData) {
+ var sections = ['customer', 'cart'];
+customerData.reload(sections, true);
+ });
+</script>

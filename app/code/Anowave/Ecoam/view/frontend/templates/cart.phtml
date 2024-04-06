@@ -1,0 +1,48 @@
+<script>
+
+	<?php
+	/**
+	 * Get data
+	 */
+	?>
+	var info = <?php echo $block->getCartPush() ?>, checkout_data = info.push;
+
+	(function(google_tag_params)
+	{
+		window.google_tag_params.ecomm_pagetype 	= 'cart';
+		window.google_tag_params.ecomm_prodid 		= google_tag_params.ecomm_prodid;
+		window.google_tag_params.ecomm_pvalue		= google_tag_params.ecomm_pvalue;
+		window.google_tag_params.ecomm_pname		= google_tag_params.ecomm_pname;
+		window.google_tag_params.ecomm_totalvalue 	= google_tag_params.ecomm_totalvalue;
+		window.google_tag_params.returnCustomer 	= <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+		
+	})(info.google_tag_params);
+
+	AEC.Checkout.data = checkout_data;
+	
+	<?php
+	/**
+	 * Shift step
+	 */
+	?>
+	
+	checkout_data.ecommerce.checkout.actionField.step = AEC.Const.CHECKOUT_STEP_CART;
+
+	<?php
+	/**
+	 * Push step to dataLayer[] object
+	 */
+	?>
+
+	(data => 
+	{
+		AEC.CookieConsent.queue(() => 
+		{
+			AEC.Cookie.checkout(data).push(dataLayer);
+			
+		}).process();
+		
+	})(checkout_data);
+	
+	
+</script>

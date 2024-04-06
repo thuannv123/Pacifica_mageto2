@@ -1,0 +1,83 @@
+<script data-ommit="true">
+
+    document.addEventListener("DOMContentLoaded", () => 
+    {
+    	var PromotionTrack = ((dataLayer) => 
+	    {
+	        return {
+	            apply: () => 
+	            {
+	                var promotions = [], position = 0;
+	
+	                document.querySelectorAll('[data-promotion]').forEach(promotion => 
+	                {
+						let entity =
+						{
+                            id:      	promotion.dataset.promotionId,
+                            name:    	promotion.dataset.promotionName,
+                            creative:	promotion.dataset.promotionCreative,
+                            position:	promotion.dataset.promotionPosition
+                        };
+
+	                	AEC.EventDispatcher.trigger('ec.cookie.promotion.entity', entity, 
+	    	            {
+		    	            element: promotion
+		    	        });
+
+	                    promotions.push(entity);
+
+	                    promotion.addEventListener('click', (event) => 
+	                    {
+	                    	var data = 
+	                        {
+                       			'event': 'promotionClick',
+                                'ecommerce': 
+                                {
+                                    'promoClick': 
+                                    {
+                                        'promotions':
+                                        [
+                                            {
+                                                'id':       event.target.dataset.promotionId,
+                                                'name':     event.target.dataset.promotionName,
+                                                'creative': event.target.dataset.promotionCreative,
+                                                'position': event.target.dataset.promotionPosition
+                                            }
+                                        ]
+                                    }
+                                }
+			                };
+			                
+                            AEC.Cookie.promotionClick(data, promotion).push(dataLayer);
+
+                            /**
+                             * Save persistent data
+                             */
+                            AEC.Persist.push(AEC.Persist.CONST_KEY_PROMOTION,
+	                        {
+    	                        'promotion':data.ecommerce.promoClick.promotions[0]
+    	                    });
+		                });
+	                });
+	
+	                if (promotions.length)
+	                {
+		                AEC.Cookie.promotion(
+				        {
+	                        'event':'promoViewNonInteractive',
+                            'ecommerce':
+                            {
+                                'promoView':
+                                {
+                                    'promotions': promotions
+                                }
+                            }
+                        }).push(dataLayer);
+	                }
+	
+	                return this;
+	            }
+	        }
+	    })(dataLayer).apply();
+    });
+</script>

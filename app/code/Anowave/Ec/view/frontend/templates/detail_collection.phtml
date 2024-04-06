@@ -1,0 +1,13 @@
+<?php if ($block->getHelper()->usePostRenderImpressionPayloadModel() && $block->getLayout()->getBlock('product.info')):?>
+
+	<script>
+
+		(payload => 
+		{
+			dataLayer.push(payload);
+			
+		})(<?php echo $block->getProductDetail()->getDetailPayload($block->getLayout()->getBlock('product.info'))?>);
+	
+	</script>
+
+<?php endif ?>

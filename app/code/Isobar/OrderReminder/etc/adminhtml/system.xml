@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="isobar_order_reminder" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Order Reminder</label>
+            <tab>isobar</tab>
+            <resource>Isobar_OrderReminder::config_system</resource>
+            <group id="general" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label comment" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Enabled</label>
+                    <comment>Enables or disables extension.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="expiration_time" translate="label comment" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Expiration time</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Please input time (hour) to send a reminder pending payment email. If the order status is
+                        still pending/pending_payment after X hours from created time, send a reminder email.
+                    </comment>
+                </field>
+
+                <field id="link_expiration_time" translate="label comment" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Expiration time for the reminder link</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+
+                <field id="pickup_template" translate="label comment" type="select" sortOrder="4" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>New Order Reminder Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,147 @@
+/**
+ * Atome Payment Module for Magento 2
+ *
+ * @author Atome
+ * @copyright 2020 Atome
+ */
+
+.checkout-payment-method .payment-method #atome-payment-method.payment-method-content {
+    padding-right: 22px;
+}
+
+.checkout-payment-method .payment-method._active #atome-payment-method.payment-method-content {
+    overflow:hidden
+}
+
+#atome-payment-method .payment-method-title label .atome-payment-image,.atome-new-user-off-image {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 6px;
+    margin-top: -6px;
+    height: 1.5em;
+}
+
+#atome-payment-method .atome-checkout-redirect{
+    cursor:pointer !important;
+}
+
+#atome-payment-method .payment-method-title label .checkout-atome-logo {
+    vertical-align: middle;
+    display: inline-block;
+    height: 18px;
+    margin-bottom: 4px;
+}
+
+#atome-payment-method .payment-method-note {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    text-align: center;
+}
+
+#atome-payment-method .payment-method-note h3 {
+    color: #00a4e4;
+    text-align: left;
+}
+
+#atome-payment-method .payment-method-note ul {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#atome-payment-method .payment-method-note ul li {
+    width: 24%;
+    display: inline-block;
+}
+
+#atome-payment-method .payment-method-note ul.cost li {
+    font-size: 1.8rem;
+    color: #153F72;
+}
+
+#atome-payment-method .atome-checkout-redirect {
+    margin-top: 1rem;
+    text-align: left;
+    background-color: #f6f7f9;
+    display: inline-block;
+    padding: 15px;
+}
+
+#atome-payment-method .atome-checkout-eligible {
+    display: none;
+}
+
+#atome-payment-method .atome-checkout-ineligible {
+    display: none;
+}
+
+#atome-payment-method .atome-checkout-redirect .instalment-footer {
+    width: 100%;
+    float: left;
+}
+
+@media only screen and (min-width : 992px) {
+    #atome-payment-method .atome-checkout-redirect .instalment-footer {
+        width: 57%;
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+    #atome-payment-method .atome-checkout-redirect .instalment-footer {
+        width: 65%;
+    }
+}
+
+#atome-payment-method .actions-toolbar {
+    float: right;
+    margin-top: 1.5rem;
+    margin-left: 0;
+    line-height: 1.1;
+    width: 100%;
+    text-align: center;
+}
+
+@media only screen and (min-width : 992px) {
+    #atome-payment-method .actions-toolbar {
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width : 768px) {
+    #atome-payment-method .actions-toolbar .primary {
+        width: 100%;
+    }
+}
+
+.cart-summary .atome-checkout-note {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #000000;
+    vertical-align: top;
+}
+
+.cart-summary .atome-checkout-note .atome-new-user-off-note {
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.cart-summary .atome-checkout-note .atome-logo {
+    height: 16px !important;
+    display: inline-block;
+    margin-top: 1.5px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+/* Mobile */
+@media only screen and (max-width: 991px) {
+    #atome-payment-method .payment-method-note ul li {
+        width: 30%;
+    }
+
+    #atome-payment-method .payment-method-note ul li span {
+        font-size: 1.2rem;
+    }
+}

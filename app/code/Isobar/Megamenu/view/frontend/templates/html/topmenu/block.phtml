@@ -1,0 +1,31 @@
+<!-- For sidebar menu: add class "in-sidebar" to "tm-megamenu" div -->
+<?php
+/** @var Isobar\Megamenu\Block\Html\Topmenu\Block $this */
+$level = $this->getMenuLevel();
+$width = $this->getMmWidth() ? $this->getMmWidth() : '';
+$rowData = $this->renderRows();
+?>
+
+<div class="level<?=$level?> <?php echo $this->getMenuType(); ?> tm-megamenu megamenu-wrapper submenu <?php echo $this->getAdditionalCssClass(); ?>"
+    style="
+        <?php if ($this->getBackgroundImage()) : ?>
+            background-image: url('<?= $this->getBackgroundImage();?>');
+        <?php endif; ?>
+        <?php if ($width) : ?>
+            width:<?=$width; ?>;
+        <?php endif; ?>
+    "
+    <?php if ($width) : ?>
+        data-width="<?=$width; ?>"
+    <?php endif; ?>
+>
+    <?php if ($rowData) : ?>
+        <?php if ($level === 1) :?>
+            <div class="container">
+                <?php echo $rowData; ?>
+            </div>
+        <?php else : ?>
+            <?php echo $rowData; ?>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

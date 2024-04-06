@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="settings">
+        <field name="enable_product_url_pattern">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Product Url Pattern (Simple)</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                    <item name="dataScope" xsi:type="string">enable_product_url_pattern</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/checkbox-switch</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="catalog_product" xsi:type="string">catalog_product</item>
+                    </item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="notice" xsi:type="string">↑ Enable to use product url pattern</item>
+                </item>
+            </argument>
+        </field>
+        <field name="product_url_pattern">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Product Url Pattern (Simple)</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/input</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">181</item>
+                    <item name="dataScope" xsi:type="string">product_url_pattern</item>
+                    <item name="default" xsi:type="string">buy_[rand(5, 15)]_[product_name]_[product_sku]_[product_color]</item>
+                    <item name="notice" xsi:type="string">Please specify product url pattern</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="component" xsi:type="string">Isobar_ImportExport/js/form/element/url_pattern</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="catalog_product" xsi:type="string">catalog_product</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">
+                            ${$.parentName}.enable_product_url_pattern:value
+                        </item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            The list of PHP functions is limited and contains two functions rand() and mt_rand().
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="enable_configurable_product_url_pattern">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Product Url Pattern (Configurable)</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                    <item name="dataScope" xsi:type="string">enable_configurable_product_url_pattern</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="component" xsi:type="string">Isobar_ImportExport/js/form/element/checkbox-switch</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="catalog_product" xsi:type="string">catalog_product</item>
+                    </item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="notice" xsi:type="string">↑ Enable to use configurable product url pattern</item>
+                </item>
+            </argument>
+        </field>
+        <field name="configurable_product_url_pattern">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Product Url Pattern (Configurable)</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="elementTmpl" xsi:type="string">Isobar_ImportExport/form/element/input</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">181</item>
+                    <item name="dataScope" xsi:type="string">configurable_product_url_pattern</item>
+                    <item name="default" xsi:type="string">buy_[rand(5, 15)]_[product_name]_[product_sku]_[product_color]</item>
+                    <item name="notice" xsi:type="string">Please specify configurable product url pattern</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="component" xsi:type="string">Isobar_ImportExport/js/form/element/configurable_url_pattern</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="catalog_product" xsi:type="string">catalog_product</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">
+                            ${$.parentName}.enable_configurable_product_url_pattern:value
+                        </item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            The list of PHP functions is limited and contains two functions rand() and mt_rand().
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

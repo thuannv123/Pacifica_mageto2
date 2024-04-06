@@ -1,0 +1,115 @@
+<?php
+/**
+ * GBPrimePay_Payments extension
+ * @package GBPrimePay_Payments
+ * @copyright Copyright (c) 2020 GBPrimePay Payments (https://gbprimepay.com/)
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $_order = $block->getOrder();
+$_payment = $_order->getPayment();
+$checkFlag = false;
+$gbpFlag = false;
+if ($_payment->getAdditionalInformation('gbp_reference_no')) {
+    $dataCode = $_payment->getAdditionalInformation();
+    $checkFlag = false;
+    $gbpFlag = true;
+}else if ($_payment->getAdditionalInformation('transaction_id')) {
+    $dataCode = $_payment->getAdditionalInformation();
+    $checkFlag = true;
+    $gbpFlag = false;
+}
+?>
+<div class="block block-order-details-view">
+    <div class="block-title">
+        <strong><?php /* @escapeNotVerified */
+            echo __('Order Information') ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if (!$_order->getIsVirtual()): ?>
+            <div class="box box-order-shipping-address">
+                <strong class="box-title"><span><?php /* @escapeNotVerified */
+                        echo __('Shipping Address') ?></span></strong>
+                <div class="box-content">
+                    <address><?php /* @escapeNotVerified */
+                        echo $block->getFormattedAddress($_order->getShippingAddress()); ?></address>
+                </div>
+            </div>
+
+            <div class="box box-order-shipping-method">
+                <strong class="box-title">
+                    <span><?php /* @escapeNotVerified */
+                        echo __('Shipping Method') ?></span>
+                </strong>
+                <div class="box-content">
+                    <?php if ($_order->getShippingDescription()): ?>
+                        <?php echo $block->escapeHtml($_order->getShippingDescription()) ?>
+                    <?php else: ?>
+                        <?php /* @escapeNotVerified */
+                        echo __('No shipping information available'); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="box box-order-billing-address">
+            <strong class="box-title">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Billing Address') ?></span>
+            </strong>
+            <div class="box-content">
+                <address><?php /* @escapeNotVerified */
+                    echo $block->getFormattedAddress($_order->getBillingAddress()); ?></address>
+            </div>
+        </div>
+        <div class="box box-order-billing-method">
+            <strong class="box-title">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Payment Method') ?></span>
+            </strong>
+            <div class="box-content">
+                <?php echo $block->getPaymentInfoHtml() ?>
+            </div>
+            <?php if ($checkFlag) : ?>
+                <div class="box-content">
+                    <table class="data table">
+                        <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <span><?php echo isset($dataCode['method_title']) ? 'Waiting for '.$dataCode['method_title'] : '' ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Transaction ID:</th>
+                            <td>
+                                <?php echo isset($dataCode['transaction_id']) ? $dataCode['transaction_id'] : '' ?>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($gbpFlag) : ?>
+                <div class="box-content">
+                    <table class="data table">
+                        <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <span><?php echo isset($dataCode['method_title']) ? 'Payment Authorized, '.$dataCode['method_title'] : '' ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Reference ID:</th>
+                            <td>
+                                <?php echo isset($dataCode['gbp_reference_no']) ? $dataCode['gbp_reference_no'] : '' ?>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

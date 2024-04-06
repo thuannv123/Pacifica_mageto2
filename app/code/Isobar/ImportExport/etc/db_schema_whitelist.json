@@ -1,0 +1,12 @@
+{
+    "sales_order": {
+        "column": {
+            "exported": true
+        }
+    },
+    "firebear_import_history": {
+        "column": {
+            "status": true
+        }
+    }
+}

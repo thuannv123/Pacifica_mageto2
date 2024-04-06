@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gdpr>
+            <module>
+                <type>2</type>
+            </module>
+            <general>
+                <allow_verify_password>1</allow_verify_password>
+                <allow_download>1</allow_download>
+                <download_customer_message>Here you can download a copy of your personal data in CSV or Excel XML file</download_customer_message>
+                <allow_tac_register_customer>0</allow_tac_register_customer>
+                <tac_title_checkbox>I agree to the Terms and Conditions</tac_title_checkbox>
+                <tac_content>
+                    <![CDATA[
+                        <p>
+                            <strong>According to GDPR: </strong>
+                            <span>To protect the security of your personal data, you have rights to delete your information on our website completely .</span>
+                        </p>
+                    ]]>
+                </tac_content>
+                <auto_delete_customer_account>0</auto_delete_customer_account>
+            </general>
+            <anonymise_account_purchase>
+                <allow_delete_subscrition>1</allow_delete_subscrition>
+                <allow_delete_abandonedcart>1</allow_delete_abandonedcart>
+                <allow_anonymise_account_purchase>1</allow_anonymise_account_purchase>
+                <allow_anonymise_address_option_purchase>1</allow_anonymise_address_option_purchase>
+            </anonymise_account_purchase>
+            <cookie>
+                <enable>0</enable>
+                <block_access>1</block_access>
+                <message>
+                    <![CDATA[
+                        <p>
+                            <strong>We use cookies to make your experience better.</strong>
+                            <span>To comply with the new e-Privacy directive, we need to ask for your consent to set the cookies.</span>
+                            <a href="%policyUrl">Learn more</a>
+                        </p>
+                    ]]>
+                </message>
+                <button_text>Allow Cookies</button_text>
+                <policy_page>privacy-policy-cookie-restriction-mode</policy_page>
+                <location>bottom</location>
+                <apply_for>0</apply_for>
+                <specific_country>BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,UK
+                </specific_country>
+            </cookie>
+            <email>
+                <enable>1</enable>
+                <sender>general</sender>
+                <confirmation>
+                    <template>gdpr_email_confirmation_template</template>
+                </confirmation>
+                <before_delete_account>
+                    <template>gdpr_email_before_delete_account_template</template>
+                    <template_after>gdpr_email_before_delete_account_template_after</template_after>
+                </before_delete_account>
+                <admin_notification_email>
+                    <receiver>general</receiver>
+                    <template>gdpr_email_admin_notification_email_template</template>
+                </admin_notification_email>
+            </email>
+        </gdpr>
+    </default>
+</config>

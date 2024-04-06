@@ -1,0 +1,68 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Mageplaza\GdprPro\Helper\Data $gdprHelper */
+$gdprHelper = $this->helper(\Mageplaza\GdprPro\Helper\Data::class);
+
+/** @var \Magento\Cookie\Helper\Cookie $cookieHelper */
+$cookieHelper = $this->helper(\Magento\Cookie\Helper\Cookie::class);
+
+if ($gdprHelper->isEnableCookieRestrictrion()): ?>
+    <div class="message global <?= /** @noEscape */ $gdprHelper->getHtmlClass() ?>" id="gdpr-notice-cookie-block"
+         style="display: none">
+        <div class="content">
+            <?= /** @noEscape */ $gdprHelper->getCookieMessage() ?>
+            <div class="actions">
+                <button id="gdpr-btn-cookie-allow" class="action allow primary">
+                    <span><?= /** @noEscape */ $gdprHelper->getCookieButtonText() ?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#gdpr-notice-cookie-block": {
+                "cookieNotices": {
+                    "cookieAllowButtonSelector": "#gdpr-btn-cookie-allow",
+                    "cookieName": "<?= /** @noEscape */ \Magento\Cookie\Helper\Cookie::IS_USER_ALLOWED_SAVE_COOKIE ?>",
+                    "cookieValue": <?= /** @noEscape */ $cookieHelper->getAcceptedSaveCookiesWebsiteIds() ?>,
+                    "cookieLifetime": <?= /** @noEscape */ $cookieHelper->getCookieRestrictionLifetime() ?>,
+                    "noCookiesUrl": "<?= /** @noEscape */ $block->getUrl('cookie/index/noCookies') ?>"
+                }
+            }
+        }
+    </script>
+    <?php if ($gdprHelper->isBlockAccess()): ?>
+        <script type="text/javascript">
+            window.gdprCookie = {
+                url: "<?= /** @noEscape */ $gdprHelper->getCookiePolicyUrl() ?>",
+                name: "<?= /** @noEscape */ \Magento\Cookie\Helper\Cookie::IS_USER_ALLOWED_SAVE_COOKIE ?>"
+            };
+        </script>
+    <?php endif; ?>
+    <?php if ($customCss = $gdprHelper->getCustomCss()): ?>
+        <style type="text/css">
+            <?= /** @noEscape */ $customCss ?>
+        </style>
+    <?php endif; ?>
+<?php endif; ?>

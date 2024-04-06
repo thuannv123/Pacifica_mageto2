@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <crontab>
+            <vertex>
+                <jobs>
+                    <vertex_wsdl_cache>
+                        <schedule>
+                            <cron_expr>0 0 30 2 *</cron_expr>
+                        </schedule>
+                    </vertex_wsdl_cache>
+                </jobs>
+            </vertex>
+            <vertex_log>
+                <jobs>
+                    <vertex_log_rotation>
+                        <schedule>
+                            <cron_expr>0 0 30 2 *</cron_expr>
+                        </schedule>
+                    </vertex_log_rotation>
+                </jobs>
+            </vertex_log>
+            <default>
+                <jobs>
+                    <paypal_fetch_settlement_reports>
+                        <schedule>
+                            <cron_expr>0 0 30 2 *</cron_expr>
+                        </schedule>
+                    </paypal_fetch_settlement_reports>
+                </jobs>
+            </default>
+        </crontab>
+        <connector_developer_settings>
+            <cron_schedules>
+                <importer>0 0 30 2 *</importer>
+                <contact>0 0 30 2 *</contact>
+                <order>0 0 30 2 *</order>
+                <catalog>0 0 30 2 *</catalog>
+                <review_wishlist>0 0 30 2 *</review_wishlist>
+            </cron_schedules>
+        </connector_developer_settings>
+    </default>
+</config>

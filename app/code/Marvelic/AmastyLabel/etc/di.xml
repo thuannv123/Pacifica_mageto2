@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <preference for="Amasty\Label\Model\ResourceModel\Label\Grid\Collection" type="Marvelic\AmastyLabel\Model\ResourceModel\Label\Grid\Collection" />
+    <preference for="Amasty\Label\Model\Label\Save\Adminhtml\SaveFromEditForm" type="Marvelic\AmastyLabel\Model\Label\Save\Adminhtml\SaveFromEditForm" />
+    <preference for="Amasty\Label\Controller\Adminhtml\Label\Save" type="Marvelic\AmastyLabel\Controller\Adminhtml\Label\Save" />
+</config>

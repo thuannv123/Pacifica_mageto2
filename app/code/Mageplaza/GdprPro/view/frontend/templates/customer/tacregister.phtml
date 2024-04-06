@@ -1,0 +1,47 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_GdprPro
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Mageplaza\GdprPro\Helper\Data $helper */
+$helper = $this->helper(\Mageplaza\GdprPro\Helper\Data::class);
+?>
+<?php if ($helper->getEnableTermAndCondition()): ?>
+    <div class="field register-tac-container">
+        <label for="tac-content" class="label"><span><?= /** @noEscape */ $block->escapeHtml(__('Terms and Conditions')) ?></span></label>
+        <div class="control">
+            <span class="tac-content" id="tac-content">
+                <?php if($helper->getTermAndConditionContent()) : ?>
+                    <?= /** @noEscape */ $helper->getTermAndConditionContent()?>
+                <?php else : ?>
+                    <p>
+                        <strong><?= /** @noEscape */ __('According to GDPR:') ?></strong>
+                        <span><?= /** @noEscape */ __('To protect the security of your personal data, you have rights to delete your information on our website completely.') ?></span>
+                    </p>
+                <?php endif;?>
+            </span>
+        </div>
+    </div>
+    <div class="field choice checkbox-tac required">
+        <input type="checkbox" name="agree_gdpr_tac" title="<?= /** @noEscape */ $helper->getTitleCheckboxTAC() ?>" value="1"
+               id="agree_gdpr_tac" class="checkbox" data-validate="{required:true}">
+        <label for="agree_gdpr_tac" class="label"><span><?= /** @noEscape */ $helper->getTitleCheckboxTAC() ?: __('I agree to the Terms and Conditions') ?></span></label>
+    </div>
+<?php endif; ?>

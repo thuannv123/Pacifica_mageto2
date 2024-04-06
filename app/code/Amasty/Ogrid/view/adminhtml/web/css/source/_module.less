@@ -1,0 +1,118 @@
+//
+//  Amasty Ogrid Styles
+//  ____________________________________________
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amogrid-tabs-container {
+        & {
+            margin: 0 auto;
+            padding: 0;
+            min-width: 320px;
+            max-width: 800px;
+        }
+
+        .amogrid-tab {
+            display: none;
+        }
+
+        .amogrid-label {
+            display: inline-block;
+            float: right;
+            margin: 0 0 -1px;
+            margin-top: -6px;
+            padding: 10px 13px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .amogrid-label:before {
+            margin-right: 10px;
+        }
+
+        .amogrid-label:hover {
+            color: #888;
+            cursor: pointer;
+        }
+
+        .amogrid-tab + label {
+            margin-left: 5px;
+            border: 1px solid #ddd;
+            border-bottom: 1px solid #fff;
+        }
+
+        .amogrid-tab._selected + label {
+            border: 1px solid #ddd;
+            border-bottom: 1px solid #fff;
+            background: #e3e3e3;
+            color: #555;
+            font-weight: bold;
+        }
+    }
+
+    .amogrid-content-container {
+        & {
+            display: none;
+        }
+
+        &.-active {
+            display: block;
+        }
+    }
+
+    .amogrid-table-column {
+        .admin__field-label {
+            text-align: left;
+        }
+
+        .amogrid-cell-label,
+        .amogrid-cell-title {
+            padding: 3px 0;
+        }
+
+        .amogrid-cell-label {
+            width: 100%;
+        }
+
+        .amogrid-cell-title {
+            padding-right: 2rem;
+        }
+    }
+
+    .sales-order-index .admin__data-grid-action-columns-menu._overflow .admin__action-dropdown-menu-content {
+        width: 60rem;
+    }
+
+    .amogrid-table-container {
+        .amogrid-tr._odd-row .amogrid-th,
+        .amogrid-tr:hover .amogrid-th {
+            background-color: #514943;
+        }
+
+        .amogrid-th {
+            position: relative;
+            padding: 1rem 1rem;
+            border: .1rem solid #8a837f;
+            background-color: #514943;
+            background-clip: padding-box;
+            color: #fff;
+            vertical-align: middle;
+        }
+
+        &.-weee .amogrid-tr._odd-row .amogrid-th,
+        &.-weee .amogrid-tr:hover .amogrid-th,
+        &.-weee .amogrid-tr .amogrid-th,
+        &.-weee .amogrid-tr .amogrid-td {
+            border: none;
+            background: none;
+            color: #303030;
+            font-weight: normal;
+        }
+
+        &.-weee .amogrid-tr .amogrid-td.-strong {
+            font-weight: bold;
+        }
+    }
+}

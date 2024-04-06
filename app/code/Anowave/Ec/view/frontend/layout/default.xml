@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceBlock name="head.additional">
+    		<block class="Anowave\Ec\Block\Track" name="ec_css" as="ec_css" template="css.phtml" />
+		    <block class="Anowave\Ec\Block\Track" name="ec_header" as="ec_header" template="header.phtml" />
+            <block class="Anowave\Ec\Block\Track" name="ec_purchase" as="ec_purchase" template="purchase.phtml" >
+            	<block class="Anowave\Ec\Block\Track" name="ec_datalayer" as="ec_datalayer" template="datalayer.phtml" />
+            	<block class="Anowave\Ec\Block\Track" name="ec_impressions" as="ec_impressions" template="impression.phtml" />
+            	<block class="Anowave\Ec\Block\Track" name="ec_search" as="ec_search" template="search.phtml" />
+            	<block class="Anowave\Ec\Block\Track" name="ec_detail" as="ec_detail" template="detail.phtml" />
+            	<block class="Anowave\Ec\Block\Track" name="ec_cookie" as="ec_cookie" template="cookie.phtml" />
+            </block>
+		</referenceBlock>
+        <referenceContainer name="after.body.start">
+        	<block class="Anowave\Ec\Block\Track" name="ec_noscript" as="ec_noscript" template="noscript.phtml" />
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+        	<block class="Anowave\Ec\Block\Track" name="ec_events" as="ec_events" template="events.phtml" />
+        	<block class="Anowave\Ec\Block\Track" name="ec_promotions" as="ec_promotions" template="promotions.phtml" />
+        	<block class="Anowave\Ec\Block\Track" name="ec_widgets" as="ec_widgets" template="widgets.phtml" />
+            <block class="Anowave\Ec\Block\Track" name="ec_footer" as="ec_footer" template="footer.phtml" />
+        </referenceContainer>
+    </body>
+</page>

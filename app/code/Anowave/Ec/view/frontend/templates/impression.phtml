@@ -1,0 +1,114 @@
+<?php if (false !== $data = $block->getImpressionPushForward()): ?>
+
+	<script data-ommit="true">
+
+		<?php
+		/**
+		 * Maximum payload size supported by GA
+		 * 
+		 * @var number
+		 */
+		?>
+		
+		var GOOGLE_PAYLOAD_SIZE = 8192;
+
+		<?php
+		/**
+		 * AdWords Dynamic Remarketing
+		 */
+		?>
+		
+		window.google_tag_params.ecomm_pagetype = '<?php echo $data->google_tag_params['ecomm_pagetype']?>';
+		window.google_tag_params.ecomm_category = '<?php echo $data->google_tag_params['ecomm_category']?>';
+		window.google_tag_params.returnCustomer = <?php echo $block->getHelper()->getIsReturnCustomer() ?>;
+		
+		<?php 
+		/**
+		 * Push impressions
+		 */
+		?>
+
+		var impressionData = <?php echo $data->push ?>, payloadSize = AEC.getPayloadSize(impressionData);
+
+		<?php
+		/**
+		 * Push payload size into dataLayer[]
+		 */
+		?>
+		
+		dataLayer.push(
+		{
+			payloadSize:payloadSize
+		});
+
+		if (GOOGLE_PAYLOAD_SIZE > payloadSize)
+		{
+			AEC.Cookie.impressions(impressionData).push(dataLayer, false);
+
+			<?php
+			/**
+			 * Private browser fallback
+			 */
+			?>
+			
+			dataLayerTransport.push(impressionData);
+		}
+		else 
+		{
+			var chunks = AEC.getPayloadChunks(impressionData.ecommerce.impressions, Math.ceil(impressionData.ecommerce.impressions.length/Math.ceil(payloadSize/GOOGLE_PAYLOAD_SIZE)));
+
+			var lazyPush = function(chunks)
+			{
+				if (chunks.length)
+				{
+					var chunk = chunks.shift(), chunkPush = Object.assign({}, impressionData);
+
+
+					chunkPush['event'] 					= 'impression';
+					chunkPush.ecommerce['impressions']  = chunk;
+					chunkPush['eventCallback'] 			= (function(chunks)
+					{
+						return function()
+						{
+							lazyPush(chunks);
+						}
+					})(chunks);
+
+					(function(data)
+					{
+						AEC.Cookie.impressions(data).push(dataLayer);
+						
+					})(chunkPush);
+				}
+			};
+
+			/**
+			 * Call lazy push
+			 */
+			lazyPush(chunks);
+		}
+
+		<?php if ($block->getHelper()->facebook()): ?>
+
+    		if (AEC.Const.COOKIE_DIRECTIVE)
+    		{
+    			AEC.CookieConsent.queue(function()
+    			{
+        			if ('undefined' !== typeof fbq)
+        			{
+    					fbq('trackCustom', 'ViewCategory', <?php echo $data->fbq ?>, { eventID: AEC.UUID.generate({ event: 'trackCustom'}) });
+        			}
+    			});
+    		}
+    		else 
+    		{
+        		if ('undefined' !== typeof fbq)
+        		{
+    				fbq('trackCustom', 'ViewCategory', <?php echo $data->fbq ?>, { eventID: AEC.UUID.generate({ event: 'trackCustom'}) });
+        		}
+    		}	
+		
+		<?php endif ?>
+		
+	</script>
+<?php endif ?>

@@ -1,0 +1,22 @@
+{
+    "name": "isobar/linebot",
+    "description": "Notification messages to customer",
+    "require": {
+        "php": "^7.1.0",
+        "isobar/base": ">=1.0.2",
+        "isobar/sociallogin": ">=1.0.2"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Isobar\\LineBot\\": ""
+        }
+    }
+}

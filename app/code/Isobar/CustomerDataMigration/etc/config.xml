@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customerdatamigration>
+            <general>
+                <message>Please reset your password. We've just upgraded our website to enhance your shopping experiences.</message>
+            </general>
+        </customerdatamigration>
+    </default>
+</config>

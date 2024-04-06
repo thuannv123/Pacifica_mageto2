@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<tab id="anowave" translate="label" sortOrder="1" class="anowave">
+			<label>Anowave</label>
+		</tab>
+		<section id="ec4" translate="label" type="text" sortOrder="141" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label><![CDATA[Google Tag Manager GA4]]></label>
+			<tab>anowave</tab>
+			<resource>Anowave_Ec4::anowave</resource>
+			<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Options</label>
+				<attribute type="expanded">1</attribute>
+				<field id="mode_segment_about" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Guide</label>
+                    <frontend_model>Anowave\Ec4\Block\Field\About</frontend_model>
+                    <comment>Click the link above to read more about Google Analytics Installation and Configuration</comment>
+                </field>
+				<field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="license" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>License</label>
+                    <frontend_model>Anowave\Package\Block\License\Field</frontend_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="preferences" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Preferences</label>
+				<attribute type="expanded">1</attribute>
+				<field id="conversion_event" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Conversion event</label>
+                    <comment>Default conversion event is 'purchase'. Conversion event must be marked as conversion in GA4 -> Configure -> Events -> Mark as conversion</comment>
+                </field>
+            </group>
+        </section>
+		<section id="ec">
+			<group id="api">
+				<field id="measurement_id_type" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement ID Type</label>
+                    <source_model>Anowave\Ec4\Model\System\Config\Source\Type</source_model>
+                    <comment>Select between shared or dedicated Measurement ID for frontend and backend orders</comment>
+                </field>
+				<field id="google_gtm_ua4_measurement_id" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement ID</label>
+                    <comment>Measurement ID for a GA4 data stream. Format: G-XXXXXXXXXX</comment>
+                </field>
+                <field id="google_gtm_ua4_measurement_id_backend" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement ID (BACKEND)</label>
+                    <comment>Measurement ID for a GA4 data stream. Format: G-XXXXXXXXXX. Used for backend orders ONLY.</comment>
+                    <depends>
+                        <field id="ec/api/measurement_id_type">1</field>
+                    </depends>
+                </field>
+                <field id="google_gtm_ua4_measurement_api_secret" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Measurement API secret</label>
+                    <comment>To create a new secret, navigate in the Google Analytics UI to: Admin > Data Streams > choose your stream > Measurement Protocol > Create</comment>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>
