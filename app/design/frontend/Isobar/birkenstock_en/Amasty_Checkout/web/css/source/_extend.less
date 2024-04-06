@@ -1,0 +1,51 @@
+//
+//  Variables
+//  ____________________________________________
+
+
+//
+// Common
+// _____________________________________________
+
+& when (@media-common = true) {
+    // Shipping address section
+    .amcheckout-step-container .amcheckout-shipping-address {
+        .amcheckout-button.-edit {
+            &:before {
+                .lib-visually-hidden();
+            }
+        }
+    }
+
+    // Billing address block
+    .amcheckout-step-container .checkout-billing-address {
+        .amcheckout-button.-edit {
+            .lib-button-primary();
+        }
+    }
+
+    .amcheckout-step-container .amcheckout-shipping-address .billing-address-details {
+        .lib-css(border-color, @amcheckout-modern-main__color)
+    }
+    
+    // Summary block
+    .checkout-payment-method .payment-methods {
+        .actions-toolbar .primary {
+            font-size: @button__font-size;
+        }
+    }
+}
+
+//
+// Mobile
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    
+}
+
+//
+// Desktop
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    
+}

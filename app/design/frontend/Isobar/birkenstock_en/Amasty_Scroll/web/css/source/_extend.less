@@ -1,0 +1,78 @@
+//
+//  Variables
+//  _____________________________________________
+@amscroll__hover-filter: none;
+
+@amscroll-backtotop-mobile__right-offset: 40px;
+@amscroll-backtotop-mobile__bottom-offset: 90px;
+
+@amscroll-backtotop-desktop__right-offset: 40px;
+@amscroll-backtotop-desktop__bottom-offset: 85px;
+
+//
+// Common
+// -----------------------------
+
+& when (@media-common = true) {
+    .amscroll-load-button {
+        & {
+            background-color: @color-white;
+            border: 1px solid @secondary__color;
+            font-weight: 600;
+            font-size: @button__font-size;
+            transition: color 500ms ease-in-out 0s , background-color 500ms ease-in-out 0s;;
+        }
+        
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: @secondary__color;
+            border: 1px solid @secondary__color;
+            color: @color-white !important; // override set by Js property and module.less
+        }
+
+        &:not(.focus-visible) {
+            border-color: @secondary__color !important; // override set by Js property and module.less
+        }
+    }
+
+    .amscroll-backtotop-block {
+        .amscroll-text {
+            font-size: @button__font-size;
+        }
+    }
+}
+
+//
+// Mobile
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amscroll-backtotop-block {
+        &.-mobile-text {
+            right: @amscroll-backtotop-mobile__right-offset;
+            bottom: @amscroll-backtotop-mobile__bottom-offset;
+        }
+
+        &.-mobile-arrow {
+            right: @amscroll-backtotop-mobile__right-offset - 14;
+            bottom: @amscroll-backtotop-mobile__bottom-offset;
+        }
+    }
+}
+
+//
+// Desktop
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amscroll-backtotop-block {
+        &.-desktop-text {
+            right: @amscroll-backtotop-desktop__right-offset;
+            bottom: @amscroll-backtotop-desktop__bottom-offset;
+        }
+
+        &.-desktop-arrow {
+            right: @amscroll-backtotop-desktop__right-offset - 14;
+            bottom: @amscroll-backtotop-desktop__bottom-offset + 5;
+        }
+    }
+}

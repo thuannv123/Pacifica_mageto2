@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header-wrapper">
+            <block class="Magento\Store\Block\Switcher"
+                   name="mobile.store.settings.language"
+                   template="Magento_Store::switch/mobile-languages.phtml" before="minicart">
+                <arguments>
+                    <argument name="id_modifier" xsi:type="string">nav</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

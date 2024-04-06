@@ -1,0 +1,82 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .nav-open .header-sticky__fix .action.nav-toggle {
+        &:before {
+            content: @icon-remove;
+        }
+    }
+
+    header {
+        &.fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-name: slideInDown;
+            animation-name: slideInDown;
+        }
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+//
+// Mobile
+//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .nav-open, .nav-before-open {
+        .header-sticky__fix {
+            .page-wrapper {
+                left: 0;
+            }
+        }
+    }
+
+    .nav-open {
+        .header-sticky__fix {
+            .nav-sections {
+                left: 0;
+            }
+        }
+    }
+
+    .header-sticky__fix {
+        .nav-sections {
+            top: 54px;
+            width: 100%;
+            background: @color-white;
+        }
+        .nav-toggle:after {
+            background: transparent;
+            content: none;
+        }
+    }
+
+    .nav-sections {
+        left: -100%;
+        height: calc(~'100% - 54px');
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    
+}

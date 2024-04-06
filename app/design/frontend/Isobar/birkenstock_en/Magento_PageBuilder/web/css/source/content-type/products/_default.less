@@ -1,0 +1,74 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Default appearance styles
+//  _____________________________________________
+
+& when (@media-common = true) {
+    [data-content-type='row'] {
+        li.product-item {
+            text-align: center;
+        }
+    }
+
+    .pagebuilder-column {
+        .widget-product-grid {
+            .product-item {
+                max-width: 100%;
+                min-width: 50px;
+
+                .price-box {
+                    word-wrap: break-word;
+
+                    .price {
+                        white-space: normal;
+                    }
+                }
+
+                .product-item-actions {
+                    .actions-primary {
+                        display: inline-block;
+                        max-width: 100%;
+                    }
+
+                    .actions-secondary {
+                        display: inline-block;
+                        width: auto;
+                    }
+
+                    .tocart {
+                        max-width: 100%;
+                        white-space: normal;
+                    }
+                }
+            }
+        }
+
+        [data-content-type='products'] {
+            .block.widget {
+                .products-grid {
+                    .widget-product-grid.product-items {
+                        .product-item {
+                            width: 200px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    [data-content-type='products'] {
+        .product-items.widget-product-carousel {
+            .product-item .swatch-attribute.color {
+                display: flex;
+                justify-content: center;
+            }
+            .slick-list {
+                padding-bottom: 76px;
+            }
+        }
+    }
+}

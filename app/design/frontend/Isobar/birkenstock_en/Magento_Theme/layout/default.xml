@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_alt" xsi:type="string" translate="true">Birkenstock online shop</argument>
+                <argument name="logo_width" xsi:type="number">160</argument>
+                <argument name="logo_height" xsi:type="number">26</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="store.settings" remove="true"/>
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Cms\Block\Block" name="top-header-link-custom">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">Fasttrack-allPage-topLinkHeader-all</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <move element="header" destination="header.links" before="-"/>
+        <move element="header.links" destination="header.panel" before="store_language"/>
+        <move element="top-header-link-custom" destination="header.links" before="header"/>
+        <move element="store_language" destination="header.links" after="top-header-link-custom"/>
+
+        <move element="logo" destination="header-wrapper" before="-"/>
+        <move element="mobile.store.settings.language" destination="header-wrapper" before="minicart"/>
+        <move element="minicart" destination="header-wrapper" before="mobile.store.settings.language"/>
+        <move element="top.search" destination="header-wrapper" before="header.top.menu"/>
+
+        <referenceBlock name="header-right" remove="true"/>
+    </body>
+</page>

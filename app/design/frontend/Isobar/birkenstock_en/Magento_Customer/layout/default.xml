@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header-wrapper">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" 
+                   name="nav-authorization-link-login" 
+                   template="Magento_Customer::account/link/nav-authorization.phtml"
+                   after="minicart">
+
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Log in</argument>
+                    <argument name="class" xsi:type="string">link nav-link authorization-link</argument>
+                </arguments>
+                
+                <block class="Magento\Customer\Block\Account\Link" name="nav-my-account-link" as="my-account-page-link">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">My account</argument>
+                        <argument name="class" xsi:type="string">link nav-link myaccount-link</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

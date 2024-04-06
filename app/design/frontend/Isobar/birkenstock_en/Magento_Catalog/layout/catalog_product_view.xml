@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+
+            <container name="product.info.price" label="Product info auxiliary container" htmlTag="div" htmlClass="product-info-price">
+                <container name="product.info.stock.sku.custom" label="Product auxiliary info" htmlTag="div" htmlClass="product-info-stock-sku">
+                    <container name="product.info.type.custom" before="-"/>
+                    <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.sku.custom" template="Magento_Catalog::product/view/attribute.phtml" after="product.info.type.custom">
+                        <arguments>
+                            <argument name="at_call" xsi:type="string">getSku</argument>
+                            <argument name="at_code" xsi:type="string">sku</argument>
+                            <argument name="css_class" xsi:type="string">sku</argument>
+                            <argument name="at_label" xsi:type="string">default</argument>
+                            <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.review" template="Magento_Catalog::product/view/review.phtml" after="product.info.stock.sku.custom" />
+                <block class="Magento\Catalog\Pricing\Render" name="product.price.final">
+                    <arguments>
+                        <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                        <argument name="price_type_code" xsi:type="string">final_price</argument>
+                        <argument name="zone" xsi:type="string">item_view</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <block name="product.info.material" class="Magento\Catalog\Block\Product\View" before="product.info.price" template="Magento_Catalog::product/material.phtml"/>
+            <referenceContainer name="product.info.social">
+                <referenceBlock name="view.addto.compare" remove="true"/>
+            </referenceContainer>
+        </referenceContainer>
+
+        <move element="product.info.social" destination="product.info.main" before="product.info.overview"/>
+        <move element="view.addto.wishlist" destination="product.info.addto" before="-"/>
+        <move element="product.info.description" destination="product.info.details" before="-"/>
+        <move element="product.attributes" destination="product.info.details" after="product.info.description"/>
+        <move element="product.info.stock.sku.custom" destination="product.info.price" after="-"/>
+        <move element="page.messages" destination="main.content" before="columns"/>
+
+    </body>
+</page>
