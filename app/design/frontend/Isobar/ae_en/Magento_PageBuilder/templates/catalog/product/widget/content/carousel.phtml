@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+?>
+<?php
+/**
+ * Product carousel widget template
+ *
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) : ?>
+    <?php
+    $type = 'widget-product-carousel';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    ?>
+    <ol class="product-items <?= /* @noEscape */ $type ?>">
+        <?php $iterator = 1; ?>
+        <?php foreach ($items as $_item) : ?>
+            <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+            <div class="product-item-info">
+                <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product photo product-item-photo">
+                    <div class="product-image-base">
+                        <?= $block->getImage($_item, $image)->toHtml() ?>
+                    </div>
+                    <?php $productThumbnail = $block->getImage($_item, 'product_thumbnail_image'); ?>
+                    <?php if ($productThumbnail) : ?>
+                        <div class="product-image-thumbnail">
+                            <span class="product-image-container product-image-container-<?= $productThumbnail->getProductId() ?>">
+                                <span class="product-image-wrapper">
+                                    <img src="<?= $productThumbnail->getImageUrl() ?>" alt="<?= $productThumbnail->getLabel() ?>" class="<?= $productThumbnail->getClass() ?>">
+                                </span>
+                            </span>
+                        </div>
+                    <?php endif; ?>
+                </a>
+                <div class="product details product-item-details">
+                    <strong class="product name product-item-name">
+                        <a title="<?= $block->escapeHtml($_item->getName()) ?>" href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-link">
+                            <?= $block->escapeHtml($_item->getName()) ?>
+                        </a>
+                    </strong>
+                    <?php if ($templateType) : ?>
+                        <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                    <?php endif; ?>
+
+                    <div class="box-content-price">
+                        <?= $block->getProductPriceHtml($_item, $type) ?>
+                        <?php if ($showWishlist) : ?>
+                            <div class="actions-secondary" data-role="add-to-links">
+                                <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
+                                    <a href="#" data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <?= $block->getProductDetailsHtml($_item) ?>
+                </div>
+            </div>
+            <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+        <?php endforeach ?>
+    </ol>
+<?php endif; ?>

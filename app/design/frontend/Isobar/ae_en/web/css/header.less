@@ -1,0 +1,1361 @@
+.page-wrapper {
+    .page-header {
+        .panel.wrapper {
+            background: #f6f6f6;
+
+            @media (min-width:769px) {
+                height: 49px;
+            }
+
+            .panel.header {
+                padding: 0;
+                margin: 0 auto;
+                position: relative;
+
+                .header-buttons {
+                    position: absolute;
+                    height: 100%;
+                    left: 40px;
+
+                    .button-american,
+                    .button-aerie {
+                        background: transparent;
+                        border: 0;
+                        border-radius: 0;
+                        height: 100%;
+
+                        a {
+                            svg {
+                                width: 100%;
+                                height: 21px;
+                                display: block;
+                                fill: #4D834E;
+                            }
+                        }
+                    }
+
+                    .button-american {
+                        padding: 7px 32px;
+
+                        a {
+                            &::before {
+                                content: url(../images/logo.svg);
+                            }
+                        }
+                    }
+                }
+
+                #switcher-language {
+                    position: relative;
+                    width: 5%;
+                    margin: 0 15px 0 0;
+                    order: 4;
+
+                    .switcher-options {
+                        display: inherit;
+                        width: 100%;
+                        justify-content: space-around;
+                        font-size: 12px;
+                        @media (max-width:768px) {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .other-options {
+                            list-style: none;
+
+                            strong {
+                                font-weight: 600;
+                            }
+
+                            a {
+                                opacity: 0.5;
+
+                                &:hover {
+                                    color: #000000;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .header-right {
+                    padding: 7px 0;
+
+                    .block-search,
+                    .minicart-wrapper,
+                    [data-content-type="html"],
+                    .header.account.customer {
+                        margin-right: 50px;
+                    }
+
+                    .wishlist_link {
+                        margin: 0;
+                        width: 21.73px;
+                        height: 27.56px;
+                        top: 2px;
+
+                        a {
+                            &::before {
+                                content: url(../images/wishlist-link.svg);
+                            }
+                        }
+                        &:hover {
+                            a {
+                                &::before {
+                                    content: url(../images//wishlist_hover.svg);
+                                }
+                            }
+                        }
+                    }
+
+                    .minicart-wrapper {
+                        .action.showcart {
+                            width: 20.09px;
+                            height: 24.69px;
+                            &::before {
+                                line-height: 0;
+                                content: url(../images/cart.svg);
+                            }
+                            &:hover {
+                                &::before{
+                                    line-height: 0;
+                                    content: url(../images/cart_hover.svg);
+                                }
+                                .counter-number{
+                                    background: #000000;
+                                    color: #fff;
+                                }
+                            }
+                        }
+
+                        .action.showcart {
+                            position: relative;
+
+                            @media (min-width:769px) {
+                                top: 2px;
+                            }
+
+                            .counter.qty {
+                                top: 6px;
+                                right: 0px;
+                            }
+
+                            .count-background {
+                                background: #000000;
+                                border-radius: 0 0 7px 7px;
+                                width: 20px;
+                                height: 19px;
+                                display: block;
+                                color: #ffffff;
+                            }
+                        }
+                    }
+
+                    .header.account.customer {
+                        line-height: 0;
+
+                        .account-icon {
+                            vertical-align: -moz-middle-with-baseline; //firefox
+                            vertical-align: -webkit-baseline-middle; //chrome,...
+                            .not-login{
+                                width: 23px;
+                                height: 23px;
+                                a {
+                                    &::before {
+                                        content: url(../images/account.svg);
+                                    }
+                                }
+                                &:hover {
+                                    a {
+                                        &::before {
+                                            content: url(../images/account_hover.svg);
+                                        }
+                                    }
+                                }
+                            }
+                            .logined{
+                                &::before{
+                                    content: url(../images/account_hover.svg);
+                                }
+                                .header-mobile{
+                                    display: none;
+                                }
+                                &.active{
+                                    position: relative;
+                                    .header-mobile{
+                                        display: block;
+                                        margin: 4px 0 0 0;
+                                        padding: 0;
+                                        background: #fff;
+                                        border: 1px solid #bbb;
+                                        min-width: 100%;
+                                        z-index: 101;
+                                        position: absolute;
+                                        top: 100%;
+                                        right: 0;
+                                        li{
+                                            width: 110px;
+                                            a{
+                                                line-height: 1.4;
+                                                color: #333;
+                                                padding: 5px 8px;
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .block-search {
+                        width: unset;
+
+                        &:focus-within {
+                            width: unset;
+                        }
+
+                        .block-content {
+                            .minisearch {
+                                .search {
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: row-reverse;
+
+                                    .label {
+                                        clip: unset;
+                                        position: relative;
+                                        text-align: center;
+                                        width: fit-content;
+                                        display: block;
+                                        height: auto;
+                                        text-decoration: underline;
+                                        cursor: pointer;
+                                        margin: 0;
+
+                                        &::before {
+                                            line-height: 0 !important;
+                                        }
+                                    }
+
+                                    .control {
+                                        max-width: 0;
+                                        overflow: hidden;
+                                        transition: max-width 0.7s ease-in-out;
+                                        text-align: center;
+                                        font-size: 14px;
+                                        margin: 0 15px;
+                                        border-radius: 5px;
+                                        position: relative;
+
+                                        &.active {
+                                            max-width: 1000px;
+                                            
+                                            .close-search {
+                                                position: absolute;
+                                                top: 8px;
+                                                right: 10px;
+                                                cursor: pointer;
+
+                                                &::before {
+                                                    content: 'x';
+                                                    display: block;
+                                                    width: 17px;
+                                                    height: 17px;
+                                                    font-size: 13px;
+                                                    line-height: 14px;
+                                                    background: #e8e5e2;
+                                                    font-weight: 600;
+                                                    border-radius: 50%;
+                                                    color: #ffffff;
+                                                }
+                                            }
+                                        }
+                                        &.show-search{
+                                            @media (min-width:769px) {
+                                                overflow: unset;
+                                            }
+                                        }
+
+                                        #search {
+                                            border: 1px solid #e1e1e1;
+                                            padding: 0 20px;
+                                            width: 269px;
+                                            border-radius: 3px;
+                                            &::placeholder {
+                                                color: #ACACAC;
+                                                font-size: 14px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .actions {
+                                    .action.search {
+                                        &::before {
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.sticky {
+                @media screen and (max-width:769px) { 
+                    border-bottom: 1px solid #eee;
+                }
+            }
+        }
+
+        .header.content {
+            padding: 0;
+            @media (min-width:769px) {
+                z-index: 1;
+            }
+            .logo {
+                svg {
+                    width: 100%;
+                    height: 35px;
+                    fill: #4D834E;
+                    display: block;
+                }
+            }
+
+            .top_menu {
+                .navigation {
+                    >[data-content-type='row'][data-appearance='contained'] {
+                        width: 100%;
+
+                        .menu-aerie-desktop {
+                            @media (min-width:769px) {
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
+
+                    .submenu.tm-megamenu-pc,
+                    .vertical.submenu {
+                        border: 1px solid #f2f2f2;
+                        box-shadow: none;
+                        padding-top: 5px;
+                        width: fit-content;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+
+                        .row {
+                            .level1 {
+                                .level3 {
+                                    ul {
+                                        li {
+                                            a {
+                                                padding: 5px 6px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .level0 {
+                        >.level-top {
+                            text-decoration: unset;
+                            text-underline-offset: unset;
+                            text-transform: unset;
+
+                            .mm-title {
+                                position: relative;
+                                display: block !important;
+
+                                &::after {
+                                    content: '';
+                                    height: 3px;
+                                    width: 0;
+                                    display: block;
+                                    background: #AFCDD7;
+                                    transition: width 0.3s ease;
+                                    position: absolute;
+                                    bottom: 0px;
+                                    height: 3px;
+                                }
+                            }
+
+                            &:hover {
+                                .mm-title {
+                                    &::after {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.active {
+                            >.level-top {
+                                border: 0;
+
+                                .mm-title {
+                                    position: relative;
+
+                                    &::after {
+                                        content: '';
+                                        height: 3px;
+                                        width: 100%;
+                                        display: block;
+                                        background: #AFCDD7;
+                                        position: absolute;
+                                        bottom: 0px;
+                                        height: 3px;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.has-active {
+                            >.level-top {
+                                border-color: #AFCDD7;
+                            }
+                        }
+                    }
+                }
+
+                .nav-sections {
+                    #header-tabs {
+                        .custom-menu {
+                            display: block;
+
+                            [data-content-type='row'][data-appearance='contained'] [data-element='inner'] {
+                                display: flex;
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+
+                        .nav-sections-item-content {
+                            ul {
+                                width: 100%;
+
+                                li {
+                                    a {
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        position: relative;
+                                        font-family: 'Lato';
+
+                                        &:hover {
+                                            background: #ffffff;
+                                            text-decoration: underline;
+                                        }
+
+                                        &.level-top {
+                                            &:hover {
+                                                text-decoration: none;
+                                            }
+                                        }
+                                    }
+
+                                    .megamenu-wrapper {
+                                        .level1 {
+                                            span {
+                                                font-size: 12px;
+                                                font-weight: 600;
+                                            }
+                                        }
+
+                                        .level2,
+                                        .level3 {
+                                            a {
+                                                span {
+                                                    font-size: 11px;
+                                                    font-weight: 400;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.sticky {
+            border-bottom: 1px solid #eee;
+        }
+    }
+
+    .breadcrumbs {
+        .items {
+            color: #939393;
+
+            .item {
+                a {
+                    color: #939393;
+                }
+
+                &:not(:last-child):after {
+                    content: '/';
+                    color: #939393;
+                }
+            }
+        }
+    }
+
+    .page.messages {
+        width: 1280px;
+        margin: auto;
+    }
+}
+
+.american-page {
+    .page-header {
+        .panel.wrapper {
+            .panel.header {
+                .header-buttons {
+                    .button-american {
+                        background-color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.aerie-page {
+    .block-static-block {
+        .skinny-banner-section {
+            #owl-one {
+                background: #265545;
+            }
+        }
+    }
+}
+
+.aerie-page {
+    .page-header {
+        .panel.wrapper {
+            .panel.header {
+                .header-buttons {
+                    .button-aerie {
+                        background-color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.widget.block.block-static-block {
+    margin: 0;
+
+    .skinny-banner-section {
+        z-index: 0;
+
+        #owl-one {
+            padding: 12px 0px;
+
+            .owl-stage-outer {
+                .owl-stage {
+                    .owl-item {
+                        #item1 {
+                            font-weight: 400;
+
+                            a {
+                                font-size: 14px;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .owl-theme {
+            .owl-controls {
+                .custom-nav1 {
+                    width: 50%;
+                    margin: auto;
+                    top: 10%;
+
+                    .fa {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    .free-shipping {
+        text-align: center;
+        padding: 5px 0;
+        font-size: 12px;
+
+        a {
+            text-decoration: underline;
+
+            &:hover {
+                color: #000000;
+            }
+        }
+    }
+
+    &.american-block {
+        background: #AFCDD7;
+    }
+
+    &.aerie-block {
+        background: #265545;
+        color: #ffffff;
+
+        a {
+            color: #ffffff;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .top_menu .nav-sections #header-tabs .aerie-custom {
+        display: none !important;
+    }
+
+    .level0.level-top.hover:hover .level1.horizontal {
+        visibility: unset;
+        top: 47px !important;
+    }
+
+    .navigation .level0 .submenu li {
+        text-align: left;
+    }
+
+    .level1.horizontal {
+        display: block !important;
+        visibility: hidden;
+        top: -360px !important;
+        transition: visibility 0.1s ease-in-out, top 0.6s ease-in-out,
+            z-index 1s ease;
+        z-index: -1 !important;
+    }
+
+    .panel.header {
+        z-index: 2;
+        background: #f6f6f6;
+    }
+
+    .panel.wrapper {
+        position: relative;
+        z-index: 2;
+        margin-bottom: -1px;
+    }
+
+    .navigation ul li.level-top {
+        background: #ffffff;
+
+        a.level-top {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+        }
+    }
+
+    .header.content {
+        .header-logo {
+            width: 100%;
+            display: block;
+            position: relative;
+            z-index: 5;
+            background: #ffffff;
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                background: #ffffff;
+                transform: none;
+                top: unset;
+                float: unset;
+                left: unset;
+                margin: auto;
+                width: fit-content;
+            }
+        }
+    }
+
+    .parent_menu {
+        width: 100%;
+        text-align: center;
+        background: #ffffff;
+        margin-top: -1px;
+    }
+
+    .parent_menu .title-shop {
+        display: none;
+    }
+
+    .child_menu {
+        display: none;
+    }
+
+    body .modal-popup._show .modal-inner-wrap {
+        width: 44%;
+    }
+
+    #maincontent {
+        .overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all ease 0.5s ;
+
+            &.menu-hover {
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 300ms ease-in, visiblity 300ms ;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .parent_menu .title-shop{
+        display: block;
+    }
+    .child_menu {
+        display: block;
+    }
+    .widget.block.block-static-block {
+
+        &.american-block {
+            background: #f6f6f6;
+        }
+
+        &.aerie-block {
+            background: #f6f6f6;
+
+            .free-shipping {
+                color: #696969;
+            }
+
+            a {
+                color: #696969;
+            }
+        }
+    }
+
+    .toggle-submenu {
+        width: 100%;
+        display: block;
+        padding: 20px;
+    }
+
+    .page-wrapper {
+        .page-header {
+            .panel.wrapper {
+                .panel.header {
+                    .header-buttons {
+                        position: unset;
+                        height: 52px;
+                        display: flex;
+                        justify-content: center;
+
+                        .button-american {
+                            width: 61.5%;
+
+                            a {
+                                display: block;
+                                margin: auto;
+
+                                &::before {
+                                    content: url(../images/logo.svg);
+                                }
+                            }
+                        }
+
+                        .button-aerie {
+                            width: 40.5%;
+                        }
+                    }
+
+                    #switcher-language {
+                        display: block;
+                        width: 15%;
+                        margin: 0;
+                    }
+
+                    .header-right {
+                        padding: 10px 0;
+                        display: flex;
+                        background: #ffffff;
+                        align-items: center;
+                        position: relative;
+                        z-index: 3;
+                        justify-content: space-around;
+
+                        [data-content-type="html"] {
+                            order: 2;
+                            margin: 0;
+                        }
+
+                        .wishlist_link {
+                            a::before {
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+
+                        .minicart-wrapper {
+                            position: relative;
+                            margin: 0;
+                            top: unset;
+                            right: unset;
+                            margin: 0;
+                            order: 4;
+
+                            .action.showcart {
+                                top: 0;
+                            }
+
+                            &.active {
+                                .block-minicart {
+                                    right: -50px;
+
+                                    &::before {
+                                        right: 50px;
+                                    }
+
+                                    &::after {
+                                        right: 49px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .block-search {
+                            margin: 0;
+
+                            .block-content {
+                                .form.minisearch {
+                                    position: unset;
+
+                                    .field.search {
+                                        .label {
+                                            top: unset;
+                                            right: unset;
+                                            left: 0;
+
+                                            &::before {
+                                                margin: 0;
+                                            }
+                                        }
+
+                                        .control {
+                                            position: absolute;
+                                            opacity: 0;
+                                            top: 20px;
+
+                                            #search {
+                                                border: 1px solid #e5e5e5;
+                                                position: unset;
+
+                                                &:focus {
+                                                    box-shadow: none;
+                                                }
+                                            }
+
+                                            &.active {
+                                                left: 50%;
+                                                opacity: 1;
+                                                transform: translate(-50%, 10px);
+                                                margin: 0;
+                                            }
+                                        }
+                                    }
+
+                                    .actions {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+
+                        .header.account.customer {
+                            display: block;
+                            order: 3;
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+                                list-style: none;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .header.content {
+                padding: 34px 0;
+
+                .nav-toggle {
+                    position: absolute;
+                    top: -45px;
+                }
+
+                .logo {
+                    position: unset;
+                    transition: none;
+                    float: unset;
+
+                    img {
+                        margin: auto;
+                    }
+                }
+
+                .sections.nav-sections {
+                    width: 100%;
+                    left: -100%;
+
+                    #header-tabs {
+                        .nav-sections-item-title {
+                            position: relative;
+                            z-index: 999;
+                            width: 50%;
+                            height: 52px;
+                            background: #F6F6F6;
+                            border: 0;
+                            padding-top: 0;
+
+                            &[aria-controls*="menu.aerie"] {
+                                &::before {
+                                    content: url(../images/aerie-logo.svg);
+                                    display: block;
+                                }
+                            }
+
+                            &[aria-controls*="store.menu"] {
+                                &::before {
+                                    content: url(../images/logo.svg);
+                                    display: block;
+                                    line-height: 55px;
+                                }
+                            }
+
+                            &.active {
+                                background: #ffffff;
+                            }
+                        }
+
+                        .nav-sections-item-content {
+                            position: relative;
+                            padding: 35px 0;
+
+                            .title-shop {
+                                display: flex;
+                                flex-direction: column;
+                                padding: 0 38px;
+
+                                strong {
+                                    padding: 0 0 30px;
+                                    font-size: 32px;
+                                }
+
+                                span {
+                                    font-weight: 600;
+                                    padding: 0 0 10px;
+                                }
+
+                                &.hide-title {
+                                    display: none;
+                                }
+                            }
+
+                            .tm-top-navigation {
+                                ul[id^="ui-id-"].menu-custom {
+                                    display: flex;
+                                    flex-wrap: nowrap;
+                                    transition: transform 0.2s ease;
+
+                                    &.slide-toggle {
+                                        transform: translate(-100%);
+                                    }
+
+                                    .parent_menu {
+                                        flex: 0 0 100%;
+
+                                        .level0 {
+                                            .level-top {
+                                                .opener {
+                                                    top: 8px;
+
+                                                    &:before {
+                                                        content: '\e608';
+                                                        font-weight: 400;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .child_menu {
+                                        flex: 0 0 100%;
+
+                                        .top-navigation-title-section {
+                                            display: flex;
+                                            align-items: center;
+                                            margin: 0 20px 25px;
+
+                                            .back-toggle {
+                                                &::before {
+                                                    content: '\e617';
+                                                    display: block;
+                                                    font-family: 'luma-icons';
+                                                    position: relative;
+                                                    top: 3px;
+                                                }
+                                            }
+
+                                            .title {
+                                                font-size: 30px;
+                                                margin: 0 20px;
+                                            }
+                                        }
+
+                                        .explore {
+                                            padding: 20px 38px;
+                                            font-size: 14px;
+                                            font-weight: 600;
+
+                                            .explore_name {
+                                                padding: 0;
+                                            }
+                                        }
+
+                                        .box_content {
+                                            [data-content-type="html"][data-appearance="default"] {
+                                                padding: 0 38px;
+                                                > div[id^="ui-id-"]{
+                                                    > div{
+                                                        border-top: 1px solid #f1f1f1;
+                                                        &:last-child{
+                                                            border-bottom: 1px solid #f1f1f1;
+                                                        }
+                                                    }
+                                                }
+                                                .level1{
+                                                    strong{
+                                                        padding: 20px 38px 20px 0;
+                                                        width: 100%;
+                                                        display: block;
+                                                        &.active{
+                                                            .toggle-down {
+                                                                &::before {
+                                                                    content: '\e60f';
+                                                                    font-family: 'luma-icons';
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    > .level3{
+                                                        display: none !important;
+                                                        &.active{
+                                                            display: block !important;
+                                                        }
+                                                        > ul {
+                                                            padding: 0;
+                                                        }
+                                                        li a{
+                                                            border: 0;
+                                                            padding: 10px 0 10px 26px;
+                                                            span{
+                                                                font-size: 14px;
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                            }
+                                        }
+
+                                        .toggle-down {
+                                            position: absolute;
+                                            top: 20px;
+                                            right: 20px;
+
+                                            &::before {
+                                                content: '\e61c';
+                                                display: block;
+                                                font-family: 'luma-icons';
+                                                color: #000000;
+                                                font-size: 12px;
+                                                font-weight: 600;
+                                                width: 30px;
+                                                height: 30px;
+                                                text-align: center;
+                                                line-height: 30px;
+                                            }
+                                        }
+
+                                        .level1.category-item {
+                                            position: relative;
+
+                                            .level1.submenu {
+                                                position: unset;
+                                                max-height: 0;
+                                                transition: max-height 0.3s ease;
+
+                                                &.active {
+                                                    max-height: 1000px;
+
+                                                    .toggle-down {
+                                                        &::before {
+                                                            content: '\e60f';
+                                                            font-family: 'luma-icons';
+                                                        }
+                                                    }
+                                                }
+
+                                                .level2.category-item {
+                                                    a {
+                                                        padding: 10px 0 10px 26px;
+                                                        font-weight: 400;
+                                                        border: 0;
+                                                    }
+
+                                                    &:nth-last-child(2) {
+                                                        a {
+                                                            padding-bottom: 20px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .level0 {
+                                    .level-top {
+                                        .opener {
+                                            top: 8px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            #ui-id-998 {
+                                .menu-edit {
+                                    display: flex;
+                                    transition: transform 0.2s ease;
+                                    max-height: 60px;
+
+                                    .level0.parent {
+                                        flex: 0 0 100%;
+
+                                        .opener {
+                                            &:before {
+                                                content: '\e608';
+                                                font-weight: 400;
+                                            }
+                                        }
+                                    }
+
+                                    .slide_menu {
+                                        display: none;
+                                    }
+
+                                    &.slide-right {
+                                        transform: translate(-100%);
+
+                                        .level0.parent {
+                                            display: none;
+                                        }
+                                    }
+
+                                    &.highlight {
+                                        .level0.parent {
+                                            display: block;
+                                        }
+
+                                        .slide_menu {
+                                            display: block;
+                                            flex: 0 0 100%;
+
+                                            .top-navigation-title-section {
+                                                display: flex;
+                                                align-items: center;
+                                                margin: 0 20px;
+                                                flex-wrap: wrap;
+
+                                                .back-toggle {
+                                                    &::before {
+                                                        content: '\e617';
+                                                        display: block;
+                                                        font-family: 'luma-icons';
+                                                        position: relative;
+                                                        top: 3px;
+                                                    }
+                                                }
+
+                                                .newSpan {
+                                                    width: 100%;
+                                                    font-weight: 600;
+                                                    padding: 40px 20px 20px 20px;
+                                                    font-size: 14px;
+                                                }
+
+                                                .title {
+                                                    font-size: 30px;
+                                                    margin: 0 20px;
+                                                }
+                                            }
+                                            .box_content_menu{
+                                                padding: 0 38px;
+                                                > .level0 {
+                                                    border: 0;
+                                                }
+                                            }
+                                            .level1.category-item {
+                                                position: relative;
+                                                border-top: 1px solid #f1f1f1;
+                                                &:last-child{
+                                                    border-bottom: 1px solid #f1f1f1;
+                                                }
+                                                > a {
+                                                    border: 0;
+                                                    padding: 20px 0;
+                                                }
+                                                .level1.submenu {
+                                                    position: unset;
+                                                    max-height: 0;
+                                                    transition: max-height 0.3s ease;
+
+                                                    .toggle-down {
+                                                        position: absolute;
+                                                        top: 20px;
+                                                        right: 20px;
+
+                                                        &::before {
+                                                            content: '\e61c';
+                                                            display: block;
+                                                            font-family: 'luma-icons';
+                                                            color: #000000;
+                                                            font-size: 12px;
+                                                            font-weight: 600;
+                                                            width: 30px;
+                                                            height: 30px;
+                                                            text-align: center;
+                                                            line-height: 30px;
+                                                        }
+                                                    }
+
+                                                    &.active {
+                                                        max-height: 1000px;
+
+                                                        .toggle-down {
+                                                            &::before {
+                                                                content: '\e60f';
+                                                                font-family: 'luma-icons';
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .level2.category-item {
+                                                        a {
+                                                            padding: 10px 0 10px 26px;
+                                                            font-weight: 400;
+                                                            border: 0;
+                                                        }
+
+                                                        &:nth-last-child(2) {
+                                                            a {
+                                                                padding-bottom: 20px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+                                            .content {
+                                                ul {
+                                                    display: block !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    a {
+                                        padding: 20px 38px;
+                                        border-top: 1px solid #EEEEEE;
+                                        font-size: 14px;
+                                    }
+                                    &.level1{
+                                        a[id^="ui-id-"] {
+                                            pointer-events: none;
+                                        }
+                                        .level2{
+                                            a[id^="ui-id-"] {
+                                                pointer-events: unset;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .close-tab {
+                        top: 10px;
+                        position: absolute;
+                        right: 40px;
+
+                        &::before {
+                            content: url(../images/close-tab.svg);
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .nav-open {
+        .page-wrapper {
+            left: 100%;
+
+            .page-header {
+                .header.content {
+                    .sections.nav-sections {
+                        left: 0;
+                        overflow-x: hidden;
+                    }
+                }
+            }
+        }
+    }
+
+    .widget.block.block-static-block {
+        .skinny-banner-section {
+            .owl-theme {
+                .owl-controls {
+                    .custom-nav1 {
+                        width: 98%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var \Magento\Catalog\Block\Product\ProductList\Toolbar $block
+ * @var \Magento\Framework\Locale\LocaleFormatter $localeFormatter
+ */
+?>
+<p class="toolbar-amount" id="toolbar-amount" style="display: block">
+    <?php if ($block->getLastPageNum() > 1):?>
+        <?= $block->escapeHtml(
+            __(
+                'You’ve viewed %1 of %2 products',
+                '<span class="toolbar-number">' . $localeFormatter->formatNumber($block->getLastNum()) . '</span>',
+                '<span class="toolbar-number">' . $localeFormatter->formatNumber($block->getTotalNum()) . '</span>'
+            ),
+            ['span']
+        ) ?>
+    <?php elseif ($block->getTotalNum() == 1):?>
+        <?= $block->escapeHtml(
+            __(
+                'You’ve viewed %1 product',
+                '<span class="toolbar-number">' . $localeFormatter->formatNumber($block->getTotalNum()) . '</span>'
+            ),
+            ['span']
+        ) ?>
+    <?php else:?>
+        <?= $block->escapeHtml(
+            __(
+                'You’ve viewed %1 products',
+                '<span class="toolbar-number">' . $localeFormatter->formatNumber($block->getTotalNum()) . '</span>'
+            ),
+            ['span']
+        ) ?>
+    <?php endif; ?>
+</p>

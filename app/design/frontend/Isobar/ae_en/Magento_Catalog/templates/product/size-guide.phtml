@@ -1,0 +1,31 @@
+<?php
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+/** @var $block Magento\Catalog\Block\Product\View */
+?>
+
+<div class="consulting-choose-size">
+    <a href="#" class="action" data-trigger="trigger">
+        <span><?= $escaper->escapeHtml(__('Size Guide')) ?></span>
+    </a>
+    <div id="size-guide-popup" data-bind="mageInit: {
+        'Magento_Ui/js/modal/modal':{
+            'type': 'popup',
+            'title': '<?php echo __('Size Guide')?>',
+            'modalClass': '_inner-scroll',
+            'trigger': '[data-trigger=trigger]',
+            'responsive': true,
+            'buttons': [{
+                text: jQuery.mage.__('Ok'),
+                class: 'action'
+            }]
+        }}">
+        <div id="consulting-content" class="consulting-content" style="display: none;">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('block_size_guide')->toHtml();?>
+        </div>
+        <div id="shipping-returns-content" style="display: none;">
+             <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('block_shipping_return')->toHtml();?>
+        </div>
+    </div>
+</div>

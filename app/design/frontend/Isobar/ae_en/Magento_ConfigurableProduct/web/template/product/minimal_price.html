@@ -1,0 +1,35 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<ifnot args="hasSpecialPrice($row())">
+    <span class="price-container" css="getAdjustmentCssClasses($row())">
+        <if args="useLinkForAsLowAs">
+            <a attr="href: $row().url" class="minimal-price-link" html="getMinimalPriceUnsanitizedHtml($row())"></a>
+        </if>
+
+        <ifnot args="useLinkForAsLowAs">
+            <span class="price-wrapper price-including-tax">
+                <span class="minimal-price-link" html="getMinimalPriceUnsanitizedHtml($row())"></span>
+            </span>
+        </ifnot>
+
+        <each args="data: getAdjustments(), as: '$adj'">
+            <render args="$adj.getBody()"></render>
+        </each>
+    </span>
+</ifnot>
+<ifnot args="!hasSpecialPrice($row())">
+    <span css="'old-price': hasSpecialPrice($row())">
+        <span class="price-container" css="getAdjustmentCssClasses($row())">
+            <span class="price-wrapper" css="priceWrapperCssClasses" attr="priceWrapperAttr"
+                data-price-amount="" data-price-type="" html="getRegularPriceUnsanitizedHtml($row())"></span>
+        </span>
+    </span>
+
+    <!-- <if args="(getDiscountPercentage($row()) != 0) && getDiscountPercentage($row())">
+        <span class="percent-price" data-bind="text: '-' + getDiscountPercentage($row()) + '%'"></span>
+    </if> -->
+</ifnot>

@@ -1,0 +1,27 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<if args="isAllowed()">
+  <a if="imageExists($row())" class="product-item-photo" attr="href: $row().url">
+    <div class="product-image-base">
+      <span class="product-image-container" data-bind="style: {width: getWidth($row()) + 'px'}">
+        <span class="product-image-wrapper"
+          data-bind="style: {'padding-bottom': getHeight($row())/getWidth($row()) * 100 + '%'}">
+          <img class="product-image-photo" loading="lazy" data-bind="attr: {src: getImageUrl($row()),
+                               alt: getLabel($row()), title: getLabel($row())}" />
+        </span>
+      </span>
+    </div>
+    <div class="product-image-thumbnail">
+      <span class="product-image-container">
+        <span class="product-image-wrapper">
+          <img class="product-image-photo" loading="lazy"
+            data-bind="attr: {src: getThumbnailUrl($row()), alt: getLabel($row()), title: getLabel($row())}" />
+        </span>
+      </span>
+    </div>
+  </a>
+</if>

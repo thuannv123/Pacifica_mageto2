@@ -1,0 +1,998 @@
+//
+//  One Step Checkout
+//  ____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+
+@mobile-screen-width: 900px;
+@icon-close-base64: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTS0xLTFoMTJ2MTJILTF6Ii8+PHBhdGggZmlsbD0iI2I1YjViNSIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkPSJNNiA1bDQtNC0xLTEtNCA0LTQtNC0xIDEgNCA0LTQgNCAxIDEgNC00IDQgNCAxLTEtNC00eiIgc3Ryb2tlPSJudWxsIi8+PC9zdmc+);
+@amcheckout-fieldbox-side__padding: 7px;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    //Checkout Page
+    .checkout-index-index{
+        .page-wrapper{
+            #maincontent{
+                padding: 0;
+                .columns{
+                    .column.main{
+                        .checkout-container{
+                            .am-submit-summary #checkout-payment-method-load {
+                                .actions-toolbar {
+                                    display: none;
+                                }
+                            }
+                            @media screen and (min-width: 1024px) and (max-width:1150px) {
+                                padding: 28px 60px 0;
+                            }
+                            padding: 28px 100px 0;
+                            display: grid;
+
+                            .messages {
+                                order: 0;
+                            }
+
+                            .checkout-header{
+                                .title{
+                                    font-size: 35px;
+                                    font-weight: 600;
+                                    margin-bottom: 27px;
+                                }
+                                .description{
+                                    display: none;
+                                }
+                            }
+                            .authentication-wrapper{
+                                clear: both;
+                                width: 100%;
+                                float: left;
+                                text-align: left;
+                                margin: 0;
+                                max-width: 47.8%;
+                                display: flex;
+                                justify-content: space-between;
+                                span {
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                }
+                                .action-auth-toggle{
+                                    width: 30%;
+                                    height: 43px;
+                                    border-radius: 50px;
+                                    background: #ffffff;
+                                    border: 1px solid #000000; 
+                                    span{
+                                        color: #000000;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                    }
+                                }
+                                .authentication-dropdown{
+                                    .modal-inner-wrap{
+                                        .modal-header{
+                                            .action-close{
+                                                &:hover{
+                                                    color: #ffffff;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .block-content {
+                                    .actions-toolbar {
+                                        .primary {
+                                            .action-login {
+                                                border-radius: 3px;
+                                                padding-top: 10px;
+                                            }
+                                        }
+                                        .secondary {
+                                            padding-top: 0;
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                            }
+                            .amcheckout-main-container{
+                                // margin-top: 40px;
+                                .amcheckout-column.-main{
+                                    width: 47.8%;
+                                    .amcheckout-step-container{
+                                        .amcheckout-title{
+                                            background: transparent;
+                                            padding: 15px 0;
+                                            font-size: 20px;
+                                            color: #000000;
+                                            .amcheckout-icon{
+                                                display: none;
+                                            }
+                                        }
+                                        .checkout-shipping-address {
+                                            .amcheckout-content{
+                                                .amcheckout-wrapper{
+                                                    .fieldset{
+                                                        .field{
+                                                            .label{
+                                                                span{
+                                                                    font-weight: 600;
+                                                                    font-size: 16px;
+                                                                    color: #000000;
+                                                                }
+                                                            }
+                                                            .amcheckout-email{
+                                                                .amcheckout-wrapper{
+                                                                    width: 89.4%;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .action{
+                                                        border-radius: 3px;
+                                                    }
+                                                }
+                                                .checkout-billing-address{
+                                                    .fieldset{
+                                                        .field-select-billing{
+                                                            .label{
+                                                                padding:15px 0;
+                                                                background: #ffffff;
+                                                                span{
+                                                                    font-size: 20px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .checkout-shipping-method{
+                                            .checkout-shipping-method {
+                                                border-top: 1px solid #696969;
+
+                                                .step-title.amcheckout-title {
+                                                    padding-top: 30px;
+                                                }
+                                                .amcheckout-content{
+                                                    .amcheckout-wrapper{
+                                                        #checkout-step-shipping_method{
+                                                            .amcheckout-items{
+                                                                width: 100%;
+                                                                display: block;
+                                                                .amcheckout-method {
+                                                                    width: 100%;
+                                                                    border: 0;
+                                                                    background: #ffffff;
+                                                                    padding-left: 0;
+                                                                    &:hover{
+                                                                        box-shadow: none;
+                                                                    }
+                                                                    .col{
+                                                                        padding-left: 0;
+                                                                        &.col-method-box{
+                                                                            display: block;
+                                                                            padding: 0 38px;
+                                                                            .box-content{
+                                                                                display: flex;
+                                                                                justify-content: space-between;
+                                                                                .col-price{
+                                                                                    font-weight: normal;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        &.col-carrier{
+                                                                            font-weight: 600;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .form.payments {
+                                            .fieldset {
+                                                hr {
+                                                    border-top: 1px solid #696969;
+                                                }
+                                            }
+                                        }
+
+                                        .opc-payment{
+                                            .payment-group{
+                                                .amcheckout-content{
+                                                    padding-bottom: 20px;
+                                                    border-bottom: 1px solid #000000;
+                                                    .amcheckout-wrapper{
+                                                        .payment-method{
+                                                            border: 0;
+                                                            background: #ffffff;
+                                                            border-bottom: 1px solid #ACACAC ;
+                                                            padding: 20px 0;
+                                                            &:hover{
+                                                                box-shadow: none;
+                                                            }
+                                                        }
+                                                    }
+                                                    .payment-powered{
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        height: 30px;
+                                                        span{
+                                                            margin: 0 5px;
+                                                        }
+                                                        img{
+                                                            height: 100%;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .amcheckout-checkboxes-container{
+                                            margin-top: 50px;
+                                            width: 83%;
+                                            position: relative;
+                                            .subcribe-content{
+                                                .title{
+                                                    font-size: 20px;
+                                                    color: #000000;
+                                                }
+                                                .content{
+                                                    margin: 10px 0;
+                                                    font-size: 16px;
+                                                    color: #696969;
+                                                }
+                                            }
+                                            .title-checkbox{
+                                                height: 140px;
+                                                border: 1px solid #ACACAC;
+                                                border-radius: 10px;
+                                                margin: 30px 0;
+                                                position: relative;
+                                                strong{
+                                                    font-size: 18px;
+                                                    line-height: 130px;
+                                                    padding: 0 40px;
+                                                }
+                                            }
+                                            .content-contact{
+                                                span,a{
+                                                    font-size: 14px;
+                                                    color: #696969;
+                                                }
+                                                a{
+                                                    text-decoration: underline;
+                                                }
+                                            }
+                                            .admin__field-option{
+                                                position: absolute;
+                                                display: inline-block;
+                                                width: 57px;
+                                                right: 75px;
+                                                bottom: 55px;
+                                                height: 34px;
+                                                input {
+                                                    visibility: hidden;
+                                                    &:checked + .admin__field-label {
+                                                        background-color: #000000;
+                                                        &:before {
+                                                            transform: translateX(23px);
+                                                            top: 2px;
+                                                            background: #fff !important;
+                                                            
+                                                        }
+                                                      }
+                                                }
+                                                .admin__field-label {
+                                                    position: absolute;
+                                                    cursor: pointer;
+                                                    top: 0;
+                                                    left: 0;
+                                                    right: 0;
+                                                    bottom: 0;
+                                                    background-color: #E5E5E5;
+                                                    transition: .3s;
+                                                    border-radius: 34px;
+                                                    &:before {
+                                                        position: absolute;
+                                                        content: "";
+                                                        height: 30px;
+                                                        width: 30px;
+                                                        top: 2px;
+                                                        left: 2px;
+                                                        background-color: white;
+                                                        transition: .4s;
+                                                        border-radius: 50%;
+                                                        box-shadow: 2px 0px 4px #00000029;
+                                                        transform: unset;
+                                                        opacity: 1;
+                                                    }
+                                                    &::after{
+                                                        display: none;
+                                                    }
+                                                  }
+                                            }
+                                        }
+                                        .amcheckout-onepage-gdpr-container{
+                                            padding: 20px 0;
+                                        }
+                                        
+                                        input[type=radio]+label{
+                                            &:after{
+                                                background: #fff;
+                                                border: 1px solid #828282;
+                                            }
+                                        }
+                                        input[type=checkbox] + label{
+                                            padding: 4px 0 4px 40px;
+                                            &::before{
+                                                content: url(../images/tick.svg);
+                                                display: block;
+                                                width: 17px;
+                                                display: block;
+                                                text-align: center;
+                                                left: 6px;
+                                                top: 53%;
+                                            }
+                                            &::after{
+                                                border-radius: 5px;
+                                                width: 29px;
+                                                height: 29px;
+                                            }
+                                        }
+                                        
+                                        input[type='radio']{
+                                            + label{
+                                                padding-left: 40px;
+                                                &::before{
+                                                    display: none;
+                                                }
+                                                &::after{
+                                                    background: #ffffff;
+                                                    border: 1px solid #828282;
+                                                    width: 28px;
+                                                    height: 28px;
+                                                }
+                                            }
+                                            &:checked {
+                                                + label{
+                                                    &::before{
+                                                        display: none;
+                                                    }
+                                                    &::after{
+                                                        background: #ffffff;
+                                                        width: 14px;
+                                                        height: 14px;
+                                                        outline: 7px solid #000000;
+                                                        border: 0;
+                                                        left: 5px;
+                                                    }
+                                                }
+                                                
+                                            }
+                                        }
+                                        input[type='text'],
+                                        input[type='password'],
+                                        input[type='url'],
+                                        input[type='tel'],
+                                        input[type='search'],
+                                        input[type='number'],
+                                        input[type='datetime'],
+                                        input[type='email']{
+                                            font-size: 16px;
+                                            color: #000000;
+                                            &::placeholder{
+                                                color: #ACACAC;
+                                                font-size: 14px;
+                                            }
+                                        }
+                                    }
+                                }  
+                                .amcheckout-column.-sidebar{
+                                    width: 430px;
+                                    .amcheckout-step-container{
+                                        border: 0;
+                                        padding-right: 10px;
+
+                                        .order-items{
+                                            font-size: 20px;
+                                            font-weight: 600;
+                                            color: #000000;
+                                        }
+                                        .amcheckout-icon{
+                                            display: none;
+                                        }
+                                        .amcheckout-summary-container{
+                                            background: #ffffff;
+                                            .step-title {
+                                                background: #ffffff;
+                                                font-size: 20px;
+                                                color: #000000;
+                                                padding: 15px 0;
+                                                font-weight: 600;
+                                            }
+                                            .amcheckout-wrapper{
+                                                padding: 0;
+                                                .checkout-payment-method{
+                                                    .payment-option{
+                                                        position: relative;
+                                                        .payment-option-title{
+                                                            padding: 0;
+                                                            text-align: center;
+                                                            height: 41px;
+                                                            line-height: 40px;
+                                                            border: 1px solid #ACACAC;
+                                                            border-radius: 50px;
+                                                            position: absolute;
+                                                            width: 100%;
+                                                            z-index: 2;
+                                                            background: #ffffff;
+                                                            .action{
+                                                                span{
+                                                                    font-size: 14px;
+                                                                    color: #696969;
+                                                                }
+                                                                &::after{
+                                                                    display: none;
+                                                                }
+                                                            }
+                                                        }
+                                                        .payment-option-content{
+                                                            display: block !important;
+                                                            opacity: 0;
+                                                            .form-discount{
+                                                                display: flex;
+                                                                justify-content: space-between;
+                                                                .payment-option-inner{
+                                                                    width: 63.1%;
+                                                                    margin: 0;
+                                                                    .control{
+                                                                        input{
+                                                                            padding: 0 20px;
+                                                                            color: #ACACAC;
+                                                                            font-size: 14px;
+                                                                            border-radius: 6px;
+                                                                            &:focus{
+                                                                                box-shadow: none;
+                                                                            }
+                                                                            &::placeholder{
+                                                                                color: #ACACAC;
+                                                                                font-size: 14px;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                .actions-toolbar{
+                                                                    width: 34.7%;
+                                                                    margin: 0;
+                                                                    .primary{
+                                                                        width: 100%;
+                                                                        .action-apply{
+                                                                            width: 100%;
+                                                                            margin: 0;
+                                                                            border-radius: 50px;
+                                                                            background: #ACACAC;
+                                                                            border: 0;
+                                                                            span{
+                                                                                font-weight: 400;
+                                                                                font-size: 14px;
+                                                                                color: #ffffff;
+                                                                            }
+                                                                            &:hover{
+                                                                                background: #000000;
+                                                                                color: #ffffff;
+                                                                            }
+
+                                                                            &.active {
+                                                                                background: #000000;
+                                                                                color: #ffffff;
+                                                                            }
+                                                                        }
+                                                                        .action-cancel{
+                                                                            border-radius: 50px;
+                                                                            white-space: nowrap;
+                                                                            @media (max-width:768px) {
+                                                                                padding: 0;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        &._active{
+                                                            .payment-option-title{
+                                                                z-index: -1;
+                                                            }
+                                                            .payment-option-content{
+                                                                opacity: 1;
+                                                                z-index: 2;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .items-in-cart{
+                                                    .title{
+                                                        border: 0;
+                                                        span{
+                                                            font-size: 20px;
+                                                            color: #000000;
+                                                            font-weight: 600;
+                                                        }
+                                                        &::after{
+                                                            display: none;
+                                                        }
+                                                    }
+                                                }
+                                                .minicart-items{
+                                                    overflow-y: auto;
+                                                    &::-webkit-scrollbar {
+                                                        width: 5px;
+                                                        background: #D9D9D9;
+                                                    }
+                                                    &::-webkit-scrollbar-thumb {
+                                                        background-color: #000000;
+                                                        width: 5px;
+                                                    }
+                                                    .minicart-items-wrapper{
+                                                        padding: 0;
+                                                        max-height: 450px;
+                                                        overflow: visible;
+                                                        width: 100%;
+                                                        .minicart-items{
+                                                            .product-item{
+                                                                padding: 0;
+                                                                padding-top: 20px;
+                                                                .product{
+                                                                    .product-image-container{
+                                                                        border: 0;
+                                                                        .product-image-wrapper{
+                                                                            height: 100%;
+                                                                        }
+                                                                    }
+                                                                    .product-item-details{
+                                                                        padding-left: 0;
+                                                                        float: right;
+                                                                        width: 62%;
+                                                                        .product-item-inner{
+                                                                            width: 75%;
+                                                                            display: block;
+                                                                            .product-item-name-block{
+                                                                                .product-item-name{
+                                                                                    font-size: 14px;
+                                                                                    font-weight: 600;
+                                                                                    color: #000000;
+                                                                                }
+                                                                            }
+                                                                            .subtotal{
+                                                                               .price-including-tax {
+                                                                                    .cart-price{
+                                                                                        .price-1{
+                                                                                            font-size: 12px;
+                                                                                            color: #D23630;
+                                                                                            font-weight: 600;
+                                                                                            margin-right: 10px;
+                                                                                        }
+                                                                                        .price-2{
+                                                                                            font-size: 12px;
+                                                                                            color: #696969;
+                                                                                            position: relative;
+                                                                                            &::after{
+                                                                                                content: '';
+                                                                                                width: 100%;
+                                                                                                height: 1px;
+                                                                                                background: #696969;
+                                                                                                position: absolute;
+                                                                                                top: 50%;
+                                                                                                right: 0;
+                                                                                            }
+                                                                                        }
+                                                                                        .price{
+                                                                                            font-size: 12px;
+                                                                                            color: #000000;
+                                                                                            font-weight: 600;
+                                                                                        }
+                                                                                        
+                                                                                    }
+                                                                               } 
+                                                                            }
+                                                                        }
+                                                                        .product.options{
+                                                                            padding: 0;
+                                                                            .content{
+                                                                                .item-options{
+                                                                                    margin: 0;
+                                                                                    font-size: 12px;
+                                                                                    color: #696969;
+                                                                                    .values{
+                                                                                        margin-left: 10px;
+                                                                                    }
+
+                                                                                    &.item-style {
+                                                                                        .title {
+                                                                                            word-break: break-word;
+                                                                                            word-wrap: break-word;
+                                                                                            overflow: hidden;
+                                                                                            max-height: 3rem;
+                                                                                            display: -webkit-box;
+                                                                                            -webkit-line-clamp: 1;
+                                                                                            -webkit-box-orient: vertical;
+                                                                                            width: 70%;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        .details-qty{
+                                                                            margin: 0;
+                                                                            font-size: 12px;
+                                                                            color: #696969;
+                                                                        }
+                                                                    }
+                                                                    .cart.item.message{
+                                                                        top: 50px;
+                                                                        width: 50%;
+                                                                        left: 38%;
+                                                                        @media (max-width:768px) {
+                                                                            left: 48%;
+                                                                        }
+                                                                        div{
+                                                                            display: flex;
+                                                                            align-items: center;
+                                                                            text-align: center;
+                                                                            justify-content: right;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                &:not(:last-child){
+                                                                    padding-bottom: 20px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .table-caption{
+                                                    display: none;
+                                                }
+                                                .table-totals{
+                                                    tbody{
+                                                        tr{
+                                                            font-size: 14px;
+                                                            color: #696969;
+                                                        }
+                                                        td{
+                                                            font-size: 14px;
+                                                            color: #696969;
+                                                            font-weight: 600;
+                                                        }
+                                                       .totals.sub{
+                                                            font-size: 14px;
+                                                            color: #000000;
+                                                            .amount{
+                                                                 span{
+                                                                     font-size: 14px;
+                                                                     font-weight: 600;
+                                                                     color: #000000;
+                                                                 }
+                                                            }
+                                                       } 
+                                                       .grand.totals{
+                                                            th{
+                                                                font-size: 16px;
+                                                                color: #000000;
+                                                            }
+                                                            .amount{
+                                                               strong{
+                                                                    span{
+                                                                        font-size: 16px;
+                                                                        font-weight: 600;
+                                                                        color: #000000;
+                                                                    }
+                                                               }
+                                                            }
+                                                        }
+                                                        .totals.shipping.incl {
+                                                            .amount {
+                                                                .price {
+                                                                    position: relative;
+                                                                    top: 22px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .checkout-payment-method.submit{
+                                            .payment-methods{
+                                                .actions-toolbar{
+                                                    .primary.checkout{
+                                                        width: 100%;
+                                                        background: #ACACAC;
+                                                        border-radius: 50px;
+                                                        height: 50px;
+                                                        border: 0;
+                                                        &:hover{
+                                                            color: #ffffff;
+                                                        }
+                                                        &.btn-active{
+                                                            background: #000000;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .field-tooltip{
+                                    .field-tooltip-action{
+                                        width: 100%;
+                                        &::before{
+                                            content: "?";
+                                            display: block;
+                                            font-family: 'Lato';
+                                            font-size: 20px;
+                                            width: 32px !important; 
+                                            height: 32px;
+                                            border: 1px solid;
+                                            text-align: center;
+                                            border-radius: 50%;
+                                            line-height: 28px;
+                                            font-weight: 600;
+                                            color: #ffffff;
+                                            background: #ACACAC;
+                                        }
+                                    }
+                                }
+                                .amcheckout-additional-options{
+                                    border: 0;
+                                    .amcheckout-checkboxes{
+                                        visibility: hidden;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .fieldset.address {
+        margin: 0 -@amcheckout-fieldbox-side__padding;
+
+        & > .field {
+            display: inline-block;
+            padding: 0 @amcheckout-fieldbox-side__padding;
+            width: 100%;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+    }
+
+    // Success Page
+ 
+    // Disable minicart in estimated total block
+    .opc-estimated-wrapper .minicart-wrapper {
+        display: none;
+    }
+}
+
+//
+//mobile
+//
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index{
+        .page-wrapper{
+            #maincontent{
+                .columns{
+                    .column.main{
+                        .checkout-container{
+                            padding: 28px 0;
+                            .checkout-header{
+                                padding: 0 30px;
+                                .title{
+                                    font-size: 30px;
+                                    margin-bottom: 21px;
+                                }
+                            }
+                            .authentication-wrapper{
+                                max-width: 100%;
+                                padding: 0 30px;
+                                span{
+                                    font-size: 1.2rem;
+                                }
+                                .action-auth-toggle{
+                                    height: 31px;
+                                    width: 32%;
+                                    span{
+                                        font-size: 12px;
+                                        white-space: nowrap;
+                                    }
+                                }
+                            }
+                            .opc-estimated-wrapper{
+                                background: transparent;
+                                margin: 0;
+                                padding: 0;
+                                border: 0;
+                                .estimated-block{
+                                    display: none;
+                                }
+                            }
+                            .form-login{
+                                .amcheckout-email{
+                                    flex-wrap: nowrap;
+                                }
+                            }
+                            .amcheckout-main-container{
+                                .amcheckout-column.-main{
+                                    width: 100%;
+                                    padding: 0 30px;
+                                    .amcheckout-step-container{
+                                        input[type=checkbox] + label{
+                                            &::before{
+                                                width: 14px;
+                                                left: 3px;
+                                            }
+                                            &::after{
+                                                width: 20px;
+                                                height: 20px;
+                                            }
+                                        }
+                                        .amcheckout-checkboxes-container{
+                                            width: 100%;
+                                            .subcribe-content{
+                                                .title{
+                                                    font-size: 16px;
+                                                }
+                                                .content{
+                                                    font-size: 12px;
+                                                    width: 90%;
+                                                    display: block;
+                                                }
+                                            }
+                                            .title-checkbox{
+                                                strong{
+                                                    padding: 0 30px;
+                                                    font-size: 14px;
+                                                    line-height: 135px;
+                                                }
+                                            }
+                                            .content-contact{
+                                                width: 80%;
+                                                span,a{
+                                                    font-size: 10px;
+                                                }
+                                            }
+                                            .admin__field-option{
+                                                right: 45px;
+                                            }
+                                        }
+                                    }
+                                    .amcheckout-block:not(:first-of-type){
+                                        margin: 0;
+                                    }
+                                }
+                                .amcheckout-column.-sidebar{
+                                    width: 100%;
+                                    .amcheckout-step-container{
+                                        .amcheckout-summary-container{
+                                            .step-title{
+                                                font-size: 16px;
+                                                padding: 15px 30px;
+                                            }
+                                            .amcheckout-wrapper{
+                                                .checkout-payment-method{
+                                                    padding: 0 30px;
+                                                    .payment-option._active{
+                                                        .payment-option-content{
+                                                            padding: 0 0 22px;
+                                                        }
+                                                    }
+                                                }
+                                                .minicart-items{
+                                                    .minicart-items-wrapper{
+                                                        .minicart-items{
+                                                            .product-item{
+                                                                .product{
+                                                                    .product-item-details{
+                                                                        width: 50%;
+                                                                        .product.options{
+                                                                            .content{
+                                                                                .item-options{
+                                                                                    .values{
+                                                                                        margin-left: 15px;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .items-in-cart{
+                                            padding: 20px 20px;
+                                            border-bottom: 1px solid #d3d3d3;
+                                        }
+                                        .order-items{
+                                            font-size: 16px;
+                                            padding: 0 30px;
+                                        }
+                                        .table-totals{
+                                            width: 90%;
+                                            margin: auto;
+                                            .grand.totals{
+                                            border-top: 1px solid #d3d3d3;
+                                                
+                                            } 
+                                        }
+                                        .amcheckout-additional-options{
+                                            background: #ffffff;
+                                        }
+                                        .checkout-payment-method.submit{
+                                            width: 90%;
+                                            margin: auto;
+                                            .payment-methods{
+                                                margin: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Tablet
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .checkout-index-index .opc-wrapper.am-opc-wrapper .amcheckout-delivery-date .field {
+        & {
+            display: block;
+            width: 50%;
+        }
+
+        &:nth-child(2n) {
+            padding-left: 7px;
+        }
+
+        &.datepicker .control,
+        &.timepicker .control,
+        &.comment {
+            width: 100%;
+        }
+    }
+
+    .checkout-index-index  .modal-popup.modal-slide:not(.agreements-modal):not(.popup-authentication) .modal-inner-wrap {
+        width: 500px;
+    }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .checkout-index-index .opc-wrapper.am-opc-wrapper .shipping-address-item {
+        width: 50%;
+    }
+}

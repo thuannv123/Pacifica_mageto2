@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package GDPR Base for Magento 2
+ */-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">privacy-settings</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Privacy Settings</item>
+                    <item name="label" xsi:type="string">Privacy Settings</item>
+                </argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

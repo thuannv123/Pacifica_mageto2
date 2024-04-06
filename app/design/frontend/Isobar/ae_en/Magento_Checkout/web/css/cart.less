@@ -1,0 +1,42 @@
+
+#maincontent{
+    .page-title-wrapper{
+        margin: 20px 0;
+        float: left;
+        margin-left: 60px;
+        .page-title{
+            span{
+                font-size: 30px;
+            }
+        }
+    }
+    .cart-empty{
+        clear: both;
+    }
+
+}
+@media(max-width: 768px){
+    #maincontent{
+        .page-title-wrapper{
+            margin: 20px 0;
+            float: unset;
+            padding: 0 20px ;
+            .page-title{
+                span{
+                    font-size: 3rem;
+                }
+            }
+        }
+    }  
+    .checkout-cart-index{
+        .footer{
+            .footer.content{
+                .footer-container-right{
+                    .scroll-top{
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+}

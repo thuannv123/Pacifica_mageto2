@@ -1,0 +1,182 @@
+<?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+<?php $activeMobileAerie = $block->_helper->activeMobileAerie(); ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit); ?>
+<!-- Top Nav -->
+<?php
+    $urlCurrently = (isset($_SERVER['REQUEST_URI'])) ?  $_SERVER['REQUEST_URI'] :$block->getUrlCurrently();
+    $isMobile = $block->isMobile();
+    if(isset($_COOKIE['website'])){
+        $checkWebsite = $_COOKIE['website'];
+        $categoryCurrent = $this->_helper->getCategoryCurrent();
+        if($categoryCurrent){
+            if((strpos($categoryCurrent, 'aerie') !== false)){
+                if($checkWebsite == 'american'){
+                    $checkWebsite = 'aerie';
+                }
+            }else{
+                if($checkWebsite == 'aerie'){
+                    $checkWebsite = 'american';
+                }
+            }
+        }else{
+            if($block->getRequest()->getControllerModule() == 'Magento_Cms'){
+                if(strpos($block->getRequest()->getRequestUri(),'aerie') !== false){
+                    $checkWebsite = 'aerie';
+                }
+            }
+        }
+    }else{
+        if((strpos($urlCurrently, 'aerie') !== false)){
+            $checkWebsite = 'aerie';
+        }else{
+            $checkWebsite = 'american';
+        }
+    }
+?>
+<script>
+    window.checkConfig = <?= $this->_helper->activeMobile() ?>
+</script>
+<?php if (!$isMobile && $activeMobileAerie): ?>
+    <?php if(isset($_SERVER['REQUEST_URI'])) : ?>
+        <?php if ((strpos($checkWebsite, 'aerie') !== false)): ?>
+            <nav class="navigation navigation-megamenu <?php echo $this->_helper->isVertical() ? ' mobile-only' : '' ?> tm-top-navigation"
+                data-action="navigation">
+                <?= $this->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('Menu-Aerie-Allpage')
+                    ->toHtml(); ?>
+            </nav>
+        <?php else: ?>
+            <nav class="navigation navigation-megamenu <?php echo $this->_helper->isVertical() ? ' mobile-only' : '' ?> tm-top-navigation"
+                data-action="navigation">
+                <ul
+                    data-mage-init='{"megamenu":{"menus": "li ul:not(.mm-submenu), li.level0 > .megamenu-wrapper", "responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}, "differentPositionMenus":".megamenu-wrapper", "differentPosition":{"my":"left top","at":"left bottom","of":".navigation"}}}'>
+                    <?php /* @escapeNotVerified */echo $_menu; ?>
+                </ul>
+            </nav>
+        <?php endif; ?>
+    <?php endif; ?>
+  
+<?php else: ?>
+    <nav class="navigation navigation-megamenu <?php echo $this->_helper->isVertical() ? ' mobile-only' : '' ?> tm-top-navigation"
+        data-action="navigation">
+        <ul
+            data-mage-init='{"megamenu":{"menus": "li ul:not(.mm-submenu), li.level0 > .megamenu-wrapper", "responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}, "differentPositionMenus":".megamenu-wrapper", "differentPosition":{"my":"left top","at":"left bottom","of":".navigation"}}}'>
+            <?php /* @escapeNotVerified */echo $_menu; ?>
+        </ul>
+    </nav>
+<?php endif; ?>
+<?php
+if ($block->_helper->getColorThemeActive() == '1'):
+    $_menu_bg = $block->_helper->getMenuBackgroundColor() ? $block->_helper->getMenuBackgroundColor() : '';
+    $_active_item_bg = $block->_helper->getMenuActiveBackgroundColor() ? $block->_helper->getMenuActiveBackgroundColor() : '';
+    $_menu_text_color = $block->_helper->getMenuTextColor() ? $block->_helper->getMenuTextColor() : '';
+    $_sub_bg_color = $block->_helper->getSubmenuBackgroundColor() ? $block->_helper->getSubmenuBackgroundColor() : '';
+    $_sub_bg_img = $block->_helper->getSubmenuBackgroundImage() !== 'media/config/default/' ? $block->_helper->getSubmenuBackgroundImage() : '';
+    $_sub_text_color = $block->_helper->getSubmenuTextColor() ? $block->_helper->getSubmenuTextColor() : '';
+    $_item_hover_color = $block->_helper->getItemHoverColor() ? $block->_helper->getItemHoverColor() : '';
+    ?>
+    <style type="text/css">
+        .nav-sections,
+        .tm-top-navigation {
+            background-color:
+                <?= $_menu_bg ?>
+            ;
+        }
+
+        .tm-top-navigation .level0.active>.level-top,
+        .tm-top-navigation .level0.has-active>.level-top {
+            border: none !important;
+            background-color:
+                <?= $_active_item_bg ?>
+            ;
+            color:
+                <?= $_menu_text_color ?>
+            ;
+        }
+
+        .navigation li.level-top .tm-megamenu.level1,
+        .navigation li.level-top .tm-megamenu.level1.vertical .level2 .tm-megamenu,
+        .navigation li.level-top .tm-megamenu.level1.horizontal .level3 .tm-megamenu,
+        .navigation li.level-top .tm-megamenu.level1.sidebar .level3 .tm-megamenu {
+            background-image: url('/<?= $_sub_bg_img ?>');
+            background-size: cover;
+            background-color:
+                <?= $_sub_bg_color ?>
+            ;
+        }
+
+        .navigation .level0 .tm-megamenu,
+        .navigation .level0 .tm-megamenu a {
+            color:
+                <?= $_sub_text_color ?>
+            ;
+        }
+
+        .navigation .level0>.level-top {
+            color:
+                <?= $_menu_text_color ?>
+            ;
+        }
+
+        @media only screen and (min-width: 768px) {
+
+            .navigation.navigation-megamenu .level0:hover>.level-top,
+            .navigation.navigation-megamenu .level0 .submenu a:hover,
+            .navigation.navigation-megamenu .level0 .submenu a.ui-state-focus,
+            .navigation li.level-top .tm-megamenu.level1.vertical .level2 li:hover>a,
+            .navigation li.level-top .tm-megamenu.level1.horizontal .level3 li:hover>a,
+            .navigation li.level-top .tm-megamenu.level1.sidebar .level3 li:hover>a {
+                background-color:
+                    <?= $_item_hover_color ?>
+                ;
+                color:
+                    <?= $_menu_text_color ?>
+                ;
+            }
+
+            .navigation li.level-top .tm-megamenu.level1.horizontal .mm-submenu-level1.active,
+            .navigation li.level-top .tm-megamenu.level1.horizontal .mm-submenu-level1:hover {
+                background-color:
+                    <?= $_item_hover_color ?>
+                ;
+                border-color:
+                    <?= $_item_hover_color ?>
+                ;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .navigation .level0>.level-top:hover {
+                color:
+                    <?= $_menu_text_color ?>
+                ;
+            }
+
+            .navigation .level0.active>a:not(.ui-state-active),
+            .navigation .level0.has-active>a:not(.ui-state-active),
+            .nav-sections .header.links li,
+            .nav-sections .header.links li>a,
+            .nav-sections-item-title a {
+                color:
+                    <?= $_menu_text_color ?>
+                ;
+            }
+
+            .navigation .submenu:not(:first-child) ul>li a {
+                color:
+                    <?= $_sub_text_color ?>
+                ;
+            }
+
+            .nav-sections-item-title {
+                background-color:
+                    <?= $_active_item_bg ?>
+                ;
+                border-color:
+                    <?= $_active_item_bg ?>
+                ;
+            }
+        }
+    </style>
+<?php endif; ?>

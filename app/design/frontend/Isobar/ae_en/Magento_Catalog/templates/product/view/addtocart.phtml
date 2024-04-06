@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Bag'); ?>
+<?php if ($_product->isSaleable()) : ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) : ?>
+                <div class="field qty">
+                    <!-- <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label> -->
+                    <div class="control">
+                        <button type="button" class="decrease-qty"></button>
+                        <input type="number" name="qty" id="qty" min="0" value="<?= $block->getProductDefaultQty() * 1 ?>" title="<?= $block->escapeHtmlAttr(__('Qty')) ?>" class="input-text qty" data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>" />
+                        <button type="button" class="increase-qty"></button>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <div class="actions">
+                <button type="submit" title="<?= $block->escapeHtmlAttr($buttonTitle) ?>" class="action primary tocart" id="product-addtocart-button" disabled>
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+    <span class="shipping-return" data-trigger="shipping-returns-trigger"><a href="#"><?= __('Shipping + Returns') ?></a></span>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function($, modal) {
+        $(document).ready(function() {
+            $('.decrease-qty').click(function() {
+                var qtyInput = $('#qty');
+                var currentQty = parseInt(qtyInput.val(), 10);
+                if (!isNaN(currentQty) && currentQty > 1) {
+                    qtyInput.val(currentQty - 1);
+                };
+            });
+            $('.increase-qty').click(function() {
+                var qtyInput = $('#qty');
+                var currentQty = parseInt(qtyInput.val(), 10);
+                if (!isNaN(currentQty)) {
+                    qtyInput.val(currentQty + 1);
+                }
+            });
+        });
+        $(document).ready(function() {
+            var options = {
+                type: 'popup',
+                title: '<?= __('Shipping + Returns') ?>',
+                modalClass: '_inner-scroll',
+                responsive: true,
+                buttons: [{
+                    text: jQuery.mage.__('Ok'),
+                    class: 'action'
+                }]
+            };
+
+            var popup = modal(options, $('#shipping-returns-content'));
+
+            $('[data-trigger=shipping-returns-trigger]').on('click', function() {
+                popup.openModal();
+                $('#shipping-returns-content').show();
+            });
+            $('[data-trigger=trigger]').on('click', function() {
+                $('#consulting-content').show();
+            });
+        });
+    });
+</script>

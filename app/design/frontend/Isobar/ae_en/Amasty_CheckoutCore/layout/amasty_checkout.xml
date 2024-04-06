@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="giftCardAccount" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="checkboxes_new" xsi:type="array">
+                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                    <item name="template" xsi:type="string">Amasty_CheckoutCore/checkout/summary/checkboxes</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="subcribe.content" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/subcribe-content</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">content</item>
+                                                                <item name="template" xsi:type="string">Amasty_CheckoutCore/onepage/subcribe-content</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="additional" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/fieldset</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="deps" xsi:type="array">
+                                                                    <item name="0" xsi:type="string">checkoutProvider</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="discount" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount</item>
+                                                    <item name="sortOrder" xsi:type="string">0</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                            <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="additional" xsi:type="array">
+                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/fieldset</item>
+                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="deps" xsi:type="array">
+                                                    <item name="0" xsi:type="string">checkoutProvider</item>
+                                                </item>
+                                            </item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="checkboxes" xsi:type="array">
+                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                    <item name="template" xsi:type="string">Amasty_CheckoutCore/checkout/summary/checkboxes</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="subscribe" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/subscribe</item>
+                                                            <item name="description" xsi:type="string" translate="true"></item>
+                                                            <item name="dataScope" xsi:type="string">amcheckout.additional.subscribe</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                            <item name="checked" xsi:type="boolean">false</item>
+                                                        </item>
+                                                        <item name="register" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/register</item>
+                                                            <item name="description" xsi:type="string" translate="true">Create an Account</item>
+                                                            <item name="dataScope" xsi:type="string">amcheckout.additional.register</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                            <item name="checked" xsi:type="boolean">false</item>
+                                                        </item>
+                                                        <item name="date_of_birth" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/date-of-birth</item>
+                                                            <item name="template" xsi:type="string">ui/form/field</item>
+                                                            <item name="elementTmpl" xsi:type="string">Amasty_CheckoutCore/form/date</item>
+                                                            <item name="readonly" xsi:type="string">1</item>
+                                                            <item name="outputDateFormat" xsi:type="string">y-MM-dd</item>
+                                                            <item name="label" xsi:type="string" translate="true">Date of Birth</item>
+                                                            <item name="additionalClasses" xsi:type="string">date</item>
+                                                            <item name="dataScope" xsi:type="string">amcheckout.additional.date_of_birth</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                            <item name="visible" xsi:type="boolean">false</item>
+                                                            <item name="validation" xsi:type="array">
+                                                                <item name="required-entry" xsi:type="boolean">true</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="comment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Amasty_CheckoutCore/js/view/additional/comment</item>
+                                                    <item name="template" xsi:type="string">ui/form/field</item>
+                                                    <item name="label" xsi:type="string" translate="true">Order Comment</item>
+                                                    <item name="dataScope" xsi:type="string">amcheckout.additional.comment</item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="additionalClasses" xsi:type="string">amcheckout-comment</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="summary_additional" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="footer.container.right" remove="true" />
+        <referenceBlock name="minicart" remove="false" />
+        <move element="custom.header.buttons" destination="header-wrapper" before="-"/>
+        <move element="minicart" destination="header-wrapper" after="custom.header.buttons"/>
+        <referenceBlock name="logo" remove="true"/>
+
+    </body>
+</page>

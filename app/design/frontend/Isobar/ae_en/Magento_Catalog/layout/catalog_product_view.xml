@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes" as="additional" template="Magento_Catalog::product/view/attributes.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Materials &amp; Care</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.extrahint">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getDescription</argument>
+                    <argument name="at_code" xsi:type="string">description</argument>
+                    <argument name="css_class" xsi:type="string">overview</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">The Details</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.description" as="description" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                    <argument name="at_code" xsi:type="string">short_description</argument>
+                    <argument name="css_class" xsi:type="string">description</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Size &amp; Fit</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <!-- <referenceBlock name="product.attributes" remove="true" /> -->
+        <move element="product.info.social" destination="product.info.main" before="product.info.options.wrapper.bottom"/>
+        <move element="view.addto.wishlist" destination="product.info.addto" before="-"/>
+        <move element="product.info.review" destination="reviews.tab" after="-"/>
+        <move element="size.guide" destination="product.info.social" before="-"/>
+        <move element="product.info.social" destination="product.info.options.wrapper.bottom" before="-"/>
+        <move element="product.info.description" destination="product.info.details" before="-"/>
+        <move element="product.info.overview" destination="product.info.details" after="product.info.description"/>
+        <move element="product.attributes" destination="product.info.details" after="-"/>
+        <move element="page.messages" destination="page.wrapper" before="main.content"/>
+        <move element="catalog.product.related" destination="content" after="product.info.details"/>
+        <move element="product.info.upsell" destination="content" after="catalog.product.related"/>
+
+    </body>
+</page>

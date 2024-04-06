@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var \Magento\Catalog\Block\Product\ProductList\Toolbar $block
+ * @var \Magento\Framework\Locale\LocaleFormatter $localeFormatter
+ */
+?>
+<p class="toolbar-amount" id="toolbar-amount">
+    <?= $block->escapeHtml(
+        __(
+            '%1 Products',
+            '<span class="toolbar-number">' . $localeFormatter->formatNumber($block->getTotalNum()) . '</span>'
+        ),
+        ['span']
+    ) ?>
+</p>
