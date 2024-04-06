@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_width" xsi:type="number">160</argument>
+                <argument name="logo_height" xsi:type="number">26</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="page.top">
+            <container name="new.page.messages" htmlTag="div" htmlClass="page messages" after="breadcrumbs">
+                <block class="Magento\Framework\View\Element\Template" name="ajax.message.placeholder" template="Magento_Theme::html/messages.phtml"/>
+                <block class="Magento\Framework\View\Element\Messages" name="messages" as="messages" template="Magento_Theme::messages.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="store.settings" remove="true"/>
+        <!-- <referenceContainer name="footer-container" remove="false"/> -->
+          <referenceContainer name="page.wrapper">
+            <container name="isobar-footer-container" htmlTag="footer" htmlClass="footer">
+                <container name="footer-content" as="footer-content" label="Page Footer" htmlTag="div" htmlClass="footer content">
+                    <container name="footer.container.right" as="footerContainerRight" label="Footer Container Right" htmlTag="div" htmlClass="footer-container-right">
+                        <block class="Magento\Cms\Block\Block" name="footer-social" after="form.subscribe">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_links_block_middle_right</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" after="-" template="Magento_Newsletter::subscribe.phtml"/>
+                    </container>
+                </container>
+                <block class="Magento\Framework\View\Element\Template" name="pagetop"
+                       template="Magento_Theme::html/linechat.phtml" after="-"/>
+            </container>
+        </referenceContainer>
+         <referenceContainer name="page.wrapper">
+              <container name="footer.container.left" as="footerContainerLeft" label="Footer Container Left" htmlTag="div" htmlClass="footer-container-left" before="copyright">
+            <block class="Magento\Cms\Block\Block" name="footer-link-english">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">Ked-english-isobarFooter-all</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="footer-link-thai">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">Ked-thai-isobarFooter-all</argument>
+                </arguments>
+            </block>
+        </container>
+         </referenceContainer>
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Cms\Block\Block" name="top-header-link-custom">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">Fasttrack-allPage-topLinkHeader-all</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+         
+        <referenceBlock name="store.menu">
+        <block class="Magento\Store\Block\Switcher" name="store_language_mobile" as="store_language_mobile" template="Magento_Store::switch/mobile-languages.phtml">
+            <arguments>
+                <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+            </arguments>
+        </block>
+        </referenceBlock>
+
+        <!-- design menu -->
+        <move element="header" destination="header.links" before="-"/>
+        <move element="header.links" destination="header.panel" before="store_language"/>
+        <move element="top-header-link-custom" destination="header.links" before="header"/>
+        <move element="store_language" destination="header.links" after="top-header-link-custom"/>
+        
+        <move element="logo" destination="header-wrapper" before="-"/>
+        <move element="mobile.store.settings.language" destination="header-wrapper" before="minicart"/>
+        <move element="minicart" destination="header-wrapper" before="mobile.store.settings.language"/>
+        <move element="top.search" destination="header-wrapper" before="header.top.menu"/>
+        <referenceBlock name="mobile.store.settings.language" remove="true" />
+        <referenceBlock name="header-right" remove="true"/>     
+    </body>
+</page>

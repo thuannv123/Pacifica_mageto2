@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <head>
+        <css src="Magento_Checkout/css/cart.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.messages">
+            <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <referenceBlock name="checkout.cart.shipping" >
+                 <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                         <item name="authentication" xsi:type="array">
+                            <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication</item>
+                            <item name="sortOrder" xsi:type="string">0</item>
+                            <item name="displayArea" xsi:type="string">authentication</item>
+                            <item name="children" xsi:type="array">
+                                <!--Additional authentication fields-->
+                                <item name="errors" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">0</item>
+                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication-messages</item>
+                                    <item name="displayArea" xsi:type="string">messages</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="checkout.cart.totals">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="block-totals" xsi:type="array">
+                                <item name="children" xsi:type="array">
+                                     <item name="quantity" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/quantity</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="title" xsi:type="string" translate="true">Qty</item>
+                                            <item name="template" xsi:type="string">Magento_Checkout/cart/totals/quantity</item>
+                                        </item>
+                                        <item name="sortOrder" xsi:type="string">0</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="crosssell.product.addto">
+                <referenceBlock name="crosssell.product.addto.compare" remove="true"/>
+                <block class="Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist" name="crosssell.product.addto.wishlist" as="wishlist" before="compare" template="Magento_Wishlist::catalog/product/list/addto/wishlist.phtml"/>
+            </referenceBlock>
+            <block class="Magento\Cms\Block\Block" name="you_may_also_like">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">you-may-also-like</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
+        </referenceContainer>
+        <block class="Magento\Checkout\Block\Cart\Additional\Info" name="additional.product.info" template="Magento_Checkout::cart/additional/info.phtml"/>
+        <move element="checkout.cart.coupon" destination="cart.summary" after="checkout.cart.shipping"/>
+        <move element="checkout.cart.totals.container" destination="cart.summary" after="checkout.cart.coupon"/>
+        <move element="new.page.messages" destination="columns.top" before="page.main.title"/>
+    </body>
+</page>

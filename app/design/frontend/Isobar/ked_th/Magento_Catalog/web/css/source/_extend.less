@@ -1,0 +1,227 @@
+//
+// Common
+// -----------------------------
+
+& when (@media-common = true) {
+    .product-item-details {
+        .product-item-material,
+        .product-item-colorname {
+            margin-bottom: 5px;
+        }
+    }
+
+    .fotorama{
+        .fotorama__thumb-border{
+            border: 1px solid @text__color;
+        }
+    }
+
+    .product-info-main{
+        &.type-one{
+            .product.pricing{
+                display: none;
+            }
+        }
+        .product.pricing{
+            visibility: hidden;
+            display: none;
+        }
+    }
+
+    .block.related, .block.upsell {
+        .block-title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            strong{
+                font-weight: 600;
+                width: 45%;
+                text-align: center;
+                color: #3764E4;
+                font-size: 30px;
+            }
+
+            &::before, &::after{
+                content: '';
+                height: 1px;
+                width: 25%;
+                background: #d2d2d2;
+                display: block;
+            }
+        }
+
+    }
+    .products-related, .products-upsell {
+        .product-items{
+            .product-item-info{
+                width: 100%;
+                .product-image-base{
+                    .product-image-container{
+                        width: 100% !important;
+                    }
+                }
+                .product-item-details{
+                    padding: 9px;
+                    position: unset;
+                    .price-final_price{
+                        margin: 3rem 0 0 0;
+                        .price-wrapper {
+                            span{
+                                font-size: 16px;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                    .swatch-attribute.color {
+                        position: relative;
+                        visibility: hidden;
+                        .swatch-attribute-options {
+                            margin: 1rem 0 0 0;
+                            .swatch-option.color{
+                                min-width: 20px;
+                                min-height: 20px;
+                                border: 0;
+                                border-radius:  50%;
+                                &.selected{
+                                    outline: 1px solid #d2d2d2;
+                                    border: 2px solid #ffffff;
+                                }
+                                &:hover{
+                                    outline: 1px solid #d2d2d2;
+                                    border: 2px solid #ffffff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .choice.related{
+                .label{
+                    width: auto;
+                    height: auto;
+                    position: relative;
+                    overflow: initial;
+                    margin: 0;
+                    span{
+                        display: none;
+                    }
+                }
+                input[type=checkbox]:checked + label:before{
+                    font-size: 10px;
+                }
+                input[type=checkbox] + label:before{
+                    left: 3px;
+                }
+                input[type=checkbox] + label:after{
+                    height: 15px;
+                    width: 15px;
+                }
+            }
+        }
+    }
+
+    .product-item-info{
+        .swatch-attribute .swatch-option.text{
+            cursor:pointer;
+            line-height: @line-height-option-size__watch;
+            font-size: inherit;
+        }
+    }
+    .product-options-wrapper{
+        .fieldset{
+            line-height:inherit;
+        }
+        .swatch-attribute .swatch-option.text{
+            cursor:pointer;
+            line-height: @line-height-option-size__watch;
+            font-size: inherit;
+            //margin-right: 7px;
+            //margin-left: 7px;
+            //width: calc(~"25% - 14px");
+        }
+
+        .swatch-attribute .swatch-option.text.outstock{
+            background: #f4f4f4;
+            &:after {
+                //  ToDo: improve .lib-background-gradient() to support diagonal gradient
+                background: linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 49%, #999999 50%, #999999 51%, rgba(255, 255, 255, 0) 52%, rgba(255, 255, 255, 0) 100%);
+                bottom: 0;
+                content: '';
+                filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#00ffffff, GradientType=1)';
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+        .swatch-attribute .swatch-option.text.selected{
+            background: #3764E4;
+        }
+        .fieldset:last-child {
+            margin-bottom: 10px;
+        }
+
+        div.mage-error {
+            margin-bottom: 10px;
+        }
+    }
+    .products-grid{
+        .product-items{
+            .product-item{
+                .special-price{
+                    &.simple-product{
+                        display: block;
+                        .price {
+                            color: #2e2e2e;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .old-price{
+        &.simple-product{
+            .price-label{
+                display: none;
+            }
+            .price{
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    .product-info-main .product-info-price {
+        .old-price{
+            font-size: unset;
+            &.configurable-product{
+                .price-label{
+                    display: none;
+                }
+                .price{
+                    text-decoration: line-through;
+                }
+            }
+            &.simple-product{
+                .price-label{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .wishlist.split.button > .action.split {
+        color: @secondary__color;
+        .lib-font-size(14px);
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .wishlist.split.button > .action.split {
+        color: @secondary__color;
+        .lib-font-size(14px);
+    }
+}

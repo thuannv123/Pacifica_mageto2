@@ -1,0 +1,132 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+& when (@media-common = true) {
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/light/opensans-300',
+        @font-weight: 300,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/regular/opensans-400',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/semibold/opensans-600',
+        @font-weight: 600,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/bold/opensans-700',
+        @font-weight: 700,
+        @font-style: normal,
+        @font-display: swap
+    );
+}
+
+@font-face {
+    font-family: 'Commuters Sans Bold';
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-bold-webfont.eot');
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-bold-webfont.woff2') format('woff2'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-bold-webfont.woff') format('woff'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Commuters Sans Regular';
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-regular-webfont.eot');
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-regular-webfont.woff2') format('woff2'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-regular-webfont.woff') format('woff'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Commuters Sans SemiBold';
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-semibold-webfont.eot');
+    src: url('@{baseDir}fonts/CommutersSans/commuterssans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-semibold-webfont.woff2') format('woff2'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-semibold-webfont.woff') format('woff'),
+         url('@{baseDir}fonts/CommutersSans/commuterssans-semibold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica LT Ultra Compressed Regular';
+    src: url('../fonts/Helvetica-LT-Ultra-Compressed.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-mobile);
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+}

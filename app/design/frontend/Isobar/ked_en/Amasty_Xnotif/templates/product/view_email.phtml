@@ -1,0 +1,93 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Out of Stock Notification for Magento 2
+ */
+// @codingStandardsIgnoreStart
+/** @var Magento\Framework\Url\Helper\Data $urlHelper */
+/** @var Escaper $escaper */
+
+use Amasty\Xnotif\Model\Config\GdprXnotif;
+use Magento\Framework\App\ActionInterface;
+use Magento\Framework\Escaper;
+
+$urlHelper = $this->helper(\Magento\Framework\Url\Helper\Data::class);
+/** @var Amasty\Xnotif\Helper\Data $helper */
+$helper = $this->helper(\Amasty\Xnotif\Helper\Data::class);
+// @codingStandardsIgnoreEnd
+
+$productId = (int)$helper->getOriginalProduct($block)->getId();
+$parentId = (int)$block->getData('parent_product_id');
+$url = $escaper->escapeHtml($helper->getEmailUrl('stock'));
+?>
+
+<div class="amxnotif-block"  data-action="<?= /* @noEscape */ $url; ?>">
+    <form id="form-validate-stock" method="post" action="<?= $escaper->escapeUrl($url); ?>">
+        <label for="amxnotif-guest-email-<?= (int) $productId ?>">
+            <?= /* @noEscape */ __('Please enter your email to be notified when this product becomes available') ?>
+        </label>
+        <div class="notification-container" id="notification-container-<?= (int) $productId ?>">
+            <div class="input-fields fieldset">
+                <input name="guest_email"
+                       class="input-text amxnotif-guest-email"
+                       id="amxnotif-guest-email-<?= (int) $productId ?>"
+                       size="30"
+                       type="email"
+                       data-validate="{required:true, 'validate-email':true}"
+                       placeholder="<?= $escaper->escapeHtml(__($helper->getPlaceholder())) ?>"
+                />
+                <input type="hidden" name="product_id"
+                       value="<?= (int) $productId ?>"/>
+                <input type="hidden" name="type" value="email"/>
+
+                <?php if ($parentId):?>
+                <input type="hidden" name="parent_id"
+                       value="<?= /* @noEscape */ $parentId ?>"/>
+                <?php endif; ?>
+
+                <input type="hidden" name="form_key" value="<?= $escaper->escapeHtmlAttr($helper->getFormKey()) ?>">
+                <input type="hidden"
+                       name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED ?>"
+                       value="<?= /* @noEscape */ $urlHelper->getEncodedUrl(); ?>"/>
+                <?php if ($helper->isGDRPEnabled()): ?>
+                    <div class="field required">
+                        <input type="checkbox"
+                               name="gdrp"
+                               id="amxnotif-stock-gdrp-<?= (int) $productId ?>"
+                               title="<?= $escaper->escapeHtml(__('GDRP')); ?>"
+                               data-validate="{required:true}"
+                               value="1">
+                        <label class="label" for="amxnotif-stock-gdrp-<?= (int) $productId ?>">
+                            <?= $escaper->escapeHtml($helper->getGDRPText(), ['a']); ?>
+                        </label>
+                    </div>
+                <?php endif; ?>
+
+                <?php $gdprCheckboxesHtml = $helper->getGdprCheckboxHtml(GdprXnotif::GDPR_XNOTIF_STOCK_FORM); ?>
+                <?php if (!empty($gdprCheckboxesHtml)): ?>
+                    <?= /** @noEscape */ $gdprCheckboxesHtml ?>
+                <?php endif; ?>
+            </div>
+
+            <div class="actions-toolbar amxnotif_guest_action">
+                <div class="primary">
+                    <button type="submit" class="action submit primary">
+                        <span><?= $escaper->escapeHtml(__('Notify me')); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    require([
+        'jquery',
+        "mage/mage",
+        "mage/validation"
+    ], function ($) {
+        "use strict";
+        $('#form-validate-stock').mage('validation');
+    });
+</script>

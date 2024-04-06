@@ -1,0 +1,45 @@
+//
+// Common
+// -----------------------------
+
+& when (@media-common = true) {
+    
+}
+
+//
+// Mobile
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .navigation {
+        li.level-top,
+        a.level-top {
+            font-weight: 600;
+            font-size: @mobile-navigation-level0-item__font-size;
+        }
+    }
+}
+
+//
+// Desktop
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .navigation li.level-top .tm-megamenu.level1,
+    .navigation a.level-top .tm-megamenu.level1 {
+        left: 0 !important;
+        
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: calc(~'(50% - 50vw)');;
+            width: 100vw;
+            height: 100%;
+            z-index: -1;
+            .lib-css(background-color, @page__background-color);
+        }
+
+        .ui-menu-item.container {
+            max-width: 100%;
+        }
+    }
+}

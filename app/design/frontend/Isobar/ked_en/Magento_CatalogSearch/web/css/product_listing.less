@@ -1,0 +1,182 @@
+.page-wrapper {
+    .breadcrumbs {
+        background: #ffffff;
+    }
+    .page-main {
+        background: #ffffff;
+    }
+
+    #maincontent{
+        background: #ffffff;
+    
+        .columns{
+            .column.main{
+                width: 100% !important;
+                position: unset;
+                .products {
+                    .product-items {
+                        .product-item {
+                            .product-item-info {
+                                z-index: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media(min-width: 769px){
+    .filter-content{
+        .filter-actions{
+            margin-bottom: 0;
+            .filter-clear{
+                span{
+                    font-size: 14px;
+                }
+                &:hover{
+                    color: #333333;
+                    text-decoration: underline;
+                }
+            }
+        }
+        .filter-current{
+            .filter-current-subtitle{
+                font-size: 18px;
+            }
+            .amshopby-items{
+                .amshopby-item{
+                    span{
+                        font-size: 1.6rem;
+                        .swatch-option{
+                            &:hover{
+                                background-color: #ffffff;
+                            }
+                        }
+                    }
+                    .amshopby-filter-value{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+    .overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .overlay.active{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    #amasty-shopby-product-list{
+        position: unset;
+        #showSidebarButton{
+            position: absolute;
+            top: -66px;
+            right: 270px;
+            border: 1px solid #828282;
+            padding: 0;
+            border-radius: 5px;
+            width: 117px;
+            span{
+                font-size: 14px;
+                padding: 9px 12px;
+                color: #333333;
+                font-weight: 500;
+                display: flex;
+                justify-content: space-evenly;
+                &::after{
+                    content: url(../../images/rank.svg);
+                    display: block;
+                    height: 15px;
+                    top: -6px;
+                    position: relative;
+                }
+            }
+            &:hover{
+                background: transparent;
+            }
+        }
+        .toolbar-products:first-child{
+            position: absolute;
+            top: -65px;
+            width: 100%;
+            margin: 0;
+            padding: 0 25px;
+            .toolbar-sorter{
+                float: right;
+                z-index: 0;
+                .sorter-label{
+                    font-weight: 600;
+                }
+                .sorter-options{
+                    width: 112px;
+                    height: 34px;
+                    color: #333333;
+                    line-height: 25px;
+                    border-radius: 5px;
+                    border: 1px solid #767676;
+                }
+            }
+            .toolbar-amount{
+                position: absolute;
+                top: 30px;
+                left: 0;
+                font-size: 12px;
+                color: #707070;
+                line-height: 20px;
+            }
+        }
+    }
+    .sidebar-main{
+        opacity: 0;
+        width: 430px !important;
+        height: fit-content;
+        position: absolute;
+        top: -60px;
+        right: -1000px;
+        transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        background-color: #ffffff;
+        z-index: 20;
+        padding: 0 !important;
+        .block.filter{
+            .filter-content{
+                .filter-subtitle{
+                    &::before{
+                        content: '\e616';
+                        font-family: 'luma-icons';
+                        color: #333333;
+                        font-size: 25px;
+                        line-height: 24px;
+                        position: absolute;
+                        right: 20px;
+                        font-weight: 400;  
+                        top: 25px;
+                    }
+                }
+                .filter-subtitle{
+                    padding: 50px 0;
+                    text-align: center;
+                    border: 0;
+                    font-size: 30px;
+                    color: #3764E4;
+                }
+            }
+        }
+    }
+    .sidebar-main.active{
+        right: 0;
+        opacity: 1;
+    }
+}

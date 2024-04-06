@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block class="Magento\Catalog\Block\Product\View" name="size.guide" as="size_guide"
+                   template="Magento_Catalog::product/size-guide.phtml" before="-" />
+        </referenceBlock>
+        <referenceBlock name="product.info">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.no.options" as="no_options_container">
+                <block class="Magento\Catalog\Block\Product\View" name="size.guide.out.stock" as="size_guide_out_stock" template="Magento_Catalog::product/size-guide.phtml" />
+                <container name="product.info.social.outstock" label="Product social links container" htmlTag="div" htmlClass="product-social-links">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.addto.outstock" as="addto" template="Magento_Catalog::product/view/addto.phtml">
+                        <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist.outstock"
+                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+                        <block class="Magento\Catalog\Block\Product\View\AddTo\Compare" name="view.addto.compare.outstock" after="view.addto.wishlist" template="Magento_Catalog::product/view/addto/compare.phtml">
+                            <arguments>
+                                <argument name="addToCompareViewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Checker\AddToCompareAvailability</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </container>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.socialmedia.outstock" template="Isobar_ProductSharing::/view/socialmedia.phtml"/>
+            </block>
+        </referenceBlock>
+        <move element="size.guide" destination="product.info.social" after="-"/>
+        <move element="product.info.social" destination="product.info.form.options" after="-"/>
+    </body>
+</page>

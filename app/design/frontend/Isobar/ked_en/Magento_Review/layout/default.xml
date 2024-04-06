@@ -1,0 +1,6 @@
+<!-- File: app/design/frontend/{Vendor}/{theme}/Magento_Theme/layout/default_head_blocks.xml -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Magento_Review::js/summary.js"/>
+    </head>
+</page>

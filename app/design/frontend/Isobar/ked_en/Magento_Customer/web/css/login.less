@@ -1,0 +1,47 @@
+.page-wrapper{
+    #maincontent{
+        top: 0;
+        .login-container,.form-create-account{
+            .create{
+                .legend{
+                    span{
+                        font-size: 16px;
+                        font-weight: 600; 
+                    }
+                }
+            }
+            .block-title{
+                strong{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+            .fieldset {
+                > .field, > .fields > .field {
+                  > .label {
+                    font-size: 14px;
+                  }
+                }
+              }
+        }
+    }
+}
+@media(max-width: 768px){
+    .page-wrapper{
+        #maincontent{
+            top: 0;
+            .login-container,.form-create-account{
+                width: 95%;
+                margin: auto;
+                padding-bottom:  2rem;
+            }
+        }
+    }
+}
+@media(min-width: 769px) {
+    .page-wrapper{
+        #maincontent{
+            padding: 0 10px;
+        }
+    }
+}

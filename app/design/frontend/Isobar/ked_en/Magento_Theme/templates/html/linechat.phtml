@@ -1,0 +1,24 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+?>
+<div class="box-line-chat">
+    <div id="modal" class="content-modal-line hidden-line">
+        <div color="rgb(255, 255, 255)" role="button" tabindex="0" class="btn-close"></div>
+        <?php
+        echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('line-contact-us-keds')
+            ->toHtml();
+        ?>
+    </div>
+    <div role="button" tabindex="0" type="bubble" class="btn-line">
+        <img src="<?= $block->getViewFileUrl('images/line_chat1.png'); ?>" alt='line_chat_icon' />
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        ".box-line-chat": {
+             "Magento_Theme/js/linechat":{}
+        }
+    }
+</script>

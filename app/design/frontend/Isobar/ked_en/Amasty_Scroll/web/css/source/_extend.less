@@ -1,0 +1,41 @@
+@amscroll-backtotop-mobile__right-offset: 20x;
+@amscroll-backtotop-mobile__bottom-offset: 70px;
+
+@amscroll-backtotop-desktop__right-offset: 23px;
+@amscroll-backtotop-desktop__bottom-offset: 80px;
+
+
+
+//
+// Mobile
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amscroll-backtotop-block {
+        &.-mobile-text {
+            right: @amscroll-backtotop-mobile__right-offset;
+            bottom: @amscroll-backtotop-mobile__bottom-offset;
+        }
+
+        &.-mobile-arrow {
+            right: @amscroll-backtotop-mobile__right-offset - 14;
+            bottom: @amscroll-backtotop-mobile__bottom-offset;
+        }
+    }
+}
+
+//
+// Desktop
+// _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amscroll-backtotop-block {
+        &.-desktop-text {
+            right: @amscroll-backtotop-desktop__right-offset;
+            bottom: @amscroll-backtotop-desktop__bottom-offset;
+        }
+
+        &.-desktop-arrow {
+            right: @amscroll-backtotop-desktop__right-offset - 14;
+            bottom: @amscroll-backtotop-desktop__bottom-offset + 5;
+        }
+    }
+}

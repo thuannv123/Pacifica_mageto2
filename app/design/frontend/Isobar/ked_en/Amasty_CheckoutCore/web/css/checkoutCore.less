@@ -1,0 +1,109 @@
+.page-wrapper{
+    .page-header{
+        position: relative;
+    }
+    #maincontent{
+        top: 0;
+        margin-bottom: 0 !important;
+    }
+    .columns{
+        .column.main{
+            .amcheckout-step-container{
+                .amcheckout-form-login {
+                   .fieldset{
+                    width: 100%;
+                    .amcheckout-wrapper,.amcheckout-password{
+                        width: 90%;
+                    }
+                   }
+                }
+                .checkout-shipping-address {
+                    #checkout-step-shipping {
+                        .amcheckout-wrapper {
+                            .amcheckout-button, .edit-address-link, .action-select-shipping-item {
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+                }
+            }
+            .social-create{
+                position: relative;
+                left: 50%;
+                transform: translate(-50%,0);
+            }
+        }
+    }
+    .top-container{
+        display: none;
+    }
+}
+
+.checkout-index-index {
+    .modals-wrapper {
+        .modal-popup.new-shipping-address-modal {
+            .modal-inner-wrap {
+                .modal-footer {
+                    &.action {
+                        .action-hide-popup {
+                            text-transform: none;
+                        }
+                        .action-save-address {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 768px){
+    .page-wrapper{
+        .page-header{
+            z-index: 1;
+            margin-bottom: 20px !important;
+        }
+        .checkout-index-index{
+            .am-checkout{
+                margin: 0;
+            }
+        }
+    }
+    .columns{
+        .column.main{
+            .checkout-container{
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:360px) and (max-width:468px) {
+    #maincontent {
+        .amcheckout-summary-container{
+            .amcheckout-content {
+                .amcheckout-wrapper {
+                    .items-in-cart {
+                        .minicart-items {
+                            .minicart-items-wrapper{
+                                .minicart-items {
+                                    .product-item {
+                                        .product {
+                                            .product-image-container{
+                                                width: 30% !important;
+                                                height: 30% !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+  
+}

@@ -1,0 +1,40 @@
+<?php
+
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+/** @var $block Magento\Catalog\Block\Product\View */
+?>
+
+<div class="consulting-choose-size">
+    <a href="#" class="action" data-trigger="trigger">
+        <span><?= $escaper->escapeHtml(__('Size Guide')) ?></span>
+    </a>
+    <div class="consulting-content" style="display: none;">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('block_size_guide')->toHtml(); ?>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function($, modal) {
+        $('[data-trigger=trigger]').on('click', function(e) {
+            e.preventDefault();
+            $('.consulting-content').show();
+            var options = {
+                'type': 'popup',
+                'title': '<?php echo __('Size Guide') ?>',
+                'modalClass': '_inner-scroll',
+                'responsive': true,
+                'buttons': [{
+                    text: jQuery.mage.__('Ok'),
+                    class: 'action',
+                    click: function() {
+                        this.closeModal();
+                    }
+                }]
+            };
+            var popup = modal(options, $('.consulting-content'));
+            $('.consulting-content').modal('openModal');
+        });
+    });
+</script>
