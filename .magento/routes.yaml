@@ -1,0 +1,27 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going to be processed.
+
+"http://{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"http://{all}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"https://{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"https://ikonthailand.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"https://keds.co.th.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"https://aeo.th.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
