@@ -1,0 +1,70 @@
+& when (@media-common = true) {
+    .block.social-create {
+        text-align: center;
+        .account-social-login {
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+            .block-content {
+                text-align: center;
+
+            }
+        }
+    }
+    .form-create-account{
+        .create.info{
+            .lib-css(display,flex,1);
+            .lib-css(flex-direction,column,1);
+            .legend{
+                margin-bottom: 0;
+            }
+        }
+        .security-privacy-policy{
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .fieldset.create.account{
+            margin-bottom: 20px;
+        }
+    }
+    .security-privacy-policy{
+        .lib-css(display,flex,1);
+        .lib-css(flex-direction,column,1);
+        .highlight{
+            &:after {
+                background-color: @color-black;
+                border-color: @color-black;
+            }
+            &:before {
+                color: @color-white;
+            }
+        }
+        input[type="checkbox"]{
+            position: absolute;
+        }
+        .mage-error{
+            order: 7;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.social-create {
+        float: left;
+        text-align: left;
+        margin-top: 10px;
+        margin-bottom: 30px !important;
+        .account-social-login {
+            .block-content {
+                text-align: left;
+                .social-btn {
+                    display: block;
+                    margin-top: 10px;
+                }
+            }
+            div.primary {
+                margin-bottom: -5px;
+            }
+        }
+    }
+}

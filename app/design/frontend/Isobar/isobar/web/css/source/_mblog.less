@@ -1,0 +1,112 @@
+/*Page blog*/
+.amblog-container{
+  .glyphicons{
+    &:before{
+      color: @color-gray34 !important;
+    }
+  }
+}
+.am-blog-rss{
+  a{
+    color: @color-gray34;
+  }
+}
+.am-header{
+
+  span,a{
+    color: @color-gray34;
+  }
+}
+.am-details{
+  span,a{
+    color: @color-gray34;
+  }
+}
+.amblog-list{
+  .am-post-header {
+    h2{
+      a{
+        color: @color-gray34;
+        line-height: 29px;
+        font-weight: 700;
+        font-size: @font-size__base * 1.43;
+      }
+    }
+  }
+  .amblog-post{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    &:last-child{
+      border:none;
+    }
+  }
+
+}
+
+.amblog-categories{
+
+  .block-content{
+    padding-left: 0px;
+    .mplog-categories{
+      padding-left:0px;
+      .glyphicons{
+        &:before{
+          color: @color-gray34 !important;
+        }
+      }
+      a{
+        color: @color-gray34;
+      }
+    }
+  }
+
+}
+.amblog-recentposts{
+  .block-content{
+    padding-left: 0px;
+    .mbplog-recent-posts{
+      padding-left:0px;
+      li{
+        margin-bottom: 10px;
+      }
+      .glyphicons{
+        &:before{
+          color: @color-gray34 !important;
+        }
+      }
+      a{
+        color: @color-gray34;
+      }
+    }
+  }
+}
+
+.block.amblog-search{
+  .block-content{
+    padding-left: 0px;
+
+  }
+}
+.amblog-search{
+  .block-content button.button{
+    background: @color-ef4c23;
+    border: 1px solid @color-ef4c23;
+    color: @color-white;
+    &:hover {
+      background: white;
+      border: 1px solid @color-ef4c23;
+      color: @color-ef4c23;
+    }
+  }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+  .amblog-list .post-content {
+    width: 100%;
+    margin-left:0px;
+  }
+  .am-search-box-wrapper .am-widget-center{
+    width: 80% !important;
+  }
+
+}

@@ -1,0 +1,49 @@
+<?php
+/** @var \Amasty\Gdpr\Block\Checkbox $block */
+
+$consents = $block->getConsents();
+?>
+
+<?php /** @var \Amasty\Gdpr\Model\Consent\Consent $consent **/ ?>
+<div class="list-checkbox-amasty-gdpr">
+    <?php foreach ($consents as $consent):
+        $uniqueKey = $block->getUniqueKey();
+        ?>
+    <div class="field amgdpr-checkbox field choice gdpr security-privacy-policy <?php if ($consent->isRequired()): ?>required<?php endif; ?>"
+         data-role="amasty-gdpr-consent"
+         data-amgdpr-content-from="<?= $block->escapeHtml($block->getScope()) ?>">
+        <input type="hidden" name="amgdpr_agreement[<?= $block->escapeHtml($consent->getConsentCode()) ?>]" value="0">
+        <input type="checkbox"
+               name="amgdpr_agreement[<?= $block->escapeHtml($consent->getConsentCode()) ?>]"
+               title="<?= $block->escapeHtml($consent->getConsentName()) ?>"
+               value="1"
+               id="<?= $block->escapeHtml($uniqueKey) ?>"
+               class="amgdpr-checkbox"
+               data-consent-id="<?= $block->escapeHtml($consent->getConsentId()) ?>"
+            <?php if ($block->isRequired($consent)): ?>
+                required
+                data-validate="{required:true}"
+            <?php endif;
+            if ($block->isChecked($consent)): ?>
+                checked
+            <?php endif; ?>
+        >
+        <input type="checkbox" name="security_privacy_policy_hidden" style="display: none"/>
+        <label for="<?= $block->escapeHtmlAttr($uniqueKey) ?>" class="label amgdpr-label">
+            <span class="amgdpr-text">
+                <?= $block->escapeHtml($block->getConsentText($consent), ['a']) ?>
+            </span>
+        </label>
+    </div>
+    <?php endforeach; ?>
+</div>
+<input type="hidden"
+    name="<?= $block->escapeHtml($block->getConsentFromLocation()) ?>"
+    value="<?= $block->escapeHtml($block->getScope()) ?>" />
+<script type="text/x-magento-init">
+    {
+        ".list-checkbox-amasty-gdpr": {
+             "Amasty_Gdpr/js/custom-checkbox":{}
+        }
+    }
+</script>

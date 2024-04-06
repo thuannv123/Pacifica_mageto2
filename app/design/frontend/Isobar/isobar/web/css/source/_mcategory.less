@@ -1,0 +1,41 @@
+.fieldset .swatch-option.text{
+  line-height: 12px;
+}
+
+.toolbar-products{
+  .pages .items{
+    line-height: 30px;
+    .action{
+      line-height: 30px;
+    }
+  }
+}
+
+.pages .action{
+    line-height: 30px;
+}
+
+.pages {
+  .item.current{
+    strong.page{
+      background: none;
+    }
+  }
+}
+
+.wishlist.split.button > .action.split{
+  color: @text__color;
+}
+
+.block-dashboard-orders{
+  .block-title{
+    margin-bottom: 20px;
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .sidebar-main .filter.active .filter-title{
+    border-bottom: 0px solid #ccc;
+  }
+}
+

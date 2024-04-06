@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.sku" remove="true"/>
+        <referenceBlock name="product.info.type" remove="true"/>
+        <move element="view.addto.wishlist" destination="product.info.media" after="-"/>
+        <move element="product.info.description" destination="product.info.main" before="product.info.overview"/>
+        <move element="product.attributes" destination="product.info.main" after="product.info.overview"/>
+        <move element="product.info.social" destination="product.info.main" after="product.attributes"/>
+        <move element="page.messages" destination="page.wrapper" before="main.content"/>
+    </body>
+</page>

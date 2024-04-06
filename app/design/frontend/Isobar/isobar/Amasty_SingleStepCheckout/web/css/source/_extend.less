@@ -1,0 +1,27 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amcheckout-items .amcheckout-method {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .checkout-index-index {
+        .opc-wrapper {
+            .form-login,
+            .form-shipping-address,
+            .methods-shipping,
+            .payments,
+            .amcheckout-delivery-date > div:not(.step-title) {
+                .lib-css(background, @checkout-step-content-mobile__background);
+                .lib-css(margin, 0);
+                .lib-css(padding, @indent__base @checkout-step-content-mobile__margin-s);
+                .lib-css(border-bottom, @checkout-step-title__border);
+                padding-top: @indent__l;
+            }
+        }
+
+        .amcheckout-delivery-date .field.timepicker {
+            display: block;
+        }
+    }
+}

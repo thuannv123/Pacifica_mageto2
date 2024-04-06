@@ -1,0 +1,32 @@
+.cart-discount .block > .title strong{
+  cursor: pointer;
+}
+.product.info.detailed{
+  .product.data.items > .item.title > .switch{
+    height: 43px;
+    line-height: 42px !important;
+  }
+  .product.data.items > .item.content{
+    margin-top: 43px;
+  }
+  .product.data.items > .item.title.active > .switch{
+    height: 44px !important;
+  }
+
+}
+
+/*mobile*/
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .multishipping-checkout-addresses {
+
+    .multicheckout .actions-toolbar {
+      > .primary {
+        margin-right: 0px;
+      }
+      .secondary .action {
+        margin-left: 0px;
+      }
+    }
+
+  }
+}

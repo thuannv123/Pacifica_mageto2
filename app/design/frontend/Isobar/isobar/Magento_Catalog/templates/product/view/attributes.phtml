@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+<?php if ($_additional = $block->getAdditionalData()) : ?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <button type="button" class="more-information"><?= $block->escapeHtml(__('More Information')) ?>
+        </button>
+        <table class="data table additional-attributes" id="product-attribute-specs-table" style="display: block;">
+            <tbody>
+                <?php foreach ($_additional as $_data) : ?>
+                    <tr>
+                        <th class="col label" scope="row"><?= $block->escapeHtml($_data['label']) ?></th>
+                        <td class="col data" data-th="<?= $block->escapeHtmlAttr($_data['label']) ?>"><?= /* @noEscape */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
+
+<script>
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            function toggleMoreInfo() {
+                $('.more-information').each(function() {
+                    var moreInfoTableTrigger = $(this);
+                    var moreInfoTable = moreInfoTableTrigger.next('#product-attribute-specs-table');
+                    moreInfoTableTrigger.off('click').on('click', function(event) {
+                        event.preventDefault();
+                        moreInfoTable.toggle();
+                        moreInfoTableTrigger.toggleClass('active');
+                    });
+                });
+            }
+            toggleMoreInfo();
+            $(window).resize(toggleMoreInfo);
+        });
+    });
+</script>

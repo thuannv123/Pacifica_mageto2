@@ -1,0 +1,135 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/light/opensans-300',
+        @font-weight: 300,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/regular/opensans-400',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/semibold/opensans-600',
+        @font-weight: 600,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'Open Sans',
+        @font-path: '@{baseDir}fonts/opensans/bold/opensans-700',
+        @font-weight: 700,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    @font-face{
+        font-family:"Bembo W05";
+        src:url("@{baseDir}fonts/fonts-pacifica/c0e1eae2-ee5f-4f27-b289-66d82526f38f.woff2") format("woff2"),url("Fonts/7c89dcf7-0d32-43c8-992b-15e177072f6c.woff") format("woff");
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face{
+        font-family:"Helvetica W05";
+        src:url("@{baseDir}fonts/fonts-pacifica/4a2626c5-30e7-4564-9b08-a9702d4b442c.woff2") format("woff2"),url("Fonts/aaaafa6d-432c-4974-a46b-a2a07c47322e.woff") format("woff");
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face{
+        font-family:"Helvetica W05 Bold";
+        src:url("@{baseDir}fonts/fonts-pacifica/f8217c53-d092-4301-96c4-c493faf448db.woff2") format("woff2"),url("Fonts/ee50e0a9-594b-4771-9d28-d2f79db50a39.woff") format("woff");
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family:"Linearicons";
+        src:url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.eot?7y0ygv');
+        src:url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.eot?#iefix7y0ygv') format('embedded-opentype'),
+        url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.woff2?7y0ygv') format('woff2'),
+        url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.woff?7y0ygv') format('woff'),
+        url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.ttf?7y0ygv') format('truetype'),
+        url('@{baseDir}fonts/fonts-linearicons/Linearicons-Free.svg?7y0ygv#Linearicons-Free') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family:"aerial";
+        src:url('@{baseDir}fonts/font-aerial/aerial.woff2?7y0ygv') format('woff2'),
+        url('@{baseDir}fonts/font-aerial/aerial.woff?7y0ygv') format('woff'),
+        url('@{baseDir}fonts/font-aerial/aerial.ttf?7y0ygv') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+    }
+    @font-face{
+        font-family:"Angsana New_1075870";
+        src:url("@{baseDir}fonts/fonts-unnamed/1075870/b396fbb5-c7bd-4c4e-9d14-7bf1e0ae1fc7.woff2") format("woff2"),url("@{baseDir}fonts/fonts-unnamed/1075870/24becfe0-f31f-407d-8929-6f0dd5f25d4d.woff") format("woff");
+    }
+    @font-face{
+        font-family:"Angsana New_1075873";
+        src:url("@{baseDir}fonts/fonts-unnamed/1075873/0d832751-9ec2-4d95-a04f-8a787b994604.woff2") format("woff2"),url("@{baseDir}fonts/fonts-unnamed/1075873/af2832c7-426a-4e22-9460-d88e2949a1ab.woff") format("woff");
+    }
+    @font-face{
+        font-family:"Angsana New_1075876";
+        src:url("@{baseDir}fonts/fonts-unnamed/1075876/ecd26be0-4924-4fab-a86c-530b3b48a43b.woff2") format("woff2"),url("@{baseDir}fonts/fonts-unnamed/1075876/f60c2625-0f87-4da7-9088-88a9ef7b4361.woff") format("woff");
+    }
+    @font-face{
+        font-family:"Angsana New_1075879";
+        src:url("@{baseDir}fonts/fonts-unnamed/1075879/9bc1a51d-484e-4fe5-bce4-8b4ea68d7057.woff2") format("woff2"),url("@{baseDir}fonts/fonts-unnamed/1075879/d7aebac9-b46d-434f-9571-7a794dc3f96b.woff") format("woff");
+    }
+    @font-face {
+        font-family:"DB Heavent";
+        src:url('@{baseDir}fonts/fonts-db-helvetical/DB Heavent v3.2.1.woff2?7y0ygv') format('woff2'),
+        url('@{baseDir}fonts/fonts-db-helvetical/DB Heavent v3.2.1.woff?7y0ygv') format('woff'),
+        url('@{baseDir}fonts/fonts-db-helvetical/DB Heavent v3.2.1.ttf?7y0ygv') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Neue Helvetica 73 Extended Bold';
+        src: url('@{baseDir}/fonts/NeueHelvetica/NeueHelvetica73ExtendedBold_normal_normal_subset1.woff') format('woff'),
+        url('@{baseDir}/fonts/NeueHelvetica/NeueHelvetica73ExtendedBold_normal_normal_subset1.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: 'Neue Helvetica 75 Bold';
+        src: url('@{baseDir}/fonts/NeueHelvetica/NeueHelvetica75Bold_normal_normal_subset1.woff') format('woff'),
+        url('@{baseDir}/fonts/NeueHelvetica/NeueHelvetica75Bold_normal_normal_subset1.woff2') format('woff2');
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+}

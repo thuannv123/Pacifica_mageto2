@@ -1,0 +1,21 @@
+& when (@media-common = true) {
+    .social-media-icons{
+       .social-media-icon{
+           display: inline-block;
+           width: 30px;
+           height: 30px;
+           &.icon-facebook{
+               background:url('@{baseDir}images/facebook.svg');
+               background-size: contain;
+           }
+           &.icon-twitter{
+               background:url('@{baseDir}images/twitter.svg');
+               background-size: contain;
+           }
+           &.icon-line{
+               background:url('@{baseDir}images/line.svg');
+               background-size: contain;
+           }
+       }
+    }
+}

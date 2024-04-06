@@ -1,0 +1,76 @@
+<?php
+$category = $this->getCategory();
+$mode = $this->getModeRoot();
+$level = $this->getLevel();
+$positionClass = $block->getPositionClass();
+
+if (!empty($category)) :
+    $turnOnMega = $category->getMmTurnOn();
+    $mmLabelBackground = '';
+    $color = '';
+    $label = '';
+    $image = '';
+    $mmIcon = '';
+    if ($turnOnMega) {
+        $mmLabelBackground = $category->getMmLabelBackground();
+        $color = $category->getMmColor();
+        $label = $category->getMmLabel();
+        $image = $this->getImage($category);
+        $mmIcon = $category->getMmIconClass();
+    }
+?>
+
+    <?php if ($mode === 'horizontal' || $mode === 'sidebar') : ?>
+        <ul class="mm-submenu mm-submenu-level1">
+            <li class="item <?php echo $positionClass; ?> category-item ui-menu-item">
+                <a href="<?php echo $category->getUrl(); ?>" class="item-level<?= $level ?>">
+                    <?php if ($image) : ?>
+                        <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+                    <?php endif; ?>
+                    <?php if ($mmIcon) : ?>
+                        <i class="<?php echo $mmIcon; ?>"></i>
+                    <?php endif; ?>
+                    <?php echo "<span class='mm-title'>" . $category->getName() . "</span>" ?>
+                    <?php if ($label) : ?>
+                        <span class="mm-label" style="background-color: <?php echo $mmLabelBackground; ?>; color: <?php echo $color; ?>"><?php echo $label; ?></span>
+                    <?php endif; ?>
+                </a>
+            </li>
+        </ul>
+        <?php
+        $ret = $this->genChildrenHtml($category);
+        if (!empty($ret)) {
+            echo ($ret);
+        }
+        ?>
+    <?php else : ?>
+        <ul class="mm-submenu">
+            <li class="item <?php echo $positionClass; ?> category-item ui-menu-item">
+                <a href="<?php echo $category->getUrl(); ?>" class="item-level<?= $level ?>">
+                    <?php if ($image) : ?>
+                        <span class="mm-image"><img src="<?php echo $image; ?>" alt=""></span>
+                    <?php endif; ?>
+                    <?php if ($mmIcon) : ?>
+                        <i class="<?php echo $mmIcon; ?>"></i>
+                    <?php endif; ?>
+                    <?php
+                    if ($level) {
+                        $convertedString = ucwords(strtolower($category->getName()));
+                    }
+                    ?>
+                    <?php echo "<span class='mm-title'>" . $convertedString . "</span>" ?>
+                    <?php if ($label) : ?>
+                        <span class="mm-label" style="background-color: <?php echo $mmLabelBackground; ?>; color: <?php echo $color; ?>"><?php echo $label; ?></span>
+                    <?php endif; ?>
+                </a>
+
+                <?php
+                $ret = $this->genChildrenHtml($category);
+                if (!empty($ret)) {
+                    echo ($ret);
+                }
+                ?>
+            </li>
+        </ul>
+    <?php endif; ?>
+<?php endif; ?>

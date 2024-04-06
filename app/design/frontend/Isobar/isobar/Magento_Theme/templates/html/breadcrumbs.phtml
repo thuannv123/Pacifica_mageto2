@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+    <div class="breadcrumbs">
+        <ul class="items">
+            <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+                <li class="item <?= $block->escapeHtmlAttr($crumbName) ?>">
+                    <?php if ($crumbInfo['link']) : ?>
+                        <?php $convertedCategory = ucwords(strtolower($block->escapeHtml($crumbInfo['label']))); ?>
+                        <a href="<?= $block->escapeUrl($crumbInfo['link']) ?>" title="<?= $block->escapeHtml($crumbInfo['title']) ?>">
+                            <?= $convertedCategory ?>
+                        </a>
+                    <?php elseif ($crumbInfo['last']) : ?>
+                        <?php $convertedCategoryLast = ucwords(strtolower($block->escapeHtml($crumbInfo['label']))); ?>
+                        <strong><?= $convertedCategoryLast ?></strong>
+                    <?php else : ?>
+                        <?= $block->escapeHtml($crumbInfo['label']) ?>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>

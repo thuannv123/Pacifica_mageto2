@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="customer.login.container">
+            <container name="login.actions.wraper" label="Login Actions Wraper" htmlTag="div" htmlClass="block login-actions-wraper" before="-" >
+                <container name="social.login" label="Social Login Container" htmlTag="div" htmlClass="block social-login" after="normal.login" />
+            </container>
+        </referenceContainer>
+        <move element="customer_form_login" destination="login.actions.wraper" as="normal-login" before="-"/>
+    </body>
+</page>

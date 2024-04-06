@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block class="Magento\Catalog\Block\Product\View" name="size.guide" as="size_guide"
+                   template="Magento_Catalog::product/size-guide.phtml" before="-" />
+        </referenceBlock>
+        <referenceBlock name="product.info">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.no.options" as="no_options_container">
+                <block class="Magento\Catalog\Block\Product\View" name="size.guide.out.stock" as="size_guide_out_stock"
+                       template="Magento_Catalog::product/size-guide.phtml" />
+            </block>
+        </referenceBlock>
+    </body>
+</page>

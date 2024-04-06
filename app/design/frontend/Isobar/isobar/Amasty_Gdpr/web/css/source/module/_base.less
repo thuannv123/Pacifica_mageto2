@@ -1,0 +1,189 @@
+//
+// Amasty Gdpr Styles
+// _______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    [data-amgdpr-content-from='subscription'] {
+        & {
+            display: table-row-group;
+        }
+
+        .block.newsletter .form.subscribe > &.amgdpr-checkbox.field {
+            float: none;
+        }
+
+        .amgdpr-checkbox {
+            margin-top: 8px;
+        }
+
+        .amgdpr-label.label {
+            position: inherit;
+        }
+    }
+
+    .amgdpr-modal-container {
+        .amgdpr-privacy-policy {
+            display: none;
+        }
+
+        .amgdpr-privacy-policy,
+        .amgdpr-html-content {
+            overflow-y: scroll;
+            max-height: 500px;
+            word-wrap: break-word;
+        }
+
+        .checkout-index-index &.modal-popup:not(.agreements-modal):not(.popup-authentication) .modal-inner-wrap,
+        .modal-inner-wrap {
+            max-width: 1130px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .35);
+        }
+
+        .modal-header {
+            padding: 30px 30px 20px;
+        }
+
+        .modal-content {
+            padding: 0 30px 0 25px;
+        }
+
+        .modal-footer {
+            padding: 20px;
+        }
+
+        .modal-header .modal-title {
+            margin-left: 10px;
+            padding: 0;
+            border-bottom: none;
+            font-weight: 400;
+            font-size: @font-size__base * 1.86;
+        }
+
+        .action.action-primary {
+            width: 100%;
+            border-radius: 3px;
+            box-shadow: none;
+            text-transform: uppercase;
+            letter-spacing: 1.35px;
+            font-weight: bold;
+            transition: background-color .3s ease-out;
+        }
+
+        .action-close {
+            top: 10px;
+            right: 10px;
+        }
+
+        .amgdpr-html-content::-webkit-scrollbar,
+        .amgdpr-privacy-policy::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .amgdpr-html-content::-webkit-scrollbar-track,
+        .amgdpr-privacy-policy::-webkit-scrollbar-track {
+            width: 6px;
+            background: #fff;
+        }
+
+        .amgdpr-html-content::-webkit-scrollbar-thumb,
+        .amgdpr-privacy-policy::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background: #e0e0e0;
+        }
+    }
+
+    .amgdpr-notification-container {
+        margin-left: 10px;
+        padding: 25px;
+        font-weight: 600;
+        background: #ffeaac;
+    }
+
+    .amgdpr-cookie-link .amgdpr-link {
+        & {
+            display: none;
+        }
+
+        &.-show {
+            display: block;
+        }
+    }
+
+    .field.required {
+        .amgdpr-text {
+            &:after {
+                content: '*';
+                color: #e02b27;
+                font-size: @form-field-label-asterisk__font-size;
+                margin: 0 0 0 5.5px;
+                font-weight: bold;
+            }
+        }
+
+    }
+
+}
+
+//
+//  Mobile +
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amgdpr-modal-container {
+        .modal-header {
+            padding: 40px 50px 20px;
+        }
+
+        .modal-header .modal-title {
+            font-size: @font-size__base * 2.15;
+        }
+
+        .modal-content {
+            padding: 0 30px 0 50px;
+        }
+
+        .modal-footer {
+            padding: 30px 50px 50px;
+        }
+
+        .action.action-primary {
+            width: auto;
+        }
+    }
+}
+// Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .amgdpr-modal-container {
+        .modal-header {
+            padding: 30px 20px 20px;
+            .modal-title{
+                margin-left: 0;
+            }
+        }
+    }
+    .amgdpr-modal-container .modal-footer {
+        padding: 30px 20px 30px;
+    }
+}
+
+// Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .amgdpr-modal-container {
+        .modal-header {
+            padding: 30px 20px 20px;
+            .modal-title{
+                margin-left: 0;
+            }
+        }
+    }
+    .amgdpr-modal-container .modal-footer {
+        padding: 30px 20px 30px;
+    }
+}

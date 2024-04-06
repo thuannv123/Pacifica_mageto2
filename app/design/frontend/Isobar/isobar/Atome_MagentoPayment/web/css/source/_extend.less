@@ -1,0 +1,24 @@
+//
+// Common
+// -----------------------------
+
+& when (@media-common = true) {
+    .atome-widget {
+        .lib-font-size(@font-size__base) !important;
+        .lib-css(line-height, @line-height__base) !important;
+        .lib-css(color, @primary__color) !important;
+    }
+
+    .cart-summary .atome-checkout-note {
+        .lib-font-size(@font-size__base) !important;
+        
+        .atome-icon.atome-logo {
+            height: @font-size__base !important;
+        }
+        
+        .atome-new-user-off-image {
+            min-height: 34px;
+            margin: 6px 0 !important;
+        }
+    }
+}

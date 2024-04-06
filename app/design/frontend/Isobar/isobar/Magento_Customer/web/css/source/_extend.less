@@ -1,0 +1,64 @@
+& when (@media-common = true) {
+    .login-container .block {
+        &.block-customer-login {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        &.social-login {
+            text-align: center;
+            .account-social-login {
+                width: 100%;
+                margin-bottom: 0;
+                .block-content {
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .field.required{
+        .customer-dob{
+            position: relative;
+            .ui-datepicker-trigger{
+                position: absolute;
+                right: 0;
+                top: 6px;
+            }
+        }
+    }
+    #registrant-options{
+        .fields.additional.row{
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .login-container .block {
+        &.social-login {
+            float: left;
+            text-align: left;
+            .account-social-login .block-content {
+                text-align: left;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .ordered{
+        .table-order-items{
+            .col.price{
+                text-align: left;
+            }
+            .col.subtotal{
+                text-align: left;
+            }
+        }
+    }
+    .table-returns{
+        .action.details{
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+& when (@media-common = true) {
+    .breadcrumbs .items{
+        line-height: 20px;
+        .item{
+            &:after{
+                line-height: inherit;
+            }
+        }
+    }
+    .page-print{
+        .btn-line{
+            display: none;
+        }
+        .invoice{
+            overflow-y: hidden;
+        }
+        .nav-toggle{
+            display: none;
+        }
+    }
+    .account .table-wrapper{
+        overflow-y: hidden;
+    }
+}

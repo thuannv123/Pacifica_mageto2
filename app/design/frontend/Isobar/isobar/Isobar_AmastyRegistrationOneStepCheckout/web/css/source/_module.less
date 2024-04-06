@@ -1,0 +1,102 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .checkout-index-index {
+        .form.form-register {
+            margin: 0 -7px;
+            margin-top: 20px;
+            .field {
+                display: inline-block;
+                padding: 0 7px;
+                width: 100%;
+                vertical-align: top;
+                box-sizing: border-box;
+
+                &.is_create_account {
+                    + .fieldset {
+                        margin-top: 15px;
+                    }
+                }
+            }
+
+            .fieldset .field:not(.choice) {
+                &.checkout-create-password,
+                &.checkout-create-dob,
+                &.checkout-create-gender {
+                    width: 50%;
+                }
+
+                &.checkout-create-firstname,
+                &.checkout-create-lastname,
+                &.checkout-create-taxvat {
+                    .lib-visually-hidden();
+                }
+            }
+
+            .fieldset .field {
+                &.checkout-create-assistance {
+                    .lib-visually-hidden();
+                }
+            }
+
+            input[type='date'] {
+                height: 40px;
+            }
+        }
+
+        .field-tooltip {
+            right: -1rem;
+
+            .field-tooltip-action:before {
+                width: 24px;
+            }
+        }
+
+        .checkout-billing-address {
+            .fieldset {
+                margin-top: 40px;
+            }
+
+            .fieldset .field.field-select-billing {
+                .label {
+                    display: block;
+                    margin: 0;
+                    padding: 15px;
+                    background: #eee;
+                    font-weight: 600;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+
+    .amcheckout-step-container .checkout-billing-address .actions-toolbar .action-cancel {
+        .lib-button-primary();
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}

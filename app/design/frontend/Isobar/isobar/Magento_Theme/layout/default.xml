@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo_pacifica.png</argument>
+                <argument name="logo_width" xsi:type="number">135</argument>
+                <argument name="logo_height" xsi:type="number">55</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="footer-container" remove="true"/>
+        <referenceContainer name="customer-account-navigation-checkout-sku-link" remove="true"/>
+        <referenceContainer name="customer-account-navigation-reward-link" remove="true"/>
+        <referenceContainer name="amblog-customer-account-tab-blog-posts" remove="true"/>
+        <referenceContainer name="page.wrapper">
+            <container name="isobar-footer-container" htmlTag="footer" htmlClass="footer">
+                <container name="footer-content" as="footer-content" label="Page Footer" htmlTag="div" htmlClass="footer content">
+                    <container name="footer.container.left" as="footerContainerLeft" label="Footer Container Left" htmlTag="div" htmlClass="footer-container-left" before="-">
+                        <block class="Magento\Cms\Block\Block" name="footer-link">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">Pacifica-allPage-isobarFooter-all</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="footer.container.right" as="footerContainerRight" label="Footer Container Right" htmlTag="div" htmlClass="footer-container-right">
+                        <block class="Magento\Cms\Block\Block" name="footer-social" after="form.subscribe">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_links_block_middle_right</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" after="-" template="Magento_Newsletter::subscribe.phtml"/>
+                    </container>
+                </container>
+                <block class="Magento\Framework\View\Element\Template" name="pagetop" template="Magento_Theme::html/linechat.phtml" after="-"/>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="header.panel">
+            <container name="header-right" as="header-right" htmlTag="div" htmlClass="header-right">
+                <block class="Magento\Cms\Block\Block" name="top-header-link">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">Fasttrack-allPage-wishListHeader</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="header-links" as="header-links" htmlTag="ul" htmlClass="header account customer">
+                <block class="Magento\Customer\Block\Account\Customer" name="customer-custom" template="Magento_Customer::account/customer-custom.phtml">
+                    <block class="Magento\Customer\Block\Account\Link" name="my-account-link-custom">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link-custom" template="Magento_Customer::account/link/authorization.phtml"/>
+                </block>
+                <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link-login-custom" template="Magento_Customer::account/link/authorization-custom.phtml"/>
+            </container>
+
+            <container name="account-icon" label="accountDropdown" htmlTag="div" htmlClass="header links">
+            </container>
+
+            <block class="Magento\Cms\Block\Block" name="location-link">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">coach-store-location</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="header-wrapper">
+            <container name="header.top.menu" htmlClass="top_menu" htmlTag="div" after="-">
+                <block class="Magento\Framework\View\Element\Template" name="navigation.sections" before="-" template="Magento_Theme::html/sections.phtml">
+                    <arguments>
+                        <argument name="group_name" xsi:type="string">navigation-sections</argument>
+                        <argument name="group_css" xsi:type="string">nav-sections</argument>
+                    </arguments>
+                    <block class="Magento\Framework\View\Element\Template" name="store.menu" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+                        <arguments>
+                            <argument name="title" translate="true" xsi:type="string">Menu</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Text" name="store.links" group="navigation-sections">
+                        <arguments>
+                            <argument name="title" translate="true" xsi:type="string">Account</argument>
+                            <argument name="use_force" xsi:type="boolean">true</argument>
+                            <argument name="text" xsi:type="string"><![CDATA[<!-- Account links -->]]></argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Template" name="store.settings" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+                        <arguments>
+                            <argument name="title" translate="true" xsi:type="string">Language</argument>
+                        </arguments>
+                        <block class="Magento\Store\Block\Switcher" name="store.settings.language" template="Magento_Store::switch/languages.phtml">
+                            <arguments>
+                                <argument name="id_modifier" xsi:type="string">nav</argument>
+                                <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Directory\Block\Currency" name="store.settings.currency" template="Magento_Directory::currency.phtml">
+                            <arguments>
+                                <argument name="id_modifier" xsi:type="string">nav</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <move element="authorization-link-login-custom" destination="header-links"/>
+        <move element="top.search" destination="header-right" before="-"/>
+        <move element="top-header-link" destination="header-right" before="-"/>
+        <move element="header-links" destination="header-right" after="top-header-link"/>
+        <move element="minicart" destination="header-right" before="top-header-link"/>
+        <move element="logo" destination="header.panel" before="-"/>
+        <move element="store_language" destination="header.panel" before="-"/>
+        <move element="location-link" destination="header.panel" before="logo"/>
+
+        <!--  Downloadable product link  -->
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+        <!--  Gift Registry link  -->
+        <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true"/>
+        <!--  Billing agreement link  -->
+        <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+        <!--  Stored Payment Methods link  -->
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
+        <!--  Wish list link  -->
+        <referenceBlock name="multiple-wish-list-link" remove="true"/>
+        <!--  Invitation link  -->
+        <referenceBlock name="invitation_link_top" remove="true"/>
+    </body>
+</page>

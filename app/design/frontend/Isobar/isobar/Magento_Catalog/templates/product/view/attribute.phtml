@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+if (!$_product instanceof \Magento\Catalog\Model\Product) {
+    return;
+}
+
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
+        ? $_product->getAttributeText($_code)
+        : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+<?php if ($_attributeValue) : ?>
+    <div class="product attribute <?= $block->escapeHtmlAttr($_className) ?>">
+        <?php if ($renderLabel) : ?>
+            <strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
+        <?php endif; ?>
+        <div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>>
+            <?php if ($block->escapeHtmlAttr($_className) == 'description') : ?>
+                <button type="button" class="product-detail"><?= $block->escapeHtml(__('PRODUCT DETAILS')) ?>
+                </button>
+                <div class="description" style="display: block;">
+                    <?= /* @noEscape */ $_attributeValue ?>
+                </div>
+            <?php elseif ($block->escapeHtmlAttr($_className) == 'overview') : ?>
+                <button type="button" class="editors-notes"><?= $block->escapeHtml(__('Editor’s Notes')) ?>
+                </button>
+                <div class="description-notes" style="display: block;">
+                    <?= /* @noEscape */ $_attributeValue ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            function toggleTabNotes() {
+                $('.editors-notes').each(function() {
+                    var editorNoteTrigger = $(this);
+                    var editorNotes = editorNoteTrigger.next('.description-notes');
+                    editorNoteTrigger.off('click').on('click', function(event) {
+                        event.preventDefault();
+                        editorNotes.toggle();
+                        editorNoteTrigger.toggleClass('active');
+                    });
+                });
+                $('.product-detail').each(function() {
+                    var descriptionTrigger = $(this);
+                    var description = descriptionTrigger.next('.description');
+                    descriptionTrigger.off('click').on('click', function(event) {
+                        event.preventDefault();
+                        description.toggle();
+                        descriptionTrigger.toggleClass('active');
+                    });
+                });
+            }
+            toggleTabNotes();
+            $(window).resize(toggleTabNotes);
+        });
+    });
+</script>

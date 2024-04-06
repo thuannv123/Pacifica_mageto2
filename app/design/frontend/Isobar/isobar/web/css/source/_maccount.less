@@ -1,0 +1,47 @@
+.columns{
+  .form-add-invitations .fieldset {
+    .actions-toolbar {
+      > .secondary{
+        button.add{
+          margin-top: 15px;
+        }
+      }
+
+    }
+    .field.text{
+      margin-top:20px;
+    }
+  }
+
+}
+.compare.wrapper{
+  .link{
+    font-size: 0px;
+    line-height: @line-height__base;
+    margin-bottom: 0;
+    display: none;
+    &:before{
+      content: @icon-compare-full;
+      font-size: 14px;
+      font-family: @icons__font-name;
+      color:@primary__color;
+    }
+    .qty{
+      font-size: @font-size__base;
+      margin-left: 5px;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .form-add-invitations .fieldset .actions-toolbar > .secondary{
+    float: none;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .products-grid.wishlist{
+    .product-item{
+      min-height:auto ;
+    }
+  }
+}

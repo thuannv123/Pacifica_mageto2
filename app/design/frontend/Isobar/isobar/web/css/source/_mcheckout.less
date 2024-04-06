@@ -1,0 +1,43 @@
+& when (@media-common = true) {
+
+  .checkout-onepage-success{
+    .page-main .block.block-order-details{
+      .order-date{
+        &:after{
+          clear: both;
+          display: table;
+          content: '';
+        }
+      }
+      .delivery{
+        .delivery-field{
+          float:none;
+        }
+      }
+    }
+  }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .checkout-container {
+    .opc-estimated-wrapper {
+      margin: 0px 0px 15px;
+    }
+    .opc-wrapper .form-login{
+      margin: 20px 0px 12px;
+    }
+  }
+  .checkout-index-index{
+    .opc-wrapper.am-opc-wrapper .payment-option-content{
+      padding: 0 15px 20px;
+    }
+    .checkout-block{
+      margin: 7px 0px 32px;
+    }
+    .opc-wrapper .methods-shipping{
+      margin: 22px 0px 15px;
+    }
+  }
+
+}
