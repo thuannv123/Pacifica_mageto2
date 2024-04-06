@@ -1,0 +1,38 @@
+diff --git a/app/code/P2c2p/P2c2pPayment/Controller/Payment/Request.php b/app/code/P2c2p/P2c2pPayment/Controller/Payment/Request.php
+index 609a2c13..ac0bbead 100644
+--- a/app/code/P2c2p/P2c2pPayment/Controller/Payment/Request.php
++++ b/app/code/P2c2p/P2c2pPayment/Controller/Payment/Request.php
+@@ -9,7 +9,7 @@
+ namespace P2c2p\P2c2pPayment\Controller\Payment;
+ 
+ class Request extends \P2c2p\P2c2pPayment\Controller\AbstractCheckoutRedirectAction
+-{	
++{
+ 
+ 
+ 	public function log($data){
+@@ -21,13 +21,16 @@ class Request extends \P2c2p\P2c2pPayment\Controller\AbstractCheckoutRedirectAct
+ 
+ 
+ 	public function execute() {
++        $orderId = $this->getRequest()->getParam('order_id');
+         //Get current order detail from OrderFactory object.
+         $sessionOrder = $this->getCheckoutSession()->getLastRealOrder();
+         if (!$sessionOrder)
+         {
+             die("Aunthentication Error: Order is is empty.");
+         }
+-        $order = $this->getOrderDetailByOrderId($sessionOrder->getId());
++        $this->log('Session Order Id: '.$sessionOrder->getId(). ", Param order id: ".$orderId);
++        $orderId =($sessionOrder->getId())?$sessionOrder->getId():$orderId;
++        $order = $this->getOrderDetailByOrderId($orderId);
+         //Redirect to home page with error
+         if(!isset($order)) {
+             $this->log('Error, order not found');
+@@ -77,4 +80,4 @@ class Request extends \P2c2p\P2c2pPayment\Controller\AbstractCheckoutRedirectAct
+         // $this->log(json_encode($fun2c2p_args));
+         echo $this->getP2c2pRequest($fun2c2p_args,$customerSession->isLoggedIn());
+     }
+-}
+\ No newline at end of file
++}

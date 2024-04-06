@@ -1,0 +1,30 @@
+Index: vendor/magento/framework/DB/Adapter/Pdo/Mysql.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php b/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php
+--- a/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php	
++++ b/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php	(date 1664789170214)
+@@ -624,6 +624,21 @@
+                 new Phrase("Multiple queries can't be executed. Run a single query and try again.")
+             );
+         }
++        if (strpos($sql, "catalog_product_entity") !== false
++            && strpos($sql, "catalog_product_entity_") === false
++            && strpos($sql, "DELETE") !== false
++        ) {
++            $writer = new \Laminas\Log\Writer\Stream(BP . "/var/log/tracking_delete_product_action.log");
++            $logger = new \Laminas\Log\Logger();
++            $logger->addWriter($writer);
++            try {
++                throw new \Exception("tracking delete product action.");
++            } catch (\Exception $exception) {
++                $logger->info($exception->getTraceAsString());
++                $logger->info('query = ' . $sql);
++                $logger->info('bind: ' . print_r($bind,1));
++            }
++        }
+         return $this->_query($sql, $bind);
+     }
+ 

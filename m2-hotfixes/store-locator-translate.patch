@@ -1,0 +1,27 @@
+diff --git a/vendor/amasty/module-store-locator/view/frontend/templates/pages/location_view.phtml b/vendor/amasty/module-store-locator/view/frontend/templates/pages/location_view.phtml
+index e6f9b24..73b5b4b 100644
+--- a/vendor/amasty/module-store-locator/view/frontend/templates/pages/location_view.phtml
++++ b/vendor/amasty/module-store-locator/view/frontend/templates/pages/location_view.phtml
+@@ -114,7 +114,7 @@
+                     <?php endif;?>
+                 </div>
+                 <div class="amlocator-block">
+-                    <a class="amlocator-link" data-amlocator-js="locator-panorama">Street View</a>
++                    <a class="amlocator-link" data-amlocator-js="locator-panorama"><?= $block->escapeHtml(__('Street View'))?></a>
+                 </div>
+             </div>
+
+diff --git a/vendor/amasty/module-store-locator/view/frontend/templates/pages/reviews.phtml b/vendor/amasty/module-store-locator/view/frontend/templates/pages/reviews.phtml
+index e6f9b24..73b5b4b 100644
+--- a/vendor/amasty/module-store-locator/view/frontend/templates/pages/reviews.phtml
++++ b/vendor/amasty/module-store-locator/view/frontend/templates/pages/reviews.phtml
+@@ -150,8 +150,7 @@
+                 </div>
+             <?php else : ?>
+                 <div>
+-                    Please <a href="<?= $block->escapeHtml($block->getUrl('customer/account/login')) ?>">log in</a> to
+-                    leave a review.
++                    <?= __('Please %1 to leave a review.', '<a href="'.$block->getUrl('customer/account/login').'">'. __('log in') .'</a>') ?>
+                 </div>
+             <?php endif; ?>
+         </div>

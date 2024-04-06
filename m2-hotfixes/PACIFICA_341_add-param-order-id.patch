@@ -1,0 +1,99 @@
+diff --git a/app/code/P2c2p/P2c2pPayment/view/frontend/web/js/view/payment/method-renderer/P2c2pPayment.js b/app/code/P2c2p/P2c2pPayment/view/frontend/web/js/view/payment/method-renderer/P2c2pPayment.js
+index 3c1d6a96..033c94cc 100644
+--- a/app/code/P2c2p/P2c2pPayment/view/frontend/web/js/view/payment/method-renderer/P2c2pPayment.js
++++ b/app/code/P2c2p/P2c2pPayment/view/frontend/web/js/view/payment/method-renderer/P2c2pPayment.js
+@@ -31,14 +31,14 @@ define(
+         'use strict';
+ 
+         self.specializationArray = ko.observableArray();
+-        
++
+         if(customer.isLoggedIn()){
+             $.ajax({
+                 type: "POST",
+                 url: url.build('p2c2p/token/index'),
+                 data: {userId : customer.customerData.id },
+                 async : false,
+-                success: function (response) {                    
++                success: function (response) {
+                     self.specializationArray(response.items);
+                 },
+                 error: function (response) {
+@@ -52,7 +52,7 @@ define(
+                 template: 'P2c2p_P2c2pPayment/payment/P2c2pPayment'
+             },
+ 
+-            tokenChangeEvent : function(){                
++            tokenChangeEvent : function(){
+                 var token_options = $('#' +this.getCode() +'_test1');
+                 var btnTokenId =  $('#' +this.getCode() +'_btnTokenDelete').selector;
+ 
+@@ -66,7 +66,7 @@ define(
+ 
+                 var form_id = $('#' +this.getCode() +'_form').selector;
+                 var token_options = $('#' +this.getCode() +'_test1');
+-                var btnTokenId =  $('#' +this.getCode() +'_btnTokenDelete').selector;  
++                var btnTokenId =  $('#' +this.getCode() +'_btnTokenDelete').selector;
+ 
+                 var tokenId = token_options.val();
+ 
+@@ -88,7 +88,7 @@ define(
+                             return;
+                         }
+ 
+-                        var isdeleted = $(token_options.selector +" option[value="+ tokenId + "]").remove();                        
++                        var isdeleted = $(token_options.selector +" option[value="+ tokenId + "]").remove();
+ 
+                         if($(token_options.selector).find("option").length <= 1){
+                             $(form_id).remove();
+@@ -99,7 +99,7 @@ define(
+                         }
+                         else{
+                             $(btnTokenId).hide();
+-                            alert("Your card has been removed successfully.");  
++                            alert("Your card has been removed successfully.");
+                         }
+                     },
+                     error: function (response) {
+@@ -107,7 +107,7 @@ define(
+                         return;
+                     }
+                 });
+-            },           
++            },
+             placeOrder: function (data, event) {
+                 if (event) {
+                     event.preventDefault();
+@@ -126,12 +126,16 @@ define(
+ 
+                     $.when(placeOrder).fail(function () {
+                         self.isPlaceOrderActionAllowed(true);
+-                    }).done(this.afterPlaceOrder.bind(this));
++                    }).done(
++                        function (response) {
++                            self.afterPlaceOrder(response);
++                        }
++                    );
+                     return true;
+                 }
+                 return false;
+             },
+-            getData: function() {                
++            getData: function() {
+                 return {
+                     'method': this.item.method,
+                     'additional_data': {
+@@ -145,9 +149,9 @@ define(
+                 return true;
+             },
+ 
+-            afterPlaceOrder: function () {
+-                window.location.replace(url.build('p2c2p/payment/request'));
++            afterPlaceOrder: function (order_id) {
++                window.location.replace(url.build('p2c2p/payment/request?order_id='+order_id));
+             }
+         });
+     }
+-);
+\ No newline at end of file
++);

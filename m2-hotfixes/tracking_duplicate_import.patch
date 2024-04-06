@@ -1,0 +1,22 @@
+diff --git a/vendor/firebear/importexport/Model/Import.php b/vendor/firebear/importexport/Model/Import.php
+index e6d14b51..c69ab172 100755
+--- a/vendor/firebear/importexport/Model/Import.php
++++ b/vendor/firebear/importexport/Model/Import.php
+@@ -648,6 +648,17 @@ class Import extends \Magento\ImportExport\Model\Import
+             );
+         }
+ 
++        if ($this->getEntity() == "catalog_product") {
++            $writer = new \Laminas\Log\Writer\Stream(BP . "/var/log/import_product_duplicate.log");
++            $logger = new \Laminas\Log\Logger();
++            $logger->addWriter($writer);
++            try {
++                throw new \Exception("duplicate import product tracking");
++            } catch (\Exception $exception) {
++                $logger->info($exception->getTraceAsString());
++            }
++        }
++
+         $status = $this->processImportPart($file, $offset, $job);
+         if ($status) {
+             $this->showErrors();

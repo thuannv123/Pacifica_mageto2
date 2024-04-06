@@ -1,0 +1,13 @@
+diff --git a/app/code/Mageplaza/Customize/Plugin/Adminhtml/Product/Save.php b/app/code/Mageplaza/Customize/Plugin/Adminhtml/Product/Save.php
+index 54f82bde..8b3ae47d 100644
+--- a/app/code/Mageplaza/Customize/Plugin/Adminhtml/Product/Save.php
++++ b/app/code/Mageplaza/Customize/Plugin/Adminhtml/Product/Save.php
+@@ -61,7 +61,7 @@ class Save
+     {
+         if ($this->helper->isEnabled()) {
+             $data = $this->request->getPostValue('product');
+-            if (!strpos($data['price'], '.')) {
++            if (isset($data['price']) && !strpos($data['price'], '.')) {
+                 $data['price'] = $data['price'] . '.';
+             }
+             $this->request->setPostValue('product', $data);
